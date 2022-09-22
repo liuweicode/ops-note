@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  制作install.php &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="很多开源程序如Uchome，Dz，phpwind，thinkSNS等，他们在进行安装的时候都要求执行install.php进行安装，其实执行|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="制作install.php | 运维笔记">
+    <meta name="twitter:description" content="很多开源程序如Uchome，Dz，phpwind，thinkSNS等，他们在进行安装的时候都要求执行install.php进行安装，其实执行|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">制作install.php</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/php' class="muted-link">
+  <span class="Label Label--gray-darker">PHP</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2010-04-24. Published at: 2010-04-24.">
+        
+          Published: 2010-04-24
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>很多开源程序如Uchome，Dz，phpwind，thinkSNS等，他们在进行安装的时候都要求执行install.php进行安装，其实执行install.php安装程序的本质就是用程序中配置的数据库结构创建数据库，并初始化数据库，在我看来这个跟Java里面的ORM框架Hibernate将对象模型导入成数据模型有点相似，不过还是有区别的，虽然PHP现在的版本支持OO思想，但它还不是一个完全面向对象的编程语言，好了，接下来我们做一个简单的php install程序。</p>
+<p>第一步：新建一个install.php文件</p>
+<pre tabindex="0"><code>&lt;?php
+echo “检查文件权限……&lt;br/&gt;”;
+if(!is_writable(“data/config.php”)){
+echo “&lt;font color=red&gt;config.php文件不可写，请检查权限！&lt;/font&gt;”;
+}else{
+echo “&lt;font color=green&gt;config.php文件可写…&lt;/font&gt;&lt;br/&gt;”;
+echo “&lt;button type=submit name=step1 onClick=\”javascript:window.location.href=’step1.php’\”&gt;下一步&lt;/button&gt;”;
+}
+?&gt;
+</code></pre><p>注：这里主要针对Linux/Unix等系统下文件权限的判断，windows下默认是可读写的。</p>
+<p>第二步，我们配置相关数据库参数，新建step1.php</p>
+<pre tabindex="0"><code>&lt;?php
+?&gt;
+&lt;h3&gt;填写数据库链接信息&lt;/h3&gt;
+&lt;form action=”step2.php” method=”POST”&gt;
+填写主机：&lt;input type=”text” name=”db_host” value=”localhost”/&gt;&lt;br&gt;
+用户名：&lt;input type=”text” name=”db_user” value=”root”/&gt;&lt;br&gt;
+密码：&lt;input type=”text” name=”db_pass” value=”&#34;/&gt;&lt;br&gt;
+数据库名：&lt;input type=”text” name=”db_dbname” value=”uyvandb”/&gt;&lt;br&gt;
+数据前缀：&lt;input type=”text” name=”db_tag” value=”u_”/&gt;&lt;br&gt;
+&lt;button type=submit name=install&gt;下一步&lt;/button&gt;
+&lt;/form&gt;
+</code></pre><p>第三步：将用户提交的数据写入配置文件，并导入到数据库中，新建step2.php</p>
+<pre tabindex="0"><code>&lt;?php
+if (isset ($_POST[install])) {
+
+$config_str = “&lt;?php”;
+$config_str .= “\n”;
+$config_str .= ‘$mysql_host = “‘ . $_POST[db_host] . ‘”;’;
+$config_str .= “\n”;
+$config_str .= ‘$mysql_user = “‘ . $_POST[db_user] . ‘”;’;
+$config_str .= “\n”;
+$config_str .= ‘$mysql_pass = “‘ . $_POST[db_pass] . ‘”;’;
+$config_str .= “\n”;
+$config_str .= ‘$mysql_dbname = “‘ . $_POST[db_dbname] . ‘”;’;
+$config_str .= “\n”;
+$config_str .= ‘$mysql_tag = “‘ . $_POST[db_tag] . ‘”;’;
+$config_str .= “\n”;
+$config_str .= ‘?&gt;’;
+
+$ff = fopen(“data/config.php”, “w+”);
+$rs = fwrite($ff, $config_str);
+if ($rs) {
+echo “配置成功……&lt;br/&gt;”;
+echo “正在连接数据库……&lt;br/&gt;”;
+include_once (“data/config.php”);
+if (!@ $link = mysql_connect($mysql_host, $mysql_user, $mysql_pass)) {
+echo “数据库连接失败! 请返回上一页检查连接参数 &lt;a href=step1.php&gt;返回修改&lt;/a&gt;”;
+} else {
+echo “连接数据库成功……&lt;br/&gt;”;
+mysql_query(“CREATE DATABASE `$mysql_dbname`”);
+echo “数据库创建成功……&lt;br/&gt;”;
+echo “执行导入……&lt;br/&gt;”;
+mysql_select_db($mysql_dbname);
+$sql_query[] = “CREATE TABLE IF NOT EXISTS `” . $mysql_tag . “message1` (
+`id` tinyint(1) NOT NULL auto_increment,
+`user` varchar(25) NOT NULL,
+`title` varchar(50) NOT NULL,
+`content` tinytext NOT NULL,
+`lastdate` date NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk AUTO_INCREMENT=10 ;
+“;
+$sql_query[] = “CREATE TABLE IF NOT EXISTS `” . $mysql_tag . “message2` (
+`id` tinyint(1) NOT NULL auto_increment,
+`user` varchar(25) NOT NULL,
+`title` varchar(50) NOT NULL,
+`content` tinytext NOT NULL,
+`lastdate` date NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk AUTO_INCREMENT=10 ;
+“;
+$sql_query[] = “CREATE TABLE IF NOT EXISTS `” . $mysql_tag . “message3` (
+`id` tinyint(1) NOT NULL auto_increment,
+`user` varchar(25) NOT NULL,
+`title` varchar(50) NOT NULL,
+`content` tinytext NOT NULL,
+`lastdate` date NOT NULL,
+PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk AUTO_INCREMENT=10 ;
+“;
+foreach ($sql_query as $val) {
+mysql_query($val);
+}
+echo “导入成功……&lt;br/&gt;”;
+echo “安装完成……&lt;br/&gt;”;
+echo “&lt;button type=submit name=step1 onClick=\”javascript:window.location.href=’index.php’\”&gt;点击进入主页&lt;/button&gt;”;
+rename(“install.php”,”install.lock”);
+}
+
+} else {
+echo “文件配置失敗，请重试……”;
+}
+}
+?&gt;
+</code></pre><p>最后记提醒用户删除安装文件，或者将安装文件改名.</p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>制作install.php</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

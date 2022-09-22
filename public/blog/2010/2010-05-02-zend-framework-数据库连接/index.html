@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  Zend Framework 数据库连接 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="Zend_Db_Adapter是zendfrmaeword的数据库抽象层api. 基于pdo, 你可以使用 Zend_Db_Adapter 连接和处理多种 数据库,包括:micr|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="Zend Framework 数据库连接 | 运维笔记">
+    <meta name="twitter:description" content="Zend_Db_Adapter是zendfrmaeword的数据库抽象层api. 基于pdo, 你可以使用 Zend_Db_Adapter 连接和处理多种 数据库,包括:micr|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">Zend Framework 数据库连接</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/ubuntu' class="muted-link">
+  <span class="Label Label--gray-darker">Ubuntu</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2010-05-02. Published at: 2010-05-02.">
+        
+          Published: 2010-05-02
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>Zend_Db_Adapter是zendfrmaeword的数据库抽象层api. 基于pdo, 你可以使用 Zend_Db_Adapter 连接和处理多种 数据库,包括:microsoft SQL Server,MySql,SQLite等等.</p>
+<p>链接数据库方法一：要针对不同的数据库实例化一个 Zend_Db_Adapter 对象, 需要 将adapter的名字和描述数据库连接的参数数组作为参数，静态调用 Zend_Db::factory()方法。例如，连接到一个数据库名称为 “camelot”，用户名为“malory”的本地mysql数据库，可以进行如下操作:</p>
+<pre tabindex="0"><code>&lt;?php 
+
+require_once ‘Zend/Db.php’; 
+
+$params = array (‘host’ =&gt; ’127.0.0.1′, 
+‘username’ =&gt; ‘malory’, 
+‘password’ =&gt; ‘******’, 
+‘dbname’ =&gt; ‘camelot’); 
+
+$db = Zend_Db::factory(‘PDO_MYSQL’, $params); 
+
+?&gt;
+</code></pre><p>链接数据库方法二（推荐）：将配置信息写在“.ini”结尾的配置文件中（当然你也可以在xml格式的文件中进行配置，这里介绍ini格式文件的配置），INI 格式在提供拥有配置数据键的等级结构和配置数据节之间的继承能力方面具有专长。配置数据等级结构通过用点或者句号 (.)分离键值。一个节可以扩展或者通过在节的名称之后带一个冒号(:)和被继承的配置数据的节的名称来从另一个节继承。如下面的config.ini</p>
+<pre tabindex="0"><code>db.adapter=PDO_MYSQL 
+db.config.host=localhost 
+db.config.username=malory 
+db.config.password=****** 
+db.config.dbname=camelot
+</code></pre><p>之后调用如下语句，指定数据库Adapter来建立数据库链接：</p>
+<pre tabindex="0"><code>$config=new Zend_Config_Ini(‘./application/config/config.ini’,null, true); 
+Zend_Registry::set(‘config’,$config); 
+$dbAdapter=Zend_Db::factory($config-&gt;general-&gt;db-&gt;adapter,$config-&gt;general-&gt;db-&gt;config-&gt;toArray()); 
+$dbAdapter-&gt;query(‘SET NAMES GBK’); 
+Zend_Db_Table::setDefaultAdapter($dbAdapter); 
+Zend_Registry::set(‘dbAdapter’,$dbAdapter);
+</code></pre><p>这里的Zend_Config_Ini类，允许开发者通过嵌套的对象属性语法在应用程序中用熟悉的 INI 格式存储和读取配置数据。</p>
+<p>$dbAdapter=Zend_Db::factory($config-&gt;general-&gt;db-&gt;adapter,$config-&gt;general-&gt;db-&gt;config-&gt;toArray());这一句创建数据库适配器，里面的两个参数分表表示：$config-&gt;general-&gt;db-&gt;adapter取出的值就是上面config.ini文件配置的PDO_MYSQL，而$config-&gt;general-&gt;db-&gt;config-&gt;toArray()这一句则将host，username，password，dbname作为数组的形式。Zend_Db_Table::setDefaultAdapter($dbAdapter);这一句设置表的默认适配器，除非你特别指定，否则所有的zend_db_table类实例都会使用 默认adapter。Zend_Registry::set(‘dbAdapter’,$dbAdapter);则是在注册Adapter，Zend_Registry，对象注册表（或称对象仓库）是一个用于在整个应用空间（application space）内存储对象和值的容器。通过把对象存储在其中，我们可以在整个项目的任何地方使用同一个对象。这种机制相当于一种全局存储.我们可以通过Zend_Registry类的静态方法来使用对象注册表，另外，由于该类是一个数组对象，你可以使用数组形式来访问其中的类方法，例如：$value = Zend_Registry::get(‘dbAdapter’);</p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>Zend Framework 数据库连接</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

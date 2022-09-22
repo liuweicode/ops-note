@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  在 Kubernetes 上部署 Nacos 集群 &ndash; 运维笔记 - liuwei.co
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="1. 下载源码 2.1.1 版本 wget https://github.com/alibaba/nacos/archive/refs/tags/2.1.1.zip 2. 创建数据库 CREATE DATABASE IF NOT EXISTS nacos-dev DEFAULT CHARSET utf8 COLLATE utf8_general_ci; 3. 初始化数据库 source nacos-2.1.1/distribution/conf/nacos-mysql.sql 4. 部署 4.1 修改nacos.yaml 4.2 修改 replicas 这里设置为3，需要与下面的N|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记 - liuwei.co">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="在 Kubernetes 上部署 Nacos 集群 | 运维笔记 - liuwei.co">
+    <meta name="twitter:description" content="1. 下载源码 2.1.1 版本 wget https://github.com/alibaba/nacos/archive/refs/tags/2.1.1.zip 2. 创建数据库 CREATE DATABASE IF NOT EXISTS nacos-dev DEFAULT CHARSET utf8 COLLATE utf8_general_ci; 3. 初始化数据库 source nacos-2.1.1/distribution/conf/nacos-mysql.sql 4. 部署 4.1 修改nacos.yaml 4.2 修改 replicas 这里设置为3，需要与下面的N|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记 - liuwei.co
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">在 Kubernetes 上部署 Nacos 集群</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/k8s' class="muted-link">
+  <span class="Label Label--gray-darker">k8s</span>
+</a>
+
+
+
+<a href='/tags/kubernetes' class="muted-link">
+  <span class="Label Label--gray">kubernetes</span>
+</a>
+
+<a href='/tags/nacos' class="muted-link">
+  <span class="Label Label--gray">nacos</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-09-15. Published at: 2022-09-15.">
+        
+          Published: 2022-09-15
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p><img src="https://static.liuwei.co/202209/nacos/nacos-screenshot.png" alt="nacos-screenshot"></p>
+<h2 id="1-下载源码-211-版本">1. 下载源码 2.1.1 版本</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">wget https://github.com/alibaba/nacos/archive/refs/tags/2.1.1.zip
+</span></span></code></pre></div><h2 id="2-创建数据库">2. 创建数据库</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="k">IF</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">EXISTS</span><span class="w"> </span><span class="n">nacos</span><span class="o">-</span><span class="n">dev</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">CHARSET</span><span class="w"> </span><span class="n">utf8</span><span class="w"> </span><span class="k">COLLATE</span><span class="w"> </span><span class="n">utf8_general_ci</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div><h2 id="3-初始化数据库">3. 初始化数据库</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">source</span><span class="w"> </span><span class="n">nacos</span><span class="o">-</span><span class="mi">2</span><span class="p">.</span><span class="mi">1</span><span class="p">.</span><span class="mi">1</span><span class="o">/</span><span class="n">distribution</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">nacos</span><span class="o">-</span><span class="n">mysql</span><span class="p">.</span><span class="k">sql</span><span class="w">
+</span></span></span></code></pre></div><h2 id="4-部署">4. 部署</h2>
+<h3 id="41-修改nacosyaml">4.1 修改nacos.yaml</h3>
+<p><img src="https://static.liuwei.co/202209/nacos/db-config.png" alt="修改数据库配置"></p>
+<h3 id="42-修改-replicas">4.2 修改 replicas</h3>
+<ul>
+<li>
+<p>这里设置为<code>3</code>，需要与下面的<code>NACOS_SERVERS</code>对应的上;</p>
+</li>
+<li>
+<p><code>NACOS_SERVERS</code> 配置的格式为<code>$(podname).$(headless-server-name).svc.cluster.local</code>;</p>
+</li>
+<li>
+<p>StatefulSets Pod YAML中ServiceName必须和其暴露SVC的名字一致，否则无法访问Pod域名;</p>
+</li>
+</ul>
+<p><img src="https://static.liuwei.co/202209/nacos/config.png" alt="config"></p>
+<p><img src="https://static.liuwei.co/202209/nacos/nacos-servers.png" alt="nacos-servers"></p>
+<h3 id="42-部署statefulset">4.2 部署statefulset</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f nacos.yaml
+</span></span></code></pre></div><p><img src="https://static.liuwei.co/202209/nacos/k9s-nacos.png" alt="k9s-nacos"></p>
+<h2 id="5-相关链接">5. 相关链接</h2>
+<ul>
+<li>项目代码: <a href="https://github.com/liuweicode/deploy-nacos-cluster-on-kubernetes">https://github.com/liuweicode/deploy-nacos-cluster-on-kubernetes</a></li>
+</ul>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>在 Kubernetes 上部署 Nacos 集群</b><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-下载源码-211-版本">1. 下载源码 2.1.1 版本</a></li>
+    <li><a href="#2-创建数据库">2. 创建数据库</a></li>
+    <li><a href="#3-初始化数据库">3. 初始化数据库</a></li>
+    <li><a href="#4-部署">4. 部署</a>
+      <ul>
+        <li><a href="#41-修改nacosyaml">4.1 修改nacos.yaml</a></li>
+        <li><a href="#42-修改-replicas">4.2 修改 replicas</a></li>
+        <li><a href="#42-部署statefulset">4.2 部署statefulset</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-相关链接">5. 相关链接</a></li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>

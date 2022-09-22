@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VPS on 运维笔记 - liuwei.co</title>
+    <link>https://liuwei.co/categories/vps/</link>
+    <description>Recent content in VPS on 运维笔记 - liuwei.co</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <lastBuildDate>Sat, 16 Mar 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/vps/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VPS 磁盘爆满 mysql 无法启动事件记录</title>
+      <link>https://liuwei.co/post/2013/vps-%E7%A3%81%E7%9B%98%E7%88%86%E6%BB%A1-mysql-%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E4%BA%8B%E4%BB%B6%E8%AE%B0%E5%BD%95/</link>
+      <pubDate>Sat, 16 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2013/vps-%E7%A3%81%E7%9B%98%E7%88%86%E6%BB%A1-mysql-%E6%97%A0%E6%B3%95%E5%90%AF%E5%8A%A8%E4%BA%8B%E4%BB%B6%E8%AE%B0%E5%BD%95/</guid>
+      <description>前两天在修改网站图片的时候，发现ftp无法上传，提示磁盘爆满，不会吧，我带着疑惑ssh到vps上，df -h查看，果然使用了100%。我想可能</description>
+    </item>
+    
+    <item>
+      <title>编译和安装Apache Http Server</title>
+      <link>https://liuwei.co/post/2013/%E7%BC%96%E8%AF%91%E5%92%8C%E5%AE%89%E8%A3%85apache-http-server/</link>
+      <pubDate>Sat, 16 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2013/%E7%BC%96%E8%AF%91%E5%92%8C%E5%AE%89%E8%A3%85apache-http-server/</guid>
+      <description>编译安装apr ./configure &amp;ndash;prefix=/usr/local/apr make &amp;amp;&amp;amp; make install 编译安装apr-util ./configure &amp;ndash;prefix=/usr/local/apr-util make &amp;amp;&amp;amp; make install 编译安装pcre ./configure &amp;ndash;prefix=/usr/local/pcre 出现 configure: error: You need a C++ compiler for C++ support 解决办法：sudo apt-get install g++ 然后继续：</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  Zend Framework 环境搭建与配置 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="1：首先下载Zend Framework:下载地址：http://www.zendframework.com/download/latest 2|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="Zend Framework 环境搭建与配置 | 运维笔记">
+    <meta name="twitter:description" content="1：首先下载Zend Framework:下载地址：http://www.zendframework.com/download/latest 2|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">Zend Framework 环境搭建与配置</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/php' class="muted-link">
+  <span class="Label Label--gray-darker">PHP</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2010-04-30. Published at: 2010-04-30.">
+        
+          Published: 2010-04-30
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>1：首先下载Zend Framework:下载地址：http://www.zendframework.com/download/latest</p>
+<p>2：开启PDO：在php.ini文件中把extension=php_pdo.dll之前的“;”号给去掉，并选择性开启相应的数据库组件，我这里用的mysql，所以我将extension=php_pdo_mysql.dll之间的“;”号也去掉了。</p>
+<p>3：开启Apache的 rewrite模块，打开httpd.conf 文件，将“LoadModule rewrite_module modules/mod_rewrite.so”前面的#号去掉。</p>
+<p>4：打开允许.htaccess的配置的识别，将AllowOverride none 改为 AllowOverride All 。</p>
+<p>这是我的配置：</p>
+<p>&lt;Directory &ldquo;E:\IT\php&rdquo;&gt;
+Options Indexes FollowSymLinks MultiViews 注意：这一句不配置会出现403错误。
+AllowOverride All 单词首字母大写
+Order allow,deny
+Allow from all
+<!-- raw HTML omitted --></p>
+<p>5：下面我们新建一个项目,将下载好的Zend Framework开发包中library下的zend包放在lib目录下。</p>
+<p>我们新建一个.htaccess文件
+文件内容如下：</p>
+<p>RewriteEngine on
+RewriteRule !.(js|ico|gif|jpg|png|css)$ index.php</p>
+<p>php_flag magic_quotes_gpc off
+php_flag register_globals off</p>
+<p>PS：前两行代码表示开启Rewrite引擎，保证了程序的单一入口为index.php. 后两句表示禁用 Magic quotes，即禁止magic_quotes_gpc自动为字符串添加转义字符，因为开启会降低程序的可移植性和影响性能，并且php6已经已经不支持该特性。
+6：好了，到此为止前期配置应该差不多了，我们可以打印一下服务器的配置信息，新建一个phpinfo.php文件：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>运行phpinfo.php，检查相关配置是否成功。
+7：新建index.php,配置Zend framework：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>8：新建控制器，IndexController.php：</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<p>9：新建视图层的页面，index.html</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>Zend Framework 环境搭建与配置</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

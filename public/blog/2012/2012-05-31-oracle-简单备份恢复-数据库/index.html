@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  Oracle 简单备份/恢复 数据库 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="项目中需要将正式库上的数据导入到测试库上，该数据库不知道谁安装的，环境变量都没有设置！%￥#&amp;amp;×%…… 我先ssh到测试机上执行如下命|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="Oracle 简单备份/恢复 数据库 | 运维笔记">
+    <meta name="twitter:description" content="项目中需要将正式库上的数据导入到测试库上，该数据库不知道谁安装的，环境变量都没有设置！%￥#&amp;×%…… 我先ssh到测试机上执行如下命|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">Oracle 简单备份/恢复 数据库</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/oracle' class="muted-link">
+  <span class="Label Label--gray-darker">Oracle</span>
+</a>
+
+<a href='/categories/%E6%95%B0%E6%8D%AE%E5%BA%93' class="muted-link">
+  <span class="Label Label--gray-darker">数据库</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2012-05-31. Published at: 2012-05-31.">
+        
+          Published: 2012-05-31
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>项目中需要将正式库上的数据导入到测试库上，该数据库不知道谁安装的，环境变量都没有设置！%￥#&amp;×%……</p>
+<p>我先ssh到测试机上执行如下命令：</p>
+<pre tabindex="0"><code>export ORACLE_HOME=/u01/app/oracle/product/11.1.0/db_1
+
+export ORACLE_SID=ekp
+
+/u01/app/oracle/product/11.1.0/db_1/bin/exp test/password owner=ekpj file=backup0531.dmp log=backup0531.log buffer=6000000
+</code></pre><p>之后将文件拷贝到测试机上：</p>
+<pre tabindex="0"><code>scp backup0531.dmp oa@10.0.0.224:/u01/
+</code></pre><p>拷贝完成，删除测试机上当前用户下的所有表/视图/序列/函数/存储过程/包：</p>
+<pre tabindex="0"><code>–delete tables
+select ‘drop table ‘ || table_name ||’;&#39;||chr(13)||chr(10) from user_tables;
+
+–delete views
+select ‘drop view ‘ || view_name||’;&#39;||chr(13)||chr(10) from user_views;
+
+–delete sequence
+select ‘drop sequence ‘ || sequence_name||’;&#39;||chr(13)||chr(10) from user_sequences;
+
+–delete functions
+select ‘drop function ‘ || object_name||’;&#39;||chr(13)||chr(10) from user_objects where object_type=’FUNCTION’;
+
+–delete procedures
+select ‘drop procedure ‘ || object_name||’;&#39;||chr(13)||chr(10) from user_objects where object_type=’PROCEDURE’;
+
+–delete package
+select ‘drop package ‘ || object_name||’;&#39;||chr(13)||chr(10) from user_objects where object_type=’PACKAGE’;
+</code></pre><p>执行导入命令：</p>
+<pre tabindex="0"><code>/u01/app/oracle/product/11.1.0/db_1/bin/imp test/password file=backup0531.dmp full=y ignore=n
+</code></pre>
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>Oracle 简单备份/恢复 数据库</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

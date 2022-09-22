@@ -1,0 +1,33 @@
+baseURL = "https://liuwei.co"
+author = "liuwei"
+paginate = 10
+languageCode = "zh-CN"
+DefaultContentLanguage = "en"
+enableInlineShortcodes = true
+footnoteReturnLinkContents = "^"
+# Above are configs from hugoBasicExample
+
+title = "运维笔记 - liuwei.co"
+theme = "hugo-primer"
+hasCJKLanguage = true
+summaryLength = 70
+pygmentsCodeFences = true
+pygmentsUseClasses = true
+googleAnalytics = ""
+disqusShortname=""
+copyright = "&copy;liuwei 2009-2022"
+
+#[frontmatter]
+# update sitemap.xml's lastmod datetime by file change time, instead of git.
+#lastmod = ["lastmod", ":fileModTime", ":default"]
+
+[params]
+description = "liuwei code"
+twitter = ""
+useIcon = true
+useTwitterCard = true
+# exampleSite must not have js share widget: #36
+# shareTo = ["Twitter", "Hatena", "Facebook", "Pocket"]
+shareTo = []
+showFooterCredits = true
+math = false

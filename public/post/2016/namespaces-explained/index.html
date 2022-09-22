@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  PHP 命名空间说明 &ndash; 运维笔记 - liuwei.co
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="在PHP5.3版本中新添加了一个命名空间特性,许多现代流行的语言拥有这个特性已经有一段时间了，但是PHP这一特性有一点点姗姗来迟，当然了，每|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记 - liuwei.co">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="PHP 命名空间说明 | 运维笔记 - liuwei.co">
+    <meta name="twitter:description" content="在PHP5.3版本中新添加了一个命名空间特性,许多现代流行的语言拥有这个特性已经有一段时间了，但是PHP这一特性有一点点姗姗来迟，当然了，每|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记 - liuwei.co
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">PHP 命名空间说明</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/php' class="muted-link">
+  <span class="Label Label--gray-darker">PHP</span>
+</a>
+
+<a href='/categories/namespaces' class="muted-link">
+  <span class="Label Label--gray-darker">namespaces</span>
+</a>
+
+<a href='/categories/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4' class="muted-link">
+  <span class="Label Label--gray-darker">命名空间</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2016-12-28. Published at: 2016-12-28.">
+        
+          Published: 2016-12-28
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>在PHP5.3版本中新添加了一个命名空间特性,许多现代流行的语言拥有这个特性已经有一段时间了，但是PHP这一特性有一点点姗姗来迟，当然了，每个新的特性都有它存在的意义，让我们看看为什么PHP的<code>namespace</code>有利于我们的应用程序。</p>
+<p>在PHP中，你不能同时定义一个相同名字的类，类名必须唯一。那么问题来了，如果你使用了一个第三方的库，这个库中有一个<code>User</code>类，那么你在创建你自己的类时就不能命名为<code>User</code>了。这就尴尬了，因为<code>User</code>这个名字太普遍了，对吧？</p>
+<p>PHP命名空间帮我们解决了这个问题，实际上我们想创建多少个<code>User</code>类就可以创建多少个，不仅仅如此，我们也可以使用命名空间是我们的代码分门别类，或者显示组织结构。</p>
+<p>让我们看一眼一个正经的类(类的确是类，正不正经我不知道)，嗯，我知道你曾经这么使用过，相信我这一次吧。（仿佛看见了作者神秘的微笑&hellip;）</p>
+<h3 id="全局命名空间">全局命名空间</h3>
+<p>这是一个极其简单的类.</p>
+<pre tabindex="0"><code>&lt;?php
+
+// app/models/Eddard.php
+
+class Eddard
+{
+
+}
+</code></pre><p>没有什么特别的，如果我们要使用上面这个类，我们可以这样做：</p>
+<pre tabindex="0"><code>&lt;?php
+
+// app/routes.php
+
+$eddard = new Eddard();
+</code></pre><blockquote>
+<p>黛尔, 我感觉我的智商受到了极大的侮辱&hellip;</p>
+</blockquote>
+<p>好吧，开玩笑啦，言归正传，我们可以想象这个类是在一个全局的<code>global</code>命名空间中。我不清楚这样说是否正确，但是对我而言貌似还是比较合适的，它本质是说，那个类没有命名空间。它只是一个标准的类而已。</p>
+<h3 id="简单的命名空间">简单的命名空间</h3>
+<p>让我们在之前的那个&rsquo;全局的Eddard&rsquo;类旁边创建另一个类:</p>
+<pre tabindex="0"><code>&lt;?php
+
+namespace Stark;
+
+// app/models/another.php
+
+class Eddard
+{
+
+}
+</code></pre><p>这里我们创建了另一个Eddard类，仅仅做了一个小小的修改。添加了一个<code>namespace</code>指令，在<code>namespace Stark</code>这一行。<code>namespace</code>指令告诉PHP我们所有写的代码都是相对于<code>Stark</code>命名空间下的。它也表示所有在这个文件中创建的类将被包含在&rsquo;Stark&rsquo;命名空间里。</p>
+<p>现在，我们再次使用&rsquo;Stark&rsquo;类：</p>
+<pre tabindex="0"><code>&lt;?php
+
+// app/routes.php
+
+$eddard = new Eddard();
+</code></pre><p>再一次，我们获取到了上个章节创建的类的实例，不是在&rsquo;Stark&rsquo;命名空间下的那个实例。下面让我们创建一个&rsquo;Stark&rsquo;命名空间下的&rsquo;Eddard&rsquo;实例。</p>
+<pre tabindex="0"><code>&lt;?php
+
+// app/routes.php
+
+$eddard = new Stark\Eddard();
+</code></pre><p>我们可以采用在命名空间名称中加前缀的方式实例化某个命名空间下的类，在&rsquo;Stark&rsquo;和&rsquo;Eddard&rsquo;之间用一个反斜杠(\)来分隔，现在我们有了一个&rsquo;Stark&rsquo;命名空间下的&rsquo;Eddard&rsquo;实例，腻害了，我的哥！</p>
+<p>你需要注意的是，命名空间可以有无限个层级，比如：</p>
+<pre tabindex="0"><code>This\Namespace\And\Class\Combination\Is\Silly\But\Works
+</code></pre><h3 id="相对论">相对论</h3>
+<p>还记得我曾经告诉过你的，PHP总是运行与当前命名空间相关的文件，好的，下面让我们看看这个特性：</p>
+<pre tabindex="0"><code>&lt;?php
+
+namespace Stark;
+
+// app/routes.php
+
+$eddard = new Eddard();
+</code></pre><p>像上面这个实例化的例子，我们添加了命名空间指令，我们将PHP脚本移到了&rsquo;Stark&rsquo;命名空间下，现在由于我们在同一个命名空间下，这次我们获取的是&rsquo;Stark&rsquo;命名空间下的&rsquo;Eddard&rsquo;实例。不用我说了吧，你懂的。</p>
+<p>现在我们改变了命名空间，那么，问题来了，你知道是什么问题吗？那就是我们怎么实例化最初的那个&rsquo;Eddard&rsquo;类呢，就是那个没有命名空间的，我称它为&rsquo;全局命名空间&rsquo;的那个&rsquo;Eddard&rsquo;类。</p>
+<p>幸运的是，PHP有一个引用全局命名空间下的类的方式，我们只需要简单的加上反斜杠(\)前缀即可：</p>
+<pre tabindex="0"><code>&lt;?php
+
+// app/routes.php
+
+$eddard = new \Eddard();
+</code></pre><p>有了这个主反斜杠(\),PHP知道引用的是全局命名空间下的&rsquo;Eddard&rsquo;类，所以PHP会实例化这个类。</p>
+<blockquote>
+<p>原文中 &ldquo;Use your imagine a little, like how Barney showed you. &ldquo;这句话我不知道怎么翻译，我Google了一下，Barney应该是美国比较流行的一个电视剧里面的紫色小恐龙。作者应该是想说再多想一点，正如Barney教会你的。当然这是我瞎猜的，如果猜错了，来咬我啊～</p>
+</blockquote>
+<p><img src="https://static.liuwei.co/20161228/Barney&amp;Friends.jpeg" alt="Image"></p>
+<p>咳，咳，当然这并不影响我继续翻译，试想一下，如果我们有一个<code>Edmure</code>类在<code>Tully</code>命名空间中，我们想在&rsquo;Stark&rsquo;命名空间中如何调用？</p>
+<pre tabindex="0"><code>&lt;?php
+
+namespace Stark;
+
+// app/routes.php
+
+$edmure = new \Tully\Edmure();
+</code></pre><p>再一次用到了斜杠前缀(\)，我们需要使用斜杠(\)前缀，让程序会到全局命名空间中，然后再从&rsquo;Tully&rsquo;命名空间实例化该类。</p>
+<p>每一次使用完整的层级路径来引用相关的类未免有点折腾人了，幸运的是，有一个不错的快捷方式，使用<code>use</code>语句，让我们看看下面的例子：</p>
+<pre tabindex="0"><code>&lt;?php
+
+namespace Stark;
+
+use Tully\Edmure;
+
+// app/routes.php
+
+$edmure = new Edmure();
+</code></pre><p>使用<code>use</code>语句，我们把一个类引入到当前的命名空间，这样我们在实例化类的时候只需要提供名字就可以了。现在，不要问我为什么它不需要使用反斜杠做前缀，因为我也不知道。这是我所知道的唯一例外，我很抱歉！如果你愿意你可以加上前缀，不过你不需要这么做。</p>
+<p>为了弥补这个讨厌的不一致，让我展示给你另外一个巧妙的方式，我们可以给我们导入的类起一个别名。正如我们在PHP playground做的一样，代码如下：</p>
+<pre tabindex="0"><code>&lt;?php
+
+namespace Stark;
+
+use Tully\Brynden as Blackfish;
+
+// app/routes.php
+
+$brynden = new Blackfish();
+</code></pre><p>采用<code>as</code>关键字，我们给了&rsquo;Tully/Brynden&rsquo;类一个叫做&rsquo;Blackfish&rsquo;的别名，巧妙的方式，对吧！而且，如果你需要在同一个命名空间下使用两个相同类名的类，这也很有帮助。比如：</p>
+<pre tabindex="0"><code>&lt;?php
+
+namespace Targaryen;
+
+use Dothraki\Daenerys as Khaleesi;
+
+// app/routes.php
+
+class Daenerys
+{
+
+}
+
+// Targaryen\Daenerys
+$daenerys = new Daenerys();
+
+// Dothraki\Daenerys
+$khaleesi = new Khaleesi();
+</code></pre><p>通过给&rsquo;Dothraki&rsquo;命名空间下的&rsquo;Daenerys&rsquo;类一个别名&rsquo;Khaleesi&rsquo;,我们可以仅仅使用名称就可以调用两个&rsquo;Daenerys&rsquo;类了，而不需要加上冗长的命名空间层级。很方便使用，不是吗？这就是为了避免冲突，分门别类的目的。</p>
+<p>你想要<code>use</code>多少个类，就可以<code>use</code>多少个类：</p>
+<pre tabindex="0"><code>&lt;?php
+
+namespace Targaryen;
+
+use Dothraki\Daenerys;
+use Stark\Eddard;
+use Lannister\Tyrion;
+use Snow\Jon as Bastard;
+</code></pre><h3 id="结构">结构</h3>
+<p>命名空间不仅仅只是关于避免冲突，我们可以用它来组织代码结构和所有者，让我用另一个栗子来解释一下。</p>
+<p>假如我们想创建一个开源库，我喜欢别人使用我的代码，那感觉超屌！问题是，我不想给使用我的库的兄弟们增添有关类名冲突的麻烦，那将是不好使用体验。为了让开源代码友好，易于嵌入，更独立，下面是我如何避免解决这个问题的：</p>
+<pre tabindex="0"><code>Dayle\Blog\Content\Post
+Dayle\Blog\Content\Page
+Dayle\Blog\Tag
+</code></pre><p>这里我用了我的名字作为命名空间来存放源代码，对于使用我的库的人来说也是这么分割我的代码的，在基命名空间<code>Dayle</code>下，我创建了一些子命名空间来组织我程序的内部结构。</p>
+<p>在composer章节，你将学习到如何使用命名空间来简化你所定义的类，我墙裂推荐你看看这个有用的机制。</p>
+<h3 id="限制">限制</h3>
+<p>实际上，起&rsquo;限制&rsquo;这个子标题，我感觉有些不妥，我所说的&rsquo;限制&rsquo;并不是一个真正的bug。</p>
+<p>你知道，在其他语言中，命名空间有相似的实现方式，当不同命名空间之间相互调用的时候，他们提供一个额外的特性来简化操作。</p>
+<p>拿Java来举栗吧，你可以使用通配符导入某个命名空间下的所有类，在Java中，<code>import</code>关键字相当于这里的<code>use</code>,并且它使用点(.)来分割嵌套的命名空间（Java中叫包），下面是个栗子：</p>
+<pre tabindex="0"><code>import dayle.blog.*;
+</code></pre><p>这会导入&rsquo;dayle.blog&rsquo;包下的所有类。</p>
+<p>而在PHP中你做不到，你需要分别导入每一个类。抱歉，实际上，为什么我要说抱歉呢？去向PHP的内部组抱怨啊，不，你需要冷静点，他们已经给了我们许多很酷很有用的东西啦。</p>
+<p>然而这里有一个巧妙的技巧，想象我们有这个命名空间和类结构，正如之前的栗子：</p>
+<pre tabindex="0"><code>Dayle\Blog\Content\Post
+Dayle\Blog\Content\Page
+Dayle\Blog\Tag
+</code></pre><p>我们可以给子命名空间起一个别名来使用它下面的类，下面是一个栗子：</p>
+<pre tabindex="0"><code>&lt;?php
+
+namespace Baratheon;
+
+use Dayle\Blog as Cms;
+
+// app/routes.php
+
+$post = new Cms\Content\Post;
+$page = new Cms\Content\Page;
+$tag  = new Cms\Tag;
+</code></pre><p>这对使用同一个命名空间下的许多类很有效，希望你喜欢！</p>
+<p>原文链接: <a href="https://daylerees.com/php-namespaces-explained/">https://daylerees.com/php-namespaces-explained/</a></p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>PHP 命名空间说明</b><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#全局命名空间">全局命名空间</a></li>
+        <li><a href="#简单的命名空间">简单的命名空间</a></li>
+        <li><a href="#相对论">相对论</a></li>
+        <li><a href="#结构">结构</a></li>
+        <li><a href="#限制">限制</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>

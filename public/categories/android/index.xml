@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Android on 运维笔记 - liuwei.co</title>
+    <link>https://liuwei.co/categories/android/</link>
+    <description>Recent content in Android on 运维笔记 - liuwei.co</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <lastBuildDate>Fri, 29 Mar 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/android/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一个不经意的内存泄露问题</title>
+      <link>https://liuwei.co/post/2013/%E4%B8%80%E4%B8%AA%E4%B8%8D%E7%BB%8F%E6%84%8F%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Fri, 29 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2013/%E4%B8%80%E4%B8%AA%E4%B8%8D%E7%BB%8F%E6%84%8F%E7%9A%84%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2%E9%97%AE%E9%A2%98/</guid>
+      <description>最近在用Mediaplayer播放音乐的时候，Logcat总是打印如下信息： GC_CONCURRENT freed 118K, 42% free 3840K/6599K, external 2085K/2566K, paused 2ms+2ms GC_CONCURRENT freed 224K, 38% free 4708K/7559K, external 2085K/2566K, paused 2ms+4ms GC_CONCURRENT freed 283K, 34% free 5788K/8711K, external 2085K/2566K, paused 2ms+3ms GC_CONCURRENT freed</description>
+    </item>
+    
+    <item>
+      <title>解决Android程序启动短暂黑屏的问题</title>
+      <link>https://liuwei.co/post/2013/%E8%A7%A3%E5%86%B3android%E7%A8%8B%E5%BA%8F%E5%90%AF%E5%8A%A8%E7%9F%AD%E6%9A%82%E9%BB%91%E5%B1%8F%E7%9A%84%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Mon, 04 Feb 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2013/%E8%A7%A3%E5%86%B3android%E7%A8%8B%E5%BA%8F%E5%90%AF%E5%8A%A8%E7%9F%AD%E6%9A%82%E9%BB%91%E5%B1%8F%E7%9A%84%E9%97%AE%E9%A2%98/</guid>
+      <description>在AndroidManifest.xml中，将最先启动的Activity设置为android:theme=&amp;quot;@android:st</description>
+    </item>
+    
+    <item>
+      <title>Android 音量键唤醒屏幕</title>
+      <link>https://liuwei.co/post/2012/android-%E9%9F%B3%E9%87%8F%E9%94%AE%E5%94%A4%E9%86%92%E5%B1%8F%E5%B9%95/</link>
+      <pubDate>Fri, 14 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2012/android-%E9%9F%B3%E9%87%8F%E9%94%AE%E5%94%A4%E9%86%92%E5%B1%8F%E5%B9%95/</guid>
+      <description>liuwei@IT:~$ adb shell / # cd /system/usr/keylayout /system/usr/keylayout # ls AVRCP.kl Generic.kl Vendor_045e_Product_028e.kl Vendor_046d_Product_c216.kl Vendor_046d_Product_c294.kl Vendor_046d_Product_c299.kl Vendor_046d_Product_c532.kl Vendor_054c_Product_0268.kl Vendor_05ac_Product_0239.kl Vendor_22b8_Product_093d.kl gpio-keys.kl qwerty.kl s3c-keypad.kl /system/usr/keylayout # vi s3c-keypad.kl 修改相应的映射的值就好了。 key 42 VOLUME_UP WAKE key 58 VOLUME_DOWN WAKE 参考： http://xiaoxia.de/2011/06/change-key-layout-on-android/ http://source.android.com/tech/input/key-layout-files.html</description>
+    </item>
+    
+    <item>
+      <title>Android device chooser unknown</title>
+      <link>https://liuwei.co/post/2012/android-device-chooser-unknown/</link>
+      <pubDate>Thu, 15 Nov 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2012/android-device-chooser-unknown/</guid>
+      <description>当我用真机USB连接电脑时，出现如下图错误，Eclipse无法识别。 解决办法参照：http://developer.android.com/</description>
+    </item>
+    
+  </channel>
+</rss>

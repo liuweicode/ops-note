@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  iOS10请求隐私权限的设置 - Info.plist &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="在访问用户手机通讯录,相册,地址,日历等隐私数据前需要向用户请求使用权限，在iOS10中，苹果公司加强了对隐私控制的审查，你必须在Info.|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="iOS10请求隐私权限的设置 - Info.plist | 运维笔记">
+    <meta name="twitter:description" content="在访问用户手机通讯录,相册,地址,日历等隐私数据前需要向用户请求使用权限，在iOS10中，苹果公司加强了对隐私控制的审查，你必须在Info.|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">iOS10请求隐私权限的设置 - Info.plist</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/error' class="muted-link">
+  <span class="Label Label--gray-darker">Error</span>
+</a>
+
+<a href='/categories/info.plist' class="muted-link">
+  <span class="Label Label--gray-darker">Info.plist</span>
+</a>
+
+<a href='/categories/ios' class="muted-link">
+  <span class="Label Label--gray-darker">iOS</span>
+</a>
+
+<a href='/categories/ios-10' class="muted-link">
+  <span class="Label Label--gray-darker">iOS 10</span>
+</a>
+
+<a href='/categories/privacy-settings' class="muted-link">
+  <span class="Label Label--gray-darker">Privacy Settings</span>
+</a>
+
+<a href='/categories/swift-2.3' class="muted-link">
+  <span class="Label Label--gray-darker">Swift 2.3</span>
+</a>
+
+<a href='/categories/swift-3.0' class="muted-link">
+  <span class="Label Label--gray-darker">Swift 3.0</span>
+</a>
+
+<a href='/categories/xcode-8.0' class="muted-link">
+  <span class="Label Label--gray-darker">Xcode 8.0</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-09-22. Published at: 2016-12-24.">
+        
+          Lastmod: 2022-09-22
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>在访问用户手机通讯录,相册,地址,日历等隐私数据前需要向用户请求使用权限，在iOS10中，苹果公司加强了对隐私控制的审查，你必须在<code>Info.plist</code>文件中对所有需要访问的隐私数据作出声明。</p>
+<p><img src="/assets/images/20161224/ios10.png" alt="Image"></p>
+<h5 id="哪些framework在infoplist中有privacy-key">哪些<code>framework</code>在<code>Info.plist</code>中有<code>privacy key</code>：</h5>
+<p>Calendar , Contact , Reminder , Photo , Bluetooth Sharing , Microphone , Camera , Location , Heath , HomeKit , Media Library , Motion , CallKit , Speech Recognition , SiriKit , TV Provider.</p>
+<h5 id="如果不提供privacy-key会报什么错误">如果不提供<code>privacy key</code>会报什么错误：</h5>
+<p>如果你不在<code>Info.plist</code>中提供指定的<code>privacy key</code>，你的应用程序会没有任何商量余地的直接崩溃！以下是崩溃日志：</p>
+<pre tabindex="0"><code>The app has crashed because it attempted to access privacy-sensitive data without a usage description. The app&#39;s Info.plist must contain an NSCalendarsUsageDescription key with a string value explaining to the user how the app user how the app uses this data.
+</code></pre><h5 id="如何解决这个错误呢">如何解决这个错误呢:</h5>
+<p>当然是根据你相应的请求在Info.pist中给出相应的privacy key啦。</p>
+<p><img src="/assets/images/20161224/privacykeys.png" alt="Image"></p>
+<p><strong><code>Calendar :</code></strong>
+Key      :  Privacy - Calendars Usage Description <br>
+Value  :  $(PRODUCT_NAME) calendar events</p>
+<p><strong><code>Reminder :</code></strong>
+Key      :   Privacy - Reminders Usage Description <br>
+Value  :   $(PRODUCT_NAME) reminder use</p>
+<p><strong><code>Contact :</code></strong>
+Key       :   Privacy - Contacts Usage Description  <br>
+Value    :  $(PRODUCT_NAME) contact use</p>
+<p><strong><code>Photo :</code></strong>
+Key       :  Privacy - Photo Library Usage Description <br>
+Value   :  $(PRODUCT_NAME) photo use</p>
+<p><strong><code>Bluetooth Sharing :</code></strong>
+Key       :  Privacy - Bluetooth Peripheral Usage Description  <br>
+Value   :  $(PRODUCT_NAME) Bluetooth Peripheral use</p>
+<p><strong><code>Microphone :</code></strong>
+Key        :  Privacy - Microphone Usage Description <br>
+Value    :  $(PRODUCT_NAME) microphone use</p>
+<p><strong><code>Camera :</code></strong>
+Key       :  Privacy - Camera Usage Description<br>
+Value   :  $(PRODUCT_NAME) camera use</p>
+<p><strong><code>Location :</code></strong>
+Key      :  Privacy - Location Always Usage Description<br>
+Value  :  $(PRODUCT_NAME) location use</p>
+<p>Key       :  Privacy - Location When In Use Usage Description<br>
+Value   :  $(PRODUCT_NAME) location use</p>
+<p><strong><code>Heath :</code></strong>
+Key      :  Privacy - Health Share Usage Description<br>
+Value  :  $(PRODUCT_NAME) heath share use</p>
+<p>Key      :  Privacy - Health Update Usage Description<br>
+Value  :  $(PRODUCT_NAME) heath update use</p>
+<p><strong><code>HomeKit :</code></strong>
+Key      :  Privacy - HomeKit Usage Description<br>
+Value  :  $(PRODUCT_NAME) home kit use</p>
+<p><strong><code>Media Library :</code></strong>
+Key      :  Privacy - Media Library Usage Description<br>
+Value  :  $(PRODUCT_NAME) media library use</p>
+<p><strong><code>Motion :</code></strong>
+Key      :  Privacy - Motion Usage Description<br>
+Value  :  $(PRODUCT_NAME) motion use</p>
+<p><strong><code>Speech Recognition :</code></strong>
+Key      :  Privacy - Speech Recognition Usage Description<br>
+Value  :  $(PRODUCT_NAME) speech use</p>
+<p><strong><code>SiriKit  : </code></strong>
+Key      :  Privacy - Siri Usage Description<br>
+Value  :  $(PRODUCT_NAME) siri use</p>
+<p><strong><code>TV Provider : </code></strong>
+Key      :  Privacy - TV Provider Usage Description<br>
+Value  :  $(PRODUCT_NAME) tvProvider use</p>
+<p>谢谢阅读</p>
+<p>原文链接: <a href="https://iosdevcenters.blogspot.com/2016/09/infoplist-privacy-settings-in-ios-10.html">https://iosdevcenters.blogspot.com/2016/09/infoplist-privacy-settings-in-ios-10.html</a></p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>iOS10请求隐私权限的设置 - Info.plist</b><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

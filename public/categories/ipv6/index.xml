@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ipv6 on 运维笔记 - liuwei.co</title>
+    <link>https://liuwei.co/categories/ipv6/</link>
+    <description>Recent content in ipv6 on 运维笔记 - liuwei.co</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <lastBuildDate>Tue, 04 Dec 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/ipv6/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu 通过ipv4转ipv6上网</title>
+      <link>https://liuwei.co/post/2012/ubuntu-%E9%80%9A%E8%BF%87ipv4%E8%BD%ACipv6%E4%B8%8A%E7%BD%91/</link>
+      <pubDate>Tue, 04 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2012/ubuntu-%E9%80%9A%E8%BF%87ipv4%E8%BD%ACipv6%E4%B8%8A%E7%BD%91/</guid>
+      <description>sudo apt-get install miredo sudo gedit /etc/hosts 将如下网址的内容粘贴进去： https://ipv6-hosts.googlecode.com/hg/hosts sudo gedit /etc/default/ufw 修改：IPV6=yes 重启防火墙 sudo ufw disable sudo ufw enable 参考：https://wiki.ubuntu.c</description>
+    </item>
+    
+  </channel>
+</rss>

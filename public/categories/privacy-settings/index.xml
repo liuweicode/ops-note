@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Privacy Settings on 运维笔记 - liuwei.co</title>
+    <link>https://liuwei.co/categories/privacy-settings/</link>
+    <description>Recent content in Privacy Settings on 运维笔记 - liuwei.co</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <lastBuildDate>Sat, 24 Dec 2016 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/privacy-settings/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>iOS10请求隐私权限的设置 - Info.plist</title>
+      <link>https://liuwei.co/post/2016/infoplist-privacy-settings-in-ios-10/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2016/infoplist-privacy-settings-in-ios-10/</guid>
+      <description>在访问用户手机通讯录,相册,地址,日历等隐私数据前需要向用户请求使用权限，在iOS10中，苹果公司加强了对隐私控制的审查，你必须在Info.</description>
+    </item>
+    
+  </channel>
+</rss>

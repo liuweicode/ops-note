@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  ubuntu 安装dict-xdict出现错误的解决办法 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="我在安装dict-xdict出现了以下错误： liuwei@IT-liuwei:~$ sudo aptitude install dict-xdict [sudo] password for liuwei: 正在读取软件包列表… 完成 正在分析软件包的依赖关系树 正在读取状态信息… 完成 正在读|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="ubuntu 安装dict-xdict出现错误的解决办法 | 运维笔记">
+    <meta name="twitter:description" content="我在安装dict-xdict出现了以下错误： liuwei@IT-liuwei:~$ sudo aptitude install dict-xdict [sudo] password for liuwei: 正在读取软件包列表… 完成 正在分析软件包的依赖关系树 正在读取状态信息… 完成 正在读|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">ubuntu 安装dict-xdict出现错误的解决办法</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/ubuntu' class="muted-link">
+  <span class="Label Label--gray-darker">Ubuntu</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2010-05-06. Published at: 2010-05-06.">
+        
+          Published: 2010-05-06
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>我在安装dict-xdict出现了以下错误：</p>
+<pre tabindex="0"><code>liuwei@IT-liuwei:~$ sudo aptitude install dict-xdict
+[sudo] password for liuwei:
+正在读取软件包列表… 完成
+正在分析软件包的依赖关系树
+正在读取状态信息… 完成
+正在读取扩展状态文件
+正在初始化软件包状态… 完成
+正在编辑扩展状态信息… 完成
+将不会安装，升级或者删除任何软件包。
+0 个软件包被升级，新安装 0 个， 0 个将被删除， 同时 0 个将不升级。
+需要获取 0B/3,555kB 的存档。 解包后将要使用 0B。
+正在编辑扩展状态信息… 完成
+选中了曾被取消选择的软件包 dict-xdict。
+(正在读取数据库 … 系统当前总共安装有 127684 个文件和目录。)
+正预备替换 dict-xdict 0.1-4 (使用 …/dict-xdict_0.1-4_all.deb) …
+正在解压缩将用于更替的包文件 dict-xdict …
+正在设置 dict-xdict (0.1-4) …
+invoke-rc.d: unknown initscript, /etc/init.d/dictd not found.
+dpkg：处理 dict-xdict (–configure)时出错：
+子进程 已安装的 post-installation 脚本 返回了错误号 100
+在处理时有错误发生：
+dict-xdict
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+软件包安装失败。正在试图恢复：
+正在设置 dict-xdict (0.1-4) …
+invoke-rc.d: unknown initscript, /etc/init.d/dictd not found.
+dpkg：处理 dict-xdict (–configure)时出错：
+子进程 已安装的 post-installation 脚本 返回了错误号 100
+在处理时有错误发生：
+dict-xdict
+正在读取软件包列表… 完成
+正在分析软件包的依赖关系树
+正在读取状态信息… 完成
+正在读取扩展状态文件
+正在初始化软件包状态… 完成
+正在编辑扩展状态信息… 完成
+</code></pre><p>之后安装其他软件也相应得出现了如下错误：
+E: dict-xdict: 子进程 已安装的 post-installation 脚本 返回了错误号 100</p>
+<p>可恶的是我用sudo aptitude purge dict-xdict命令卸载都无法卸载。</p>
+<p>用新立德删除也出现了错误提示框.
+网上有人说“新力得安装dictd就行了”，地址如下：http://forum.ubuntu.org.cn/viewtopic.php?f=77&amp;t=236661&amp;start=0</p>
+<p>但这个方法对我似乎没有效果，我的解决办法是：</p>
+<p>进入/etc/init.d/目录下创建dictd文件，然后执行sudo aptitude purge dict-xdict成功删除掉了dict-xdict,之后再安装就不会出现问题了。
+如下所示：</p>
+<pre tabindex="0"><code>liuwei@IT-liuwei:~$ cd /etc/init.d/
+liuwei@IT-liuwei:/etc/init.d$ sudo touch dictd
+liuwei@IT-liuwei:/etc/init.d$ sudo aptitude purge dict-xdict
+正在读取软件包列表… 完成
+正在分析软件包的依赖关系树
+正在读取状态信息… 完成
+Reading extended state information
+Initializing package states… 完成
+The following packages will be REMOVED:
+dict-xdict{p}
+0 packages upgraded, 0 newly installed, 1 to remove and 33 not upgraded.
+Need to get 0B of archives. After unpacking 5,554kB will be freed.
+Do you want to continue? [Y/n/?] y
+Writing extended state information… 完成
+(正在读取数据库 … 系统当前总共安装有 127415 个文件和目录。)
+正在删除 dict-xdict …
+正在清除 dict-xdict 的配置文件 …
+正在读取软件包列表… 完成
+正在分析软件包的依赖关系树
+正在读取状态信息… 完成
+Reading extended state information
+Initializing package states… 完成
+Writing extended state information… 完成
+</code></pre>
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>ubuntu 安装dict-xdict出现错误的解决办法</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

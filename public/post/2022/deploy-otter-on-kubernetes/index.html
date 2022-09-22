@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  在 Kubernetes 上部署 Otter &ndash; 运维笔记 - liuwei.co
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="❗️❗️Otter已在阿里云推出商业化版本，开源版本估计不维护了。因此建议采用源码编译的方式，bug太多了，后期需要自己修复。 1、基于源码编|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记 - liuwei.co">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="在 Kubernetes 上部署 Otter | 运维笔记 - liuwei.co">
+    <meta name="twitter:description" content="❗️❗️Otter已在阿里云推出商业化版本，开源版本估计不维护了。因此建议采用源码编译的方式，bug太多了，后期需要自己修复。 1、基于源码编|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记 - liuwei.co
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">在 Kubernetes 上部署 Otter</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/k8s' class="muted-link">
+  <span class="Label Label--gray-darker">k8s</span>
+</a>
+
+<a href='/categories/syntax' class="muted-link">
+  <span class="Label Label--gray-darker">syntax</span>
+</a>
+
+
+
+<a href='/tags/kubernetes' class="muted-link">
+  <span class="Label Label--gray">kubernetes</span>
+</a>
+
+<a href='/tags/zookeeper' class="muted-link">
+  <span class="Label Label--gray">zookeeper</span>
+</a>
+
+<a href='/tags/canal' class="muted-link">
+  <span class="Label Label--gray">canal</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-09-21. Published at: 2022-09-21.">
+        
+          Published: 2022-09-21
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <h1 id="heading"></h1>
+<p>❗️❗️Otter已在阿里云推出商业化版本，开源版本估计不维护了。因此建议采用源码编译的方式，bug太多了，后期需要自己修复。</p>
+<h2 id="1基于源码编译打包">1、基于源码编译打包</h2>
+<h3 id="11-下载源文件">1.1、 下载源文件</h3>
+<p><a href="https://github.com/alibaba/otter/releases">https://github.com/alibaba/otter/releases</a></p>
+<p><img src="https://static.liuwei.co/202209/download-source-code.png" alt="download-source-code"></p>
+<h3 id="12-maven-编译打包">1.2、 Maven 编译打包</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">tar zxvf otter-otter-4.2.18.tar.gz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> otter-otter-4.2.18
+</span></span><span class="line"><span class="cl">mvn clean install -Dmaven.test.skip -Denv<span class="o">=</span>release
+</span></span></code></pre></div><p>编译报错如下：</p>
+<pre tabindex="0"><code>[ERROR] Failed to execute goal on project shared.common: Could not resolve dependencies for project com.alibaba.otter:shared.common:jar:4.2.18: Could not find artifact org.jtester:jtester:jar:1.1.8 in rdc-releases (https://packages.aliyun.com/maven/repository/2041383-release-F0cHwt/) -&gt; [Help 1]
+</code></pre><p><img src="https://static.liuwei.co/202209/build-error1.png" alt="build-error1"></p>
+<p>解决方案参考：https://github.com/alibaba/otter/issues/2901</p>
+<p>执行lib目录下的install.sh 文件；</p>
+<pre tabindex="0"><code>cd lib
+sh install.sh
+</code></pre><p>报错如下：</p>
+<pre tabindex="0"><code>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-install-plugin:2.4:install-file (default-cli) on project standalone-pom: File not found /Users/liuwei/Documents/github/deploy-otter-on-kubernetes/otter-otter-4.2.18/lib/fastsql-2.0.0_preview_135.pom: /Users/liuwei/Documents/github/deploy-otter-on-kubernetes/otter-otter-4.2.18/lib/fastsql-2.0.0_preview_135.pom (No such file or directory) -&gt; [Help 1]
+</code></pre><p><img src="https://static.liuwei.co/202209/error2.png" alt="error2"></p>
+<p>解决方案参考：https://github.com/alibaba/otter/issues/824</p>
+<p><img src="https://static.liuwei.co/202209/hulie.png" alt="hulie"></p>
+<p>那就先不去管它！</p>
+<p>继续执行编译：</p>
+<pre tabindex="0"><code>mvn clean install -Dmaven.test.skip -Denv=release
+</code></pre><p>继续得到报错信息如下：</p>
+<pre tabindex="0"><code>[ERROR] Failed to execute goal on project shared.common: Could not resolve dependencies for project com.alibaba.otter:shared.common:jar:4.2.18: Failed to collect dependencies at org.jtester:jtester:jar:1.1.8 -&gt; mockit:jmockit:jar:0.999.10: Failed to read artifact descriptor for mockit:jmockit:jar:0.999.10: Could not find artifact mockit:mockit:pom:0.999.10 in rdc-releases (https://packages.aliyun.com/maven/repository/2041383-release-F0cHwt/) -&gt; [Help 1]
+</code></pre><p><img src="https://static.liuwei.co/202209/error3.png" alt="error3"></p>
+<p>解决方案参考：https://github.com/alibaba/otter/issues/290</p>
+<p><img src="https://static.liuwei.co/202209/error4.png" alt="error4"></p>
+<pre tabindex="0"><code>vim lib/jmockit-0.999.10.pom
+</code></pre><p>注释掉如下行：</p>
+<p><img src="https://static.liuwei.co/202209/remove.png" alt="remove"></p>
+<p>再次编译，终于成功了：</p>
+<p><img src="https://static.liuwei.co/202209/success.png" alt="success"></p>
+<p>编译完成后，会在根目录下产生target/manager.deployer-4.2.18.tar.gz 和 target/manager.deployer-4.2.18.tar.gz</p>
+<p><img src="https://static.liuwei.co/202209/target.png" alt="target"></p>
+<h2 id="2构建-manager-镜像">2、构建 manager 镜像</h2>
+<h3 id="21-创建managerdeployer-4218manager目录并解压managerdeployer-4218targz到该目录">2.1 创建<strong>manager.deployer-4.2.18/manager</strong>目录并解压manager.deployer-4.2.18.tar.gz到该目录</h3>
+<pre tabindex="0"><code>mkdir -p manager/manager.deployer-4.2.18
+tar zxvf otter-otter-4.2.18/target/manager.deployer-4.2.18.tar.gz -C manager/manager.deployer-4.2.18
+</code></pre><h3 id="22-让启动脚本作为前台进程保持运行">2.2 让启动脚本作为前台进程保持运行</h3>
+<pre tabindex="0"><code>cd manager
+vim manager.deployer-4.2.18/bin/startup.sh
+</code></pre><p>删除启动命令最后一个 <strong>&amp;</strong> 符号；</p>
+<p><img src="https://static.liuwei.co/202209/delete1.png" alt="delete1"></p>
+<h3 id="23-打包">2.3 打包</h3>
+<pre tabindex="0"><code>tar czvf manager.deployer-4.2.18.tar.gz manager.deployer-4.2.18
+</code></pre><p><img src="https://static.liuwei.co/202209/dabao1.png" alt="dabao1"></p>
+<h3 id="24-制作docker镜像">2.4 制作docker镜像</h3>
+<ul>
+<li>编写Dockerfile （基础镜像地址：https://github.com/liuweicode/docker-image-base/tree/main/openjdk）</li>
+<li>编写构建脚本 build.sh</li>
+</ul>
+<pre tabindex="0"><code>sh build.sh
+</code></pre><h2 id="3构建-node-镜像">3、构建 node 镜像</h2>
+<h3 id="31-创建nodedeployer-4218node目录并解压nodedeployer-4218targz到该目录">3.1 创建<strong>node.deployer-4.2.18/node</strong>目录并解压node.deployer-4.2.18.tar.gz到该目录</h3>
+<pre tabindex="0"><code>mkdir -p node/node.deployer-4.2.18
+tar zxvf otter-otter-4.2.18/target/node.deployer-4.2.18.tar.gz -C node/node.deployer-4.2.18
+</code></pre><h3 id="32-让启动脚本作为前台进程保持运行">3.2 让启动脚本作为前台进程保持运行</h3>
+<pre tabindex="0"><code>cd node
+vim node.deployer-4.2.18/bin/startup.sh
+</code></pre><p>删除启动命令最后一个 <strong>&amp;</strong> 符号；</p>
+<p><img src="https://static.liuwei.co/202209/delete2.png" alt="delete2"></p>
+<h3 id="33-打包">3.3 打包</h3>
+<pre tabindex="0"><code>tar czvf node.deployer-4.2.18.tar.gz node.deployer-4.2.18
+</code></pre><p><img src="https://static.liuwei.co/202209/temp_2022-09-21-11-51-58.png" alt="temp_2022-09-21-11-51-58"></p>
+<h3 id="24-制作docker镜像-1">2.4 制作docker镜像</h3>
+<ul>
+<li>编写Dockerfile （基础镜像地址：https://github.com/liuweicode/docker-image-base/tree/main/openjdk）</li>
+<li>编写构建脚本 build.sh</li>
+</ul>
+<pre tabindex="0"><code>sh build.sh
+</code></pre><h2 id="4创建configmap">4、创建configmap</h2>
+<p>创建 <strong>config</strong> 目录，并 将默认配置文件复制过来；</p>
+<pre tabindex="0"><code>mkdir config
+cp manager/manager.deployer-4.2.18/conf/otter.properties config/otter-manager.properties
+cp node/node.deployer-4.2.18/conf/otter.properties config/otter-node.properties
+</code></pre><h3 id="41-修改-otter-managerproperties">4.1 修改 <strong>otter-manager.properties</strong></h3>
+<p><img src="https://static.liuwei.co/202209/temp_2022-09-21-12-58-21.png" alt="temp_2022-09-21-12-58-21"></p>
+<h3 id="42-修改-otter-nodeproperties">4.2 修改 <strong>otter-node.properties</strong></h3>
+<p><img src="https://static.liuwei.co/202209/temp_2022-09-21-12-59-05.png" alt="temp_2022-09-21-12-59-05"></p>
+<h3 id="43-创建configmap">4.3 创建configmap</h3>
+<pre tabindex="0"><code>cd config
+kubectl create namespace uat-otter
+kubectl create configmap uat-otter-config --from-file=otter-manager.properties --from-file=otter-node.properties -n uat-otter
+</code></pre><h2 id="4部署-otter-manager">4、部署 otter manager</h2>
+<h3 id="41-初始化otter-manager系统表">4.1 初始化otter manager系统表</h3>
+<p>参考：https://github.com/alibaba/otter/wiki/Manager_Quickstart</p>
+<p>下载：</p>
+<pre tabindex="0"><code>wget https://raw.github.com/alibaba/otter/master/manager/deployer/src/main/resources/sql/otter-manager-schema.sql
+</code></pre><p>载入：</p>
+<pre tabindex="0"><code>source otter-manager-schema.sql
+</code></pre><h3 id="42-搭建zookeeper集群">4.2 搭建ZooKeeper集群</h3>
+<p>参考：<a href="https://github.com/liuweicode/deploy-zookeeper-cluster-on-kubernetes">deploy-zookeeper-cluster-on-kubernetes</a></p>
+<h3 id="43-编写-otter-manageryaml">4.3 编写 otter-manager.yaml</h3>
+<p><a href="https://github.com/liuweicode/deploy-otter-on-kubernetes/blob/main/manager/otter-manager.yaml">https://github.com/liuweicode/deploy-otter-on-kubernetes/blob/main/manager/otter-manager.yaml</a></p>
+<h3 id="44-编写-otter-nodeyaml">4.4 编写 otter-node.yaml</h3>
+<p><a href="https://github.com/liuweicode/deploy-otter-on-kubernetes/blob/main/node/otter-node.yaml">https://github.com/liuweicode/deploy-otter-on-kubernetes/blob/main/node/otter-node.yaml</a></p>
+<p>重点关注以下行：</p>
+<p><img src="https://static.liuwei.co/202209/temp_2022-09-21-13-26-40.png" alt="temp_2022-09-21-13-26-40"></p>
+<h2 id="5配置">5、配置</h2>
+<p><img src="https://static.liuwei.co/202209/temp_2022-09-21-13-29-06.png" alt="temp_2022-09-21-13-29-06"></p>
+<h2 id="6-todo">6. TODO</h2>
+<p><a href="https://github.com/alibaba/otter/wiki/Manager%E4%BD%BF%E7%94%A8%E4%BB%8B%E7%BB%8D">使用介绍</a></p>
+<h2 id="7-相关链接">7. 相关链接</h2>
+<ul>
+<li>项目代码: <a href="https://github.com/liuweicode/deploy-otter-on-kubernetes">https://github.com/liuweicode/deploy-otter-on-kubernetes</a></li>
+</ul>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>在 Kubernetes 上部署 Otter</b><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1基于源码编译打包">1、基于源码编译打包</a>
+      <ul>
+        <li><a href="#11-下载源文件">1.1、 下载源文件</a></li>
+        <li><a href="#12-maven-编译打包">1.2、 Maven 编译打包</a></li>
+      </ul>
+    </li>
+    <li><a href="#2构建-manager-镜像">2、构建 manager 镜像</a>
+      <ul>
+        <li><a href="#21-创建managerdeployer-4218manager目录并解压managerdeployer-4218targz到该目录">2.1 创建<strong>manager.deployer-4.2.18/manager</strong>目录并解压manager.deployer-4.2.18.tar.gz到该目录</a></li>
+        <li><a href="#22-让启动脚本作为前台进程保持运行">2.2 让启动脚本作为前台进程保持运行</a></li>
+        <li><a href="#23-打包">2.3 打包</a></li>
+        <li><a href="#24-制作docker镜像">2.4 制作docker镜像</a></li>
+      </ul>
+    </li>
+    <li><a href="#3构建-node-镜像">3、构建 node 镜像</a>
+      <ul>
+        <li><a href="#31-创建nodedeployer-4218node目录并解压nodedeployer-4218targz到该目录">3.1 创建<strong>node.deployer-4.2.18/node</strong>目录并解压node.deployer-4.2.18.tar.gz到该目录</a></li>
+        <li><a href="#32-让启动脚本作为前台进程保持运行">3.2 让启动脚本作为前台进程保持运行</a></li>
+        <li><a href="#33-打包">3.3 打包</a></li>
+        <li><a href="#24-制作docker镜像-1">2.4 制作docker镜像</a></li>
+      </ul>
+    </li>
+    <li><a href="#4创建configmap">4、创建configmap</a>
+      <ul>
+        <li><a href="#41-修改-otter-managerproperties">4.1 修改 <strong>otter-manager.properties</strong></a></li>
+        <li><a href="#42-修改-otter-nodeproperties">4.2 修改 <strong>otter-node.properties</strong></a></li>
+        <li><a href="#43-创建configmap">4.3 创建configmap</a></li>
+      </ul>
+    </li>
+    <li><a href="#4部署-otter-manager">4、部署 otter manager</a>
+      <ul>
+        <li><a href="#41-初始化otter-manager系统表">4.1 初始化otter manager系统表</a></li>
+        <li><a href="#42-搭建zookeeper集群">4.2 搭建ZooKeeper集群</a></li>
+        <li><a href="#43-编写-otter-manageryaml">4.3 编写 otter-manager.yaml</a></li>
+        <li><a href="#44-编写-otter-nodeyaml">4.4 编写 otter-node.yaml</a></li>
+      </ul>
+    </li>
+    <li><a href="#5配置">5、配置</a></li>
+    <li><a href="#6-todo">6. TODO</a></li>
+    <li><a href="#7-相关链接">7. 相关链接</a></li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>

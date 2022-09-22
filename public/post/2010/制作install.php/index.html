@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  制作install.php &ndash; 运维笔记 - liuwei.co
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="很多开源程序如Uchome，Dz，phpwind，thinkSNS等，他们在进行安装的时候都要求执行install.php进行安装，其实执行|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记 - liuwei.co">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="制作install.php | 运维笔记 - liuwei.co">
+    <meta name="twitter:description" content="很多开源程序如Uchome，Dz，phpwind，thinkSNS等，他们在进行安装的时候都要求执行install.php进行安装，其实执行|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记 - liuwei.co
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">制作install.php</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/php' class="muted-link">
+  <span class="Label Label--gray-darker">PHP</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2010-04-24. Published at: 2010-04-24.">
+        
+          Published: 2010-04-24
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>很多开源程序如Uchome，Dz，phpwind，thinkSNS等，他们在进行安装的时候都要求执行install.php进行安装，其实执行install.php安装程序的本质就是用程序中配置的数据库结构创建数据库，并初始化数据库，在我看来这个跟Java里面的ORM框架Hibernate将对象模型导入成数据模型有点相似，不过还是有区别的，虽然PHP现在的版本支持OO思想，但它还不是一个完全面向对象的编程语言，好了，接下来我们做一个简单的php install程序。</p>
+<p>第一步：新建一个install.php文件</p>
+<pre tabindex="0"><code>
+&lt;? php
+echo &#34;检查文件权限……&lt;br/&gt;&#34;;
+if (!is_writable(&#34;data/config.php&#34;)) {
+    echo &#34;&lt;font color=red&gt;config.php文件不可写，请检查权限！&lt;/font&gt;&#34;;
+} else {
+    echo &#34;&lt;font color=green&gt;config.php文件可写…&lt;/font&gt;&lt;br/&gt;&#34;;
+    echo &#34;&lt;button type=submit name=step1 onClick=\&#34;javascript:window.location.href=&#39;step1.php&#39;\&#34;&gt;下一步&lt;/button&gt;&#34;;
+} ?&gt;
+</code></pre><p>注：这里主要针对Linux/Unix等系统下文件权限的判断，windows下默认是可读写的。</p>
+<p>第二步，我们配置相关数据库参数，新建step1.php</p>
+<pre tabindex="0"><code>
+&lt;h3&gt; 填写数据库链接信息 &lt;/h3&gt; 
+&lt;form action = &#34;step2.php&#34; method = &#34;POST&#34; &gt;
+填写主机： &lt;input type = &#34;text&#34; name = &#34;db_host&#34; value = &#34;localhost&#34; /&gt; &lt;br&gt;
+用户名： &lt;input type = &#34;text&#34; name = &#34;db_user&#34; value = &#34;root&#34; /&gt; &lt;br&gt;
+密码： &lt;input type = &#34;text&#34; name = &#34;db_pass&#34; value = &#34;&#34; / &gt; &lt;br&gt;
+数据库名： &lt;input type = &#34;text&#34; name = &#34;db_dbname&#34; value = &#34;uyvandb&#34; /&gt; &lt;br&gt;
+数据前缀： &lt;input type = &#34;text&#34; name = &#34;db_tag&#34; value = &#34;u_&#34; /&gt; &lt;br&gt;
+&lt;button type = submit name = install &gt; 下一步 &lt;/button&gt; &lt;/form&gt;
+</code></pre><p>第三步：将用户提交的数据写入配置文件，并导入到数据库中，新建step2.php</p>
+<pre tabindex="0"><code>
+&lt;? php
+if (isset($_POST[install])) {
+
+    $config_str = &#34;&lt;?php&#34;;
+    $config_str. = &#34;\n&#34;;
+    $config_str. = &#39;$mysql_host = &#34;&#39;.$_POST[db_host].
+    &#39;&#34;;&#39;;
+    $config_str. = &#34;\n&#34;;
+    $config_str. = &#39;$mysql_user = &#34;&#39;.$_POST[db_user].
+    &#39;&#34;;&#39;;
+    $config_str. = &#34;\n&#34;;
+    $config_str. = &#39;$mysql_pass = &#34;&#39;.$_POST[db_pass].
+    &#39;&#34;;&#39;;
+    $config_str. = &#34;\n&#34;;
+    $config_str. = &#39;$mysql_dbname = &#34;&#39;.$_POST[db_dbname].
+    &#39;&#34;;&#39;;
+    $config_str. = &#34;\n&#34;;
+    $config_str. = &#39;$mysql_tag = &#34;&#39;.$_POST[db_tag].
+    &#39;&#34;;&#39;;
+    $config_str. = &#34;\n&#34;;
+    $config_str. = &#39;?&gt;&#39;;
+
+    $ff = fopen(&#34;data/config.php&#34;, &#34;w+&#34;);
+    $rs = fwrite($ff, $config_str);
+    if ($rs) {
+        echo &#34;配置成功……&lt;br/&gt;&#34;;
+        echo &#34;正在连接数据库……&lt;br/&gt;&#34;;
+        include_once(&#34;data/config.php&#34;);
+        if (!@$link = mysql_connect($mysql_host, $mysql_user, $mysql_pass)) {
+            echo &#34;数据库连接失败! 请返回上一页检查连接参数 &lt;a href=step1.php&gt;返回修改&lt;/a&gt;&#34;;
+        } else {
+            echo &#34;连接数据库成功……&lt;br/&gt;&#34;;
+            mysql_query(&#34;CREATE DATABASE `$mysql_dbname`&#34;);
+            echo &#34;数据库创建成功……&lt;br/&gt;&#34;;
+            echo &#34;执行导入……&lt;br/&gt;&#34;;
+            mysql_select_db($mysql_dbname);
+            $sql_query[] = &#34;CREATE TABLE IF NOT EXISTS `&#34;.$mysql_tag.
+            &#34;message1` (
+            `id`
+            tinyint(1) NOT NULL auto_increment,
+                `user`
+            varchar(25) NOT NULL,
+                `title`
+            varchar(50) NOT NULL,
+                `content`
+            tinytext NOT NULL,
+            `lastdate`
+            date NOT NULL,
+            PRIMARY KEY(`id`)
+        ) ENGINE = InnoDB DEFAULT CHARSET = gbk AUTO_INCREMENT = 10;
+        &#34;;
+        $sql_query[] = &#34;CREATE TABLE IF NOT EXISTS `&#34;.$mysql_tag.
+        &#34;message2` (
+        `id`
+        tinyint(1) NOT NULL auto_increment,
+            `user`
+        varchar(25) NOT NULL,
+            `title`
+        varchar(50) NOT NULL,
+            `content`
+        tinytext NOT NULL,
+        `lastdate`
+        date NOT NULL,
+        PRIMARY KEY(`id`)
+    ) ENGINE = InnoDB DEFAULT CHARSET = gbk AUTO_INCREMENT = 10;
+    &#34;;
+    $sql_query[] = &#34;CREATE TABLE IF NOT EXISTS `&#34;.$mysql_tag.
+    &#34;message3` (
+    `id`
+    tinyint(1) NOT NULL auto_increment,
+        `user`
+    varchar(25) NOT NULL,
+        `title`
+    varchar(50) NOT NULL,
+        `content`
+    tinytext NOT NULL,
+    `lastdate`
+    date NOT NULL,
+    PRIMARY KEY(`id`)
+) ENGINE = InnoDB DEFAULT CHARSET = gbk AUTO_INCREMENT = 10;
+&#34;;
+foreach($sql_query as $val) {
+    mysql_query($val);
+}
+echo &#34;导入成功……&lt;br/&gt;&#34;;
+echo &#34;安装完成……&lt;br/&gt;&#34;;
+echo &#34;&lt;button type=submit name=step1 onClick=\&#34;javascript:window.location.href=&#39;index.php&#39;\&#34;&gt;点击进入主页&lt;/button&gt;&#34;;
+rename(&#34;install.php&#34;, &#34;install.lock&#34;);
+}
+
+} else {
+    echo &#34;文件配置失敗，请重试……&#34;;
+}
+} ?&gt;
+</code></pre><p>最后记提醒用户删除安装文件，或者将安装文件改名.</p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>制作install.php</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  编译和安装Apache Http Server &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="编译安装apr ./configure &amp;ndash;prefix=/usr/local/apr make &amp;amp;&amp;amp; make install 编译安装apr-util ./configure &amp;ndash;prefix=/usr/local/apr-util make &amp;amp;&amp;amp; make install 编译安装pcre ./configure &amp;ndash;prefix=/usr/local/pcre 出现 configure: error: You need a C&#43;&#43; compiler for C&#43;&#43; support 解决办法：sudo apt-get install g&#43;&#43; 然后继续：|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="编译和安装Apache Http Server | 运维笔记">
+    <meta name="twitter:description" content="编译安装apr ./configure &ndash;prefix=/usr/local/apr make &amp;&amp; make install 编译安装apr-util ./configure &ndash;prefix=/usr/local/apr-util make &amp;&amp; make install 编译安装pcre ./configure &ndash;prefix=/usr/local/pcre 出现 configure: error: You need a C&#43;&#43; compiler for C&#43;&#43; support 解决办法：sudo apt-get install g&#43;&#43; 然后继续：|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">编译和安装Apache Http Server</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/vps' class="muted-link">
+  <span class="Label Label--gray-darker">VPS</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-09-22. Published at: 2013-03-16.">
+        
+          Lastmod: 2022-09-22
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>编译安装apr
+./configure &ndash;prefix=/usr/local/apr
+make &amp;&amp; make install</p>
+<p>编译安装apr-util
+./configure &ndash;prefix=/usr/local/apr-util
+make &amp;&amp; make install</p>
+<p>编译安装pcre
+./configure &ndash;prefix=/usr/local/pcre
+出现 configure: error: You need a C++ compiler for C++ support
+解决办法：sudo apt-get install g++
+然后继续：
+./configure &ndash;prefix=/usr/local/pcre
+make &amp;&amp; make install</p>
+<p>最后编译安装Apache HTTP Server
+./configure &ndash;prefix=/usr/local/apache <br>
+&ndash;with-included-apr=/usr/local/apr <br>
+&ndash;with-apr-util=/usr/local/apr-util <br>
+&ndash;with-pcre=/usr/local/pcre</p>
+<p>需要哪些模块功能可参考http://httpd.apache.org/docs/2.4/programs/configure.html</p>
+<p>sudo gedit /usr/local/apache/conf/httpd.conf
+在“#ServerName <a href="https://www.example.com">www.example.com</a>:80”下面添加一行如下：
+ServerName 127.0.0.1:80</p>
+<p>/usr/local/apache/bin/apachectl -k start</p>
+<p>打开浏览器输入：http://127.0.1.1/
+出现 It works!</p>
+<p>参考：
+<a href="http://httpd.apache.org/docs/2.4/install.html">http://httpd.apache.org/docs/2.4/install.html</a></p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>编译和安装Apache Http Server</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Server on 运维笔记 - liuwei.co</title>
+    <link>https://liuwei.co/categories/server/</link>
+    <description>Recent content in Server on 运维笔记 - liuwei.co</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <lastBuildDate>Wed, 27 Feb 2013 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/server/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Ubuntu 图形界面无法登录</title>
+      <link>https://liuwei.co/post/2013/ubuntu-%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E6%97%A0%E6%B3%95%E7%99%BB%E5%BD%95/</link>
+      <pubDate>Wed, 27 Feb 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2013/ubuntu-%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E6%97%A0%E6%B3%95%E7%99%BB%E5%BD%95/</guid>
+      <description>今天登录ubuntu的时候，在图形界面输入密码，始终登录不进去。网上查原因说不要在/etc/environment里设置export PATH</description>
+    </item>
+    
+    <item>
+      <title>ubuntu10.04安装tomcat6</title>
+      <link>https://liuwei.co/post/2010/ubuntu10.04%E5%AE%89%E8%A3%85tomcat6/</link>
+      <pubDate>Sun, 16 May 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2010/ubuntu10.04%E5%AE%89%E8%A3%85tomcat6/</guid>
+      <description>安装tomcat6： 1，下载tomcat：http://tomcat.apache.org/download-60.cgi 我下载的是apac</description>
+    </item>
+    
+    <item>
+      <title>ubuntu apache2编译安装</title>
+      <link>https://liuwei.co/post/2010/ubuntu-apache2%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Mon, 10 May 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2010/ubuntu-apache2%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/</guid>
+      <description>下载源码包: http://httpd.apache.org/download.cgi#apache22 （我下载的是httpd-2.2.15.tar.gz） 解压: tar -zxvf httpd-2.2.15.tar.gz （ -z, –gzip, –gunzip, –ungzip 通过 gzip 过滤归档 -x,</description>
+    </item>
+    
+  </channel>
+</rss>

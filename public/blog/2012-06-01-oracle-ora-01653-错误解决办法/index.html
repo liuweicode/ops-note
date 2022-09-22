@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  Oracle ORA-01653 错误解决办法 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="今天执行update语句报ORA-01653错误。信息提示需要拓展表空间。 SELECT UPPER(F.TABLESPACE_NAME) &amp;#34;表空间名&amp;#34;, D.TOT_GROOTTE_MB &amp;#34;表空间大小(M)&amp;#|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="Oracle ORA-01653 错误解决办法 | 运维笔记">
+    <meta name="twitter:description" content="今天执行update语句报ORA-01653错误。信息提示需要拓展表空间。 SELECT UPPER(F.TABLESPACE_NAME) &#34;表空间名&#34;, D.TOT_GROOTTE_MB &#34;表空间大小(M)&#|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">Oracle ORA-01653 错误解决办法</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/oracle' class="muted-link">
+  <span class="Label Label--gray-darker">Oracle</span>
+</a>
+
+<a href='/categories/%E6%95%B0%E6%8D%AE%E5%BA%93' class="muted-link">
+  <span class="Label Label--gray-darker">数据库</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-09-22. Published at: 2012-06-01.">
+        
+          Lastmod: 2022-09-22
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>今天执行update语句报ORA-01653错误。信息提示需要拓展表空间。</p>
+<pre tabindex="0"><code>SELECT UPPER(F.TABLESPACE_NAME) &#34;表空间名&#34;,
+D.TOT_GROOTTE_MB &#34;表空间大小(M)&#34;,
+D.TOT_GROOTTE_MB - F.TOTAL_BYTES &#34;已使用空间(M)&#34;,
+TO_CHAR(ROUND((D.TOT_GROOTTE_MB - F.TOTAL_BYTES) / D.TOT_GROOTTE_MB * 100,2),&#39;990.99&#39;) &#34;使用比&#34;,
+F.TOTAL_BYTES &#34;空闲空间(M)&#34;,
+F.MAX_BYTES &#34;最大块(M)&#34;
+FROM (SELECT TABLESPACE_NAME,
+ROUND(SUM(BYTES) / (1024 * 1024), 2) TOTAL_BYTES,
+ROUND(MAX(BYTES) / (1024 * 1024), 2) MAX_BYTES
+FROM SYS.DBA_FREE_SPACE
+GROUP BY TABLESPACE_NAME) F,
+(SELECT DD.TABLESPACE_NAME,
+ROUND(SUM(DD.BYTES) / (1024 * 1024), 2) TOT_GROOTTE_MB
+FROM SYS.DBA_DATA_FILES DD
+GROUP BY DD.TABLESPACE_NAME) D
+WHERE D.TABLESPACE_NAME = F.TABLESPACE_NAME
+ORDER BY 4 DESC;
+</code></pre><pre tabindex="0"><code>SELECT T.TABLESPACE_NAME,D.FILE_NAME, D.AUTOEXTENSIBLE,D.BYTES,D.MAXBYTES,D.STATUS FROM DBA_TABLESPACES T,DBA_DATA_FILES D WHERE T.TABLESPACE_NAME =D.TABLESPACE_NAME ORDER BY TABLESPACE_NAME,FILE_NAME;
+</code></pre><p>执行语句问题解决：</p>
+<pre tabindex="0"><code>alter database datafile &#39;C:\APP\WILLIAM\PRODUCT\11.2.0\DBHOME_1\TEMP\EKPJ.DBF&#39; AUTOEXTEND ON NEXT 50M MAXSIZE UNLIMITED;
+</code></pre>
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>Oracle ORA-01653 错误解决办法</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  关于友善之臂 Tiny6410无法加载libfriendlyarm-hardware.so的问题 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="adb logcat 信息日志如下： D/dalvikvm( 4534): No JNI_OnLoad found in /system/lib/libfriendlyarm-hardware.so 0x40712ca8, skipping init 日志信息提示在/system/lib下找不到libfriendlyarm-hardware.so文件，|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="关于友善之臂 Tiny6410无法加载libfriendlyarm-hardware.so的问题 | 运维笔记">
+    <meta name="twitter:description" content="adb logcat 信息日志如下： D/dalvikvm( 4534): No JNI_OnLoad found in /system/lib/libfriendlyarm-hardware.so 0x40712ca8, skipping init 日志信息提示在/system/lib下找不到libfriendlyarm-hardware.so文件，|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">关于友善之臂 Tiny6410无法加载libfriendlyarm-hardware.so的问题</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/java' class="muted-link">
+  <span class="Label Label--gray-darker">Java</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-09-22. Published at: 2012-12-05.">
+        
+          Lastmod: 2022-09-22
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>adb logcat 信息日志如下：
+D/dalvikvm( 4534): No JNI_OnLoad found in /system/lib/libfriendlyarm-hardware.so 0x40712ca8, skipping init</p>
+<p>日志信息提示在/system/lib下找不到libfriendlyarm-hardware.so文件，于是我到/system/lib目录下进行查看：
+liuwei@IT:~/下载$ adb shell
+/ # ls /system/lib | grep libfriendlyarm-hardware.so
+libfriendlyarm-hardware.so</p>
+<p>明明这个文件啊，于是我将该文件pull到本地，放到当前的工程的libs/armeabi下，启动之后，还是报错。
+最后网上查了很久，原来友善之臂提供的是静态库，路径必须按照指定的来。也就是说，HardwareControler.java这个文件必须在com.friendlyarm.AndroidSDK的包下&hellip;</p>
+<p>修改之，继续运行，logcat依旧报这个错，但是程序能成功加载libfriendlyarm-hardware.so库了，不知到这是什么原因？</p>
+<p>下面是友善之臂 Tiny6410对串口的操作类：完整Deno源码在：
+<a href="http://download.csdn.net/detail/william548934/4854745">http://download.csdn.net/detail/william548934/4854745</a></p>
+<pre tabindex="0"><code>package co.liuwei;
+
+import java.util.ArrayList;
+import java.util.List;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import com.friendlyarm.AndroidSDK.HardwareControler;
+
+/**
+
+* @Description: 串口操作类
+
+* @Author: Liu wei
+
+* @date 2012-12-05
+
+*/
+public class SerialPortCmd {
+
+private static final String TAG = &#34;SerialPortCmd&#34;;
+
+public final static int CMD_LENGHT = 8; // 命令长度（固定8个byte）
+
+private static int serialDevice = -1;//串口描述符
+private static String devName = &#34;/dev/s3c2410_serial3&#34;;
+private static long baud = 115200;
+private static int dataBits = 8;
+private static int stopBits = 1;
+private static final int REPEAT_TIMES = 2;
+
+private static final int MESSAGE_RECEIVED_CMD = 1;
+
+/**
+* 打开串口
+*/
+public static void openSerialPort(){
+if(-1 == serialDevice){
+//打开串口
+serialDevice = HardwareControler.openSerialPort(devName, baud, dataBits, stopBits);
+Log.d(TAG, &#34;打开串口：&#34;+serialDevice);
+//打开监听
+listenCmd();
+}else{
+Log.d(TAG, &#34;串口已经打开&#34;);
+}
+
+}
+/**
+* 关闭串口
+*/
+public static void closeSerialPort(){
+//关闭串口
+Log.d(TAG, &#34;关闭串口：&#34;+serialDevice);
+serialDevice = -1;
+HardwareControler.close(serialDevice);
+}
+
+private static Handler handler = new Handler(){
+@Override
+public void handleMessage(Message msg) {
+
+switch (msg.what) {
+case MESSAGE_RECEIVED_CMD:
+byte[] cmd = (byte[])msg.obj;
+doCmd(cmd);
+break;
+default:
+break;
+}
+}
+};
+
+public static synchronized void sendControlCmd(final byte[] sendCmd) {
+
+//串口设备没有打开直接返回
+if (-1 == serialDevice) {
+return;
+}
+setCheckSum(sendCmd);
+SendCmdThread sendCmdThread = new SendCmdThread();
+sendCmdThread.setSendCmd(sendCmd);
+sendCmdThread.setFeedbackCmd(calculateFeedback(sendCmd));
+sendingCmdThreads.add(sendCmdThread);
+sendCmdThread.start();
+}
+
+public final static byte FUNCNO_FEEDBACK = 0xFF - 256;
+
+private static byte[] calculateFeedback(byte[] cmd) {
+
+byte[] feedbackCmd = new byte[cmd.length];	
+feedbackCmd[0] = cmd[0];
+feedbackCmd[1] = cmd[1];
+feedbackCmd[2] = FUNCNO_FEEDBACK;
+feedbackCmd[3] = cmd[3];
+feedbackCmd[4] = cmd[2];
+
+return feedbackCmd;
+}
+
+private static void setCheckSum(byte[] cmd) {
+int checkSum = 0;
+for (int i = 0; i &lt; cmd.length - 1; i++) {
+checkSum = ((checkSum + cmd) &amp; 255);
+}
+checkSum = (256 - checkSum) % 256;
+if (checkSum &lt; 128) {
+cmd[cmd.length - 1] = (byte)checkSum;
+} else {
+cmd[cmd.length - 1] = (byte)(checkSum - 256);	
+}
+}
+
+public final static byte CMD_START = 0x5A; //命令开始标志
+
+public static void listenCmd() {
+new Thread() {
+@Override
+public void run() {
+Log.d(TAG, &#34;监听串口：&#34;+serialDevice);
+while (true) {
+try {
+Thread.sleep(1000);
+//串口没有打开
+if (-1 == serialDevice) {
+Log.d(TAG, &#34;串口已经断开&#34;);
+continue;
+}else{
+int result = HardwareControler.select(serialDevice, 2, 0);
+if (result == 1) {
+Thread.sleep(100);
+byte[] buf = new byte[CMD_LENGHT];
+int n = HardwareControler.read(serialDevice, buf, buf.length);
+if(-1!=n){
+Log.d(TAG, &#34;接收到数据：&#34;+toHex(buf));
+Message message = new Message();
+message.what = MESSAGE_RECEIVED_CMD;
+message.obj = buf;
+handler.sendMessage(message);
+}
+}
+}
+} catch (InterruptedException e) {
+e.printStackTrace();
+}
+}
+}
+
+}.start();
+}
+
+/**
+* 将字节数组转换为16进制字符串
+* 
+* @param buffer
+* @return
+*/
+public static String toHex(byte[] buffer) {
+StringBuffer sb = new StringBuffer(buffer.length * 2);
+for (int i = 0; i &lt; buffer.length; i++) {
+sb.append(Character.forDigit((buffer &amp; 240) &gt;&gt; 4, 16));
+sb.append(Character.forDigit(buffer &amp; 15, 16));
+sb.append(&#34; &#34;);
+}
+return sb.toString();
+}
+
+private static void doCmd(byte[] cmd) {
+//读取的信息中不包含开始位，因此FuncNo位是第二位
+switch (cmd[1]) {
+case FUNCNO_FEEDBACK:
+feedbackCmd(cmd);
+break;
+default:
+break;
+}
+}
+
+private static synchronized void feedbackCmd(byte[] cmd) {
+
+for (int i = 0; i &lt; sendingCmdThreads.size(); i++) {
+byte[] feedbackCmd = sendingCmdThreads.get(i).getFeedbackCmd();
+boolean isFeedback = true;
+for (int j = 2; j &lt; feedbackCmd.length - 1; j++) {
+if (cmd[j - 1] != feedbackCmd[j]) {
+isFeedback = false;
+break;
+}
+}
+
+if (isFeedback) {
+sendingCmdThreads.get(i).setHasFeedback(true);
+sendingCmdThreads.remove(i);
+return;
+}
+}
+}
+
+private static List&lt;SendCmdThread&gt; sendingCmdThreads = new ArrayList&lt;SendCmdThread&gt;();
+
+private static class SendCmdThread extends Thread {
+
+private byte[] sendCmd;
+
+private byte[] feedbackCmd;
+
+private boolean hasFeedback;
+
+public SendCmdThread() {
+
+}
+
+public void setSendCmd(byte[] sendCmd) {
+this.sendCmd = sendCmd;
+}
+
+public void setFeedbackCmd(byte[] feedbackCmd) {
+this.feedbackCmd = feedbackCmd;
+}
+
+public byte[] getFeedbackCmd() {
+return feedbackCmd;
+}
+
+public void setHasFeedback(boolean hasFeedback) {
+this.hasFeedback = hasFeedback;
+}
+
+public void run() {
+int repeatTimes = 0;
+while (repeatTimes++ &lt; REPEAT_TIMES) {
+try {
+Log.d(TAG, &#34;发送命令：&#34;+toHex(sendCmd));
+int result = HardwareControler.write(serialDevice, sendCmd);
+if(-1 == result){
+Log.d(TAG, &#34;发送命令失败：&#34;+repeatTimes+&#34;次&#34;);
+Thread.sleep(1000);
+}else{
+Log.d(TAG, &#34;发送命令成功：&#34;+repeatTimes+&#34;次&#34;);
+return;
+}
+if (hasFeedback) {
+Log.d(TAG, &#34;收到了正确的反馈&#34;);
+//收到了正确的反馈，就不用再次发送指令，
+//否则重复发送指令
+return;
+}
+} catch (Exception e) {
+e.printStackTrace();
+}
+}
+//若干次未能获得正确的反馈信息，停止发送命令
+Log.d(TAG, &#34;若干次未能获得正确的反馈信息，停止发送命令&#34;);
+sendingCmdThreads.remove(this);
+}
+}
+
+}
+</code></pre><p>调用很简单，只要在Activity的Button组件的OnClickListener中调用即可，如下：</p>
+<pre tabindex="0"><code>openSerial = (Button) findViewById(R.id.openSerial);
+closeSerial = (Button) findViewById(R.id.closeSerial);
+sendSerial = (Button) findViewById(R.id.sendSerial);
+
+openSerial.setOnClickListener(new Button.OnClickListener() {
+public void onClick(View v) {
+SerialPortCmd.openSerialPort();
+}
+});
+
+sendSerial.setOnClickListener(new Button.OnClickListener() {
+public void onClick(View v) {
+byte[] sendCmd = new byte[] { 0x5a, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x11 };
+SerialPortCmd.sendControlCmd(sendCmd);
+}
+});
+
+closeSerial.setOnClickListener(new Button.OnClickListener() {
+@Override
+public void onClick(View v) {
+SerialPortCmd.closeSerialPort();
+}
+});
+</code></pre><p>在Ubuntu下可使用Cutecom进行通讯调试。</p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>关于友善之臂 Tiny6410无法加载libfriendlyarm-hardware.so的问题</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

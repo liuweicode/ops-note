@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on 运维笔记 - liuwei.co</title>
+    <link>https://liuwei.co/categories/</link>
+    <description>Recent content in Categories on 运维笔记 - liuwei.co</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <lastBuildDate>Wed, 21 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>k8s</title>
+      <link>https://liuwei.co/categories/k8s/</link>
+      <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>syntax</title>
+      <link>https://liuwei.co/categories/syntax/</link>
+      <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/syntax/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>namespaces</title>
+      <link>https://liuwei.co/categories/namespaces/</link>
+      <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/namespaces/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PHP</title>
+      <link>https://liuwei.co/categories/php/</link>
+      <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/php/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>命名空间</title>
+      <link>https://liuwei.co/categories/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/</link>
+      <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Error</title>
+      <link>https://liuwei.co/categories/error/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/error/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Info.plist</title>
+      <link>https://liuwei.co/categories/info.plist/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/info.plist/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iOS</title>
+      <link>https://liuwei.co/categories/ios/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>iOS 10</title>
+      <link>https://liuwei.co/categories/ios-10/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/ios-10/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Privacy Settings</title>
+      <link>https://liuwei.co/categories/privacy-settings/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/privacy-settings/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swift 2.3</title>
+      <link>https://liuwei.co/categories/swift-2.3/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/swift-2.3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Swift 3.0</title>
+      <link>https://liuwei.co/categories/swift-3.0/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/swift-3.0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Xcode 8.0</title>
+      <link>https://liuwei.co/categories/xcode-8.0/</link>
+      <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/xcode-8.0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xcode</title>
+      <link>https://liuwei.co/categories/xcode/</link>
+      <pubDate>Wed, 07 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/xcode/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tool</title>
+      <link>https://liuwei.co/categories/tool/</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/tool/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>工具</title>
+      <link>https://liuwei.co/categories/%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/%E5%B7%A5%E5%85%B7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>内存管理</title>
+      <link>https://liuwei.co/categories/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Sun, 04 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>translation</title>
+      <link>https://liuwei.co/categories/translation/</link>
+      <pubDate>Tue, 18 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/translation/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tutorial</title>
+      <link>https://liuwei.co/categories/tutorial/</link>
+      <pubDate>Tue, 18 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/tutorial/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>UIScrollView</title>
+      <link>https://liuwei.co/categories/uiscrollview/</link>
+      <pubDate>Tue, 18 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/uiscrollview/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Share</title>
+      <link>https://liuwei.co/categories/share/</link>
+      <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/share/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>skill</title>
+      <link>https://liuwei.co/categories/skill/</link>
+      <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/skill/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>trick</title>
+      <link>https://liuwei.co/categories/trick/</link>
+      <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/trick/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wiki</title>
+      <link>https://liuwei.co/categories/wiki/</link>
+      <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/wiki/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Android</title>
+      <link>https://liuwei.co/categories/android/</link>
+      <pubDate>Fri, 29 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/android/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VPS</title>
+      <link>https://liuwei.co/categories/vps/</link>
+      <pubDate>Sat, 16 Mar 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/vps/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Server</title>
+      <link>https://liuwei.co/categories/server/</link>
+      <pubDate>Wed, 27 Feb 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/server/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Java</title>
+      <link>https://liuwei.co/categories/java/</link>
+      <pubDate>Wed, 05 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ipv4</title>
+      <link>https://liuwei.co/categories/ipv4/</link>
+      <pubDate>Tue, 04 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/ipv4/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ipv6</title>
+      <link>https://liuwei.co/categories/ipv6/</link>
+      <pubDate>Tue, 04 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/ipv6/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ubuntu</title>
+      <link>https://liuwei.co/categories/ubuntu/</link>
+      <pubDate>Tue, 04 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/ubuntu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Centos</title>
+      <link>https://liuwei.co/categories/centos/</link>
+      <pubDate>Sun, 02 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/centos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VirtualBox</title>
+      <link>https://liuwei.co/categories/virtualbox/</link>
+      <pubDate>Sun, 02 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/virtualbox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Eclipse</title>
+      <link>https://liuwei.co/categories/eclipse/</link>
+      <pubDate>Mon, 04 Jun 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/eclipse/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Oracle</title>
+      <link>https://liuwei.co/categories/oracle/</link>
+      <pubDate>Fri, 01 Jun 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/oracle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>数据库</title>
+      <link>https://liuwei.co/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+      <pubDate>Fri, 01 Jun 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>JDK</title>
+      <link>https://liuwei.co/categories/jdk/</link>
+      <pubDate>Sat, 15 May 2010 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/jdk/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

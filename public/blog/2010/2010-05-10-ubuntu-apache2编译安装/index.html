@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  ubuntu apache2编译安装 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="1下载源码包: http://httpd.apache.org/download.cgi#apache22 （我下载的是httpd-2.2.15.tar.gz） 2解压: tar -zxvf httpd-2.2.15.tar.gz （ -z, –gzip, –gunzip, –ungzip 通过 gzip 过滤归|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="ubuntu apache2编译安装 | 运维笔记">
+    <meta name="twitter:description" content="1下载源码包: http://httpd.apache.org/download.cgi#apache22 （我下载的是httpd-2.2.15.tar.gz） 2解压: tar -zxvf httpd-2.2.15.tar.gz （ -z, –gzip, –gunzip, –ungzip 通过 gzip 过滤归|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">ubuntu apache2编译安装</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/ubuntu' class="muted-link">
+  <span class="Label Label--gray-darker">Ubuntu</span>
+</a>
+
+<a href='/categories/server' class="muted-link">
+  <span class="Label Label--gray-darker">Server</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2010-05-10. Published at: 2010-05-10.">
+        
+          Published: 2010-05-10
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>1下载源码包: <a href="http://httpd.apache.org/download.cgi#apache22">http://httpd.apache.org/download.cgi#apache22</a> （我下载的是httpd-2.2.15.tar.gz）</p>
+<p>2解压: tar -zxvf httpd-2.2.15.tar.gz
+（ -z, –gzip, –gunzip, –ungzip 通过 gzip 过滤归档
+-x, –extract, –get 从归档中解出文件
+-v, –verbose 详细地列出处理的文件
+-f, –file=ARCHIVE 使用归档文件或 ARCHIVE 设备）</p>
+<p>3进入目录: cd httpd-2.2.15</p>
+<p>4收集相关信息,生成makefile文件: sudo ./configure –prefix=/usr/local/myserver/apache2 –enable-module=so
+5将源码包生成二进制的包: sudo make
+6安装到指定目录: sudo make install</p>
+<p>7安装完毕之后，用“ps -ef |grep apache2”命令看有没有启动，如果没有用”sudo /usr/local/myserver/apache2/bin/httpd -k start”命令启动～</p>
+<p>如果出现以下错误：
+liuwei@IT-liuwei:/usr/local/myserver/apache2$ sudo /usr/local/myserver/apache2/bin/httpd -k start
+httpd: Could not reliably determine the server’s fully qualified domain name, using 127.0.1.1 for ServerName
+则用修改httpd.conf文件，在“#ServerName <a href="https://www.example.com">www.example.com</a>:80”这一行下面添加一句“ServerName 127.0.0.1:80”。</p>
+<p>再次启动如下:
+liuwei@IT-liuwei:/usr/local/myserver/apache2$ sudo /usr/local/myserver/apache2/bin/httpd -k start
+httpd (pid 2000) already running
+liuwei@IT-liuwei:/usr/local/myserver/apache2$ ps -ef |grep apache2
+root 2000 1 0 17:15 ? 00:00:00 /usr/local/myserver/apache2/bin/httpd -k start
+daemon 2001 2000 0 17:15 ? 00:00:00 /usr/local/myserver/apache2/bin/httpd -k start
+daemon 2002 2000 0 17:15 ? 00:00:00 /usr/local/myserver/apache2/bin/httpd -k start
+daemon 2003 2000 0 17:15 ? 00:00:00 /usr/local/myserver/apache2/bin/httpd -k start
+daemon 2004 2000 0 17:15 ? 00:00:00 /usr/local/myserver/apache2/bin/httpd -k start
+daemon 2005 2000 0 17:15 ? 00:00:00 /usr/local/myserver/apache2/bin/httpd -k start
+liuwei 2024 1904 0 17:19 pts/1 00:00:00 grep –color=auto apache2</p>
+<p>8打开浏览器输入http://127.0.0.1 显示it works 则安装成功。</p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>ubuntu apache2编译安装</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

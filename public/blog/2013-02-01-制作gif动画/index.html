@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  制作Gif动画 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="1,首先使用ffmpeg将视频转换成帧图片 liuwei@IT:~/make gif$ ls temp 人再囧途之泰囧BD.rmvb liuwei@IT:~/make gif$ ffmpeg -i 人再囧途之泰囧BD.rmvb -r 1 -f image2 temp/%05d.png liuwei@IT:~/make gif$ cd temp/ liuwei@IT:~/make gif/temp$ ls 00001.png|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="制作Gif动画 | 运维笔记">
+    <meta name="twitter:description" content="1,首先使用ffmpeg将视频转换成帧图片 liuwei@IT:~/make gif$ ls temp 人再囧途之泰囧BD.rmvb liuwei@IT:~/make gif$ ffmpeg -i 人再囧途之泰囧BD.rmvb -r 1 -f image2 temp/%05d.png liuwei@IT:~/make gif$ cd temp/ liuwei@IT:~/make gif/temp$ ls 00001.png|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">制作Gif动画</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/tool' class="muted-link">
+  <span class="Label Label--gray-darker">Tool</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-09-22. Published at: 2013-02-01.">
+        
+          Lastmod: 2022-09-22
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>1,首先使用ffmpeg将视频转换成帧图片</p>
+<pre tabindex="0"><code>liuwei@IT:~/make gif$ ls
+temp 人再囧途之泰囧BD.rmvb
+liuwei@IT:~/make gif$ ffmpeg -i 人再囧途之泰囧BD.rmvb -r 1 -f image2 temp/%05d.png
+liuwei@IT:~/make gif$ cd temp/
+liuwei@IT:~/make gif/temp$ ls
+00001.png 00004.png 00007.png 00010.png 00013.png 00016.png 00019.png
+00002.png 00005.png 00008.png 00011.png 00014.png 00017.png
+00003.png 00006.png 00009.png 00012.png 00015.png 00018.png
+liuwei@IT:~/make gif/temp$ 
+</code></pre><p>2，使用mogrify将图片缩小到合适的尺寸</p>
+<pre tabindex="0"><code>mogrify -resize 178x100 *.png
+</code></pre><p>3，使用convert将图片制作成gif</p>
+<pre tabindex="0"><code>liuwei@IT:~/make gif/temp$ convert -delay 0 *.png -loop 0 test.gif
+liuwei@IT:~/make gif/temp$ ls | grep *.gif
+test.gif
+</code></pre><p><img src="/assets/images/20130201/test.gif" alt="image"></p>
+<p>参考：
+<a href="http://blog.csdn.net/huangxiansheng1980/article/details/6820866">http://blog.csdn.net/huangxiansheng1980/article/details/6820866</a>
+<a href="http://blog.csdn.net/tge7618291/article/details/7553807">http://blog.csdn.net/tge7618291/article/details/7553807</a></p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>制作Gif动画</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>k8s on 运维笔记 - liuwei.co</title>
+    <link>https://liuwei.co/categories/k8s/</link>
+    <description>Recent content in k8s on 运维笔记 - liuwei.co</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <lastBuildDate>Wed, 21 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/k8s/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 Kubernetes 上部署 Otter</title>
+      <link>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</link>
+      <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</guid>
+      <description>❗️❗️Otter已在阿里云推出商业化版本，开源版本估计不维护了。因此建议采用源码编译的方式，bug太多了，后期需要自己修复。 1、基于源码编</description>
+    </item>
+    
+    <item>
+      <title>在 Kubernetes 上部署 ZooKeeper 集群</title>
+      <link>https://liuwei.co/post/2022/deploy-zookeeper-cluster-on-kubernetes/</link>
+      <pubDate>Mon, 19 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/deploy-zookeeper-cluster-on-kubernetes/</guid>
+      <description>Apache ZooKeeper 是一个分布式的开源协调服务，用于分布式系统。 ZooKeeper 允许你读取、写入数据和发现数据更新。 数据按层次结构组织在文件系统中，并复制到 ensembl</description>
+    </item>
+    
+    <item>
+      <title>在 Kubernetes 上部署 Nacos 集群</title>
+      <link>https://liuwei.co/post/2022/deploy-nacos-cluster-on-kubernetes/</link>
+      <pubDate>Thu, 15 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/deploy-nacos-cluster-on-kubernetes/</guid>
+      <description>1. 下载源码 2.1.1 版本 wget https://github.com/alibaba/nacos/archive/refs/tags/2.1.1.zip 2. 创建数据库 CREATE DATABASE IF NOT EXISTS nacos-dev DEFAULT CHARSET utf8 COLLATE utf8_general_ci; 3. 初始化数据库 source nacos-2.1.1/distribution/conf/nacos-mysql.sql 4. 部署 4.1 修改nacos.yaml 4.2 修改 replicas 这里设置为3，需要与下面的N</description>
+    </item>
+    
+  </channel>
+</rss>

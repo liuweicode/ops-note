@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  在 Kubernetes 上部署 ZooKeeper 集群 &ndash; 运维笔记 - liuwei.co
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="Apache ZooKeeper 是一个分布式的开源协调服务，用于分布式系统。 ZooKeeper 允许你读取、写入数据和发现数据更新。 数据按层次结构组织在文件系统中，并复制到 ensembl|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记 - liuwei.co">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="在 Kubernetes 上部署 ZooKeeper 集群 | 运维笔记 - liuwei.co">
+    <meta name="twitter:description" content="Apache ZooKeeper 是一个分布式的开源协调服务，用于分布式系统。 ZooKeeper 允许你读取、写入数据和发现数据更新。 数据按层次结构组织在文件系统中，并复制到 ensembl|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记 - liuwei.co
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">在 Kubernetes 上部署 ZooKeeper 集群</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/k8s' class="muted-link">
+  <span class="Label Label--gray-darker">k8s</span>
+</a>
+
+<a href='/categories/syntax' class="muted-link">
+  <span class="Label Label--gray-darker">syntax</span>
+</a>
+
+
+
+<a href='/tags/kubernetes' class="muted-link">
+  <span class="Label Label--gray">kubernetes</span>
+</a>
+
+<a href='/tags/zookeeper' class="muted-link">
+  <span class="Label Label--gray">zookeeper</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-09-19. Published at: 2022-09-19.">
+        
+          Published: 2022-09-19
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>Apache ZooKeeper 是一个分布式的开源协调服务，用于分布式系统。 ZooKeeper 允许你读取、写入数据和发现数据更新。 数据按层次结构组织在文件系统中，并复制到 ensemble（一个 ZooKeeper 服务器的集合） 中所有的 ZooKeeper 服务器。对数据的所有操作都是原子的和顺序一致的。 ZooKeeper 通过 Zab 一致性协议在 ensemble 的所有服务器之间复制一个状态机来确保这个特性。</p>
+<p>Ensemble 使用 Zab 协议选举一个领导者，在选举出领导者前不能写入数据。 一旦选举出了领导者，ensemble 使用 Zab 保证所有写入被复制到一个 quorum， 然后这些写入操作才会被确认并对客户端可用。 如果没有遵照加权 quorums，一个 quorum 表示包含当前领导者的 ensemble 的多数成员。 例如，如果 ensemble 有 3 个服务器，一个包含领导者的成员和另一个服务器就组成了一个 quorum。 如果 ensemble 不能达成一个 quorum，数据将不能被写入。</p>
+<p>ZooKeeper 在内存中保存它们的整个状态机，但是每个改变都被写入一个在存储介质上的持久 WAL（Write Ahead Log）。 当一个服务器出现故障时，它能够通过回放 WAL 恢复之前的状态。 为了防止 WAL 无限制的增长，ZooKeeper 服务器会定期的将内存状态快照保存到存储介质。 这些快照能够直接加载到内存中，所有在这个快照之前的 WAL 条目都可以被安全的丢弃。</p>
+<h2 id="1-环境">1. 环境</h2>
+<ul>
+<li>
+<p>Zookeeper 3.7.1</p>
+</li>
+<li>
+<p>阿里云容器服务 ACK</p>
+</li>
+</ul>
+<pre tabindex="0"><code>kubectl version
+Client Version: version.Info{Major:&#34;1&#34;, Minor:&#34;21&#34;, GitVersion:&#34;v1.21.1&#34;, GitCommit:&#34;5e58841cce77d4bc13713ad2b91fa0d961e69192&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2021-05-12T14:18:45Z&#34;, GoVersion:&#34;go1.16.4&#34;, Compiler:&#34;gc&#34;, Platform:&#34;darwin/amd64&#34;}
+Server Version: version.Info{Major:&#34;1&#34;, Minor:&#34;22+&#34;, GitVersion:&#34;v1.22.10-aliyun.1&#34;, GitCommit:&#34;890f58821240c8db6e3076942fd574e8820451c5&#34;, GitTreeState:&#34;clean&#34;, BuildDate:&#34;2022-06-16T07:46:40Z&#34;, GoVersion:&#34;go1.16.15&#34;, Compiler:&#34;gc&#34;, Platform:&#34;linux/amd64&#34;}
+</code></pre><h2 id="2-构建镜像">2. 构建镜像</h2>
+<p>将官方镜像打包至私有仓库</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">./build.sh
+</span></span></code></pre></div><p><img src="https://static.liuwei.co/202209/zk/build-docker-image.png" alt="build-docker-image"></p>
+<h2 id="3-存储">3. 存储</h2>
+<ul>
+<li>
+<p><strong>dataDir</strong>：zk用于保存内存数据库的快照的目录，除非设置了dataLogDir，否则这个目录也用来保存更新数据库的事务日志。在生产环境使用的zk集群，强烈建议设置dataLogDir，让dataDir只存放快照，因为写快照的开销很低，这样dataDir就可以和其他日志目录的挂载点放在一起。</p>
+</li>
+<li>
+<p><strong>dataLogDir</strong>: zk的事务日志路径</p>
+</li>
+</ul>
+<h3 id="根据官方建议将datadir和datalogdir分开存储">根据官方建议，将<code>dataDir</code>和<code>dataLogDir</code>分开存储</h3>
+<ul>
+<li><a href="https://hub.docker.com/_/zookeeper">https://hub.docker.com/_/zookeeper</a></li>
+</ul>
+<p><img src="https://static.liuwei.co/202209/zk/data.png" alt="data"></p>
+<ul>
+<li>创建 StorageClass</li>
+</ul>
+<p>我这里使用阿里云云盘做存储</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f zk-storageclass.yaml
+</span></span></code></pre></div><h2 id="4-创建configmap">4. 创建ConfigMap</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl create configmap uat-zookeeper-config --from-file<span class="o">=</span>zoo.cfg  -n uat-zookeeper
+</span></span></code></pre></div><h2 id="5-创建-zookeeper-statefulset">5. 创建 ZooKeeper StatefulSet</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f zk.yaml
+</span></span></code></pre></div><h2 id="6-注意事项">6. 注意事项</h2>
+<p>采用postStart在pod启动的时候，创建myid</p>
+<p><img src="https://static.liuwei.co/202209/zk/myid.png" alt="myid"></p>
+<h2 id="7-相关链接">7. 相关链接</h2>
+<ul>
+<li>项目代码: <a href="https://github.com/liuweicode/deploy-zookeeper-cluster-on-kubernetes">https://github.com/liuweicode/deploy-zookeeper-cluster-on-kubernetes</a></li>
+</ul>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>在 Kubernetes 上部署 ZooKeeper 集群</b><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-环境">1. 环境</a></li>
+    <li><a href="#2-构建镜像">2. 构建镜像</a></li>
+    <li><a href="#3-存储">3. 存储</a>
+      <ul>
+        <li><a href="#根据官方建议将datadir和datalogdir分开存储">根据官方建议，将<code>dataDir</code>和<code>dataLogDir</code>分开存储</a></li>
+      </ul>
+    </li>
+    <li><a href="#4-创建configmap">4. 创建ConfigMap</a></li>
+    <li><a href="#5-创建-zookeeper-statefulset">5. 创建 ZooKeeper StatefulSet</a></li>
+    <li><a href="#6-注意事项">6. 注意事项</a></li>
+    <li><a href="#7-相关链接">7. 相关链接</a></li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>

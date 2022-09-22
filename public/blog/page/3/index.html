@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  Blog &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="Blog | 运维笔记">
+    <meta name="twitter:description" content="|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item selected" href="/blog/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div>
+
+  <h1>Blog</h1>
+  
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/blog/2012/2012-12-05-%E5%85%B3%E4%BA%8E%E5%8F%8B%E5%96%84%E4%B9%8B%E8%87%82-tiny6410%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BDlibfriendlyarm-hardware.so%E7%9A%84%E9%97%AE%E9%A2%98/">
+        <div class="h2 mt-1 mb-1">关于友善之臂 Tiny6410无法加载libfriendlyarm-hardware.so的问题</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/java' class="muted-link">
+  <span class="Label Label--gray-darker">Java</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-12-05</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    adb logcat 信息日志如下： D/dalvikvm( 4534): No JNI_OnLoad found in /system/lib/libfriendlyarm-hardware.so 0x40712ca8, skipping init 日志信息提示在/system/lib下找不到libfriendlyarm-hardware.so文件，
+    <a class="muted-link" href="/blog/2012/2012-12-05-%E5%85%B3%E4%BA%8E%E5%8F%8B%E5%96%84%E4%B9%8B%E8%87%82-tiny6410%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BDlibfriendlyarm-hardware.so%E7%9A%84%E9%97%AE%E9%A2%98/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/blog/2012/2012-12-04-ubuntu-%E9%80%9A%E8%BF%87ipv4%E8%BD%ACipv6%E4%B8%8A%E7%BD%91/">
+        <div class="h2 mt-1 mb-1">Ubuntu 通过ipv4转ipv6上网</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/ubuntu' class="muted-link">
+  <span class="Label Label--gray-darker">Ubuntu</span>
+</a>
+
+<a href='/categories/ipv4' class="muted-link">
+  <span class="Label Label--gray-darker">ipv4</span>
+</a>
+
+<a href='/categories/ipv6' class="muted-link">
+  <span class="Label Label--gray-darker">ipv6</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-12-04</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    sudo apt-get install miredo sudo gedit /etc/hosts 将如下网址的内容粘贴进去： https://ipv6-hosts.googlecode.com/hg/hosts sudo gedit /etc/default/ufw 修改：IPV6=yes 重启防火墙 sudo ufw disable sudo ufw enable 参考：https://wiki.ubuntu.c
+    <a class="muted-link" href="/blog/2012/2012-12-04-ubuntu-%E9%80%9A%E8%BF%87ipv4%E8%BD%ACipv6%E4%B8%8A%E7%BD%91/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/blog/2012/2012-12-02-centos-ntfs-3g-%E6%8C%82%E8%BD%BDntfs%E7%A7%BB%E5%8A%A8%E7%9B%98/">
+        <div class="h2 mt-1 mb-1">Centos ntfs-3g 挂载ntfs移动盘</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/centos' class="muted-link">
+  <span class="Label Label--gray-darker">Centos</span>
+</a>
+
+<a href='/categories/virtualbox' class="muted-link">
+  <span class="Label Label--gray-darker">VirtualBox</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-12-02</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    首先到官网下载源码包 http://www.tuxera.com/community/ntfs-3g-download/ tar -zxvf ntfs-3g_ntfsprogs-2012.1.15.tgz cd ntfs-3g_ntfsprogs-2012.1.15 ./configure 提示如下： [wei@liuwei ntfs-3g_ntfsprogs-2012.1.15]$ ./configure checking build system type... i686-pc-linux-gnu checking host system type... i686-pc-linux-gnu checking target system type... i686-pc-linux-gnu checking for a BSD-compatible install... /usr/bin/install -c checking whether build environment is sane... yes checking for a thread-safe mkdir -p... /bin/mkdir -p checking for gawk... gawk checking whether make sets
+    <a class="muted-link" href="/blog/2012/2012-12-02-centos-ntfs-3g-%E6%8C%82%E8%BD%BDntfs%E7%A7%BB%E5%8A%A8%E7%9B%98/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/blog/2012/2012-12-02-centos6.3-%E5%AE%89%E8%A3%85virtualbox/">
+        <div class="h2 mt-1 mb-1">Centos6.3 安装VirtualBox</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/centos' class="muted-link">
+  <span class="Label Label--gray-darker">Centos</span>
+</a>
+
+<a href='/categories/virtualbox' class="muted-link">
+  <span class="Label Label--gray-darker">VirtualBox</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-12-02</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    查看系统信息： [wei@liuwei ~]$ uname -a Linux liuwei.co 2.6.32-279.14.1.el6.i686 #1 SMP Tue Nov 6 21:05:14 UTC 2012 i686 i686 i386 GNU/Linux 从官网（https://www.virtualbox.org/wiki/Linux_Do
+    <a class="muted-link" href="/blog/2012/2012-12-02-centos6.3-%E5%AE%89%E8%A3%85virtualbox/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/blog/2012/2012-11-15-android-device-chooser-unknown/">
+        <div class="h2 mt-1 mb-1">Android device chooser unknown</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/android' class="muted-link">
+  <span class="Label Label--gray-darker">Android</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-11-15</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    当我用真机USB连接电脑时，出现如下图错误，Eclipse无法识别。 解决办法参照：http://developer.android.com/
+    <a class="muted-link" href="/blog/2012/2012-11-15-android-device-chooser-unknown/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/blog/2012/2012-06-04-cannot-create-a-server-using-the-selected-type-%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
+        <div class="h2 mt-1 mb-1">Cannot create a server using the selected type 解决办法</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/eclipse' class="muted-link">
+  <span class="Label Label--gray-darker">Eclipse</span>
+</a>
+
+<a href='/categories/java' class="muted-link">
+  <span class="Label Label--gray-darker">Java</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-06-04</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    Eclipse 新建Tomcat Server出现“Cannot create a server using the selected type”。 1,查看Eclipse绑定的Tomcat installation directory写的是不
+    <a class="muted-link" href="/blog/2012/2012-06-04-cannot-create-a-server-using-the-selected-type-%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/blog/2012/2012-06-04-ubuntu12.04-gedit-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">
+        <div class="h2 mt-1 mb-1">ubuntu12.04 gedit 中文乱码</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/ubuntu' class="muted-link">
+  <span class="Label Label--gray-darker">Ubuntu</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-06-04</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    终端输入： gsettings set org.gnome.gedit.preferences.encodings auto-detected “[&#39;UTF-8&#39;,&#39;GB18030&#39;,&#39;GB2312&#39;,&#39;GBK
+    <a class="muted-link" href="/blog/2012/2012-06-04-ubuntu12.04-gedit-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/blog/2012/2012-06-01-oracle-ora-01653-%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
+        <div class="h2 mt-1 mb-1">Oracle ORA-01653 错误解决办法</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/oracle' class="muted-link">
+  <span class="Label Label--gray-darker">Oracle</span>
+</a>
+
+<a href='/categories/%E6%95%B0%E6%8D%AE%E5%BA%93' class="muted-link">
+  <span class="Label Label--gray-darker">数据库</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-06-01</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    今天执行update语句报ORA-01653错误。信息提示需要拓展表空间。 SELECT UPPER(F.TABLESPACE_NAME) &#34;表空间名&#34;, D.TOT_GROOTTE_MB &#34;表空间大小(M)&#
+    <a class="muted-link" href="/blog/2012/2012-06-01-oracle-ora-01653-%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/blog/2012/2012-05-31-oracle-%E7%AE%80%E5%8D%95%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D-%E6%95%B0%E6%8D%AE%E5%BA%93/">
+        <div class="h2 mt-1 mb-1">Oracle 简单备份/恢复 数据库</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/oracle' class="muted-link">
+  <span class="Label Label--gray-darker">Oracle</span>
+</a>
+
+<a href='/categories/%E6%95%B0%E6%8D%AE%E5%BA%93' class="muted-link">
+  <span class="Label Label--gray-darker">数据库</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-05-31</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    项目中需要将正式库上的数据导入到测试库上，该数据库不知道谁安装的，环境变量都没有设置！%￥#&amp;×%…… 我先ssh到测试机上执行如下命
+    <a class="muted-link" href="/blog/2012/2012-05-31-oracle-%E7%AE%80%E5%8D%95%E5%A4%87%E4%BB%BD%E6%81%A2%E5%A4%8D-%E6%95%B0%E6%8D%AE%E5%BA%93/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/blog/2010/2010-05-16-ubuntu10.04%E5%AE%89%E8%A3%85tomcat6/">
+        <div class="h2 mt-1 mb-1">ubuntu10.04安装tomcat6</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/ubuntu' class="muted-link">
+  <span class="Label Label--gray-darker">Ubuntu</span>
+</a>
+
+<a href='/categories/server' class="muted-link">
+  <span class="Label Label--gray-darker">Server</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2010-05-16</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    安装tomcat6： 1，下载tomcat：http://tomcat.apache.org/download-60.cgi 我下载的是apac
+    <a class="muted-link" href="/blog/2010/2010-05-16-ubuntu10.04%E5%AE%89%E8%A3%85tomcat6/">…</a>
+  </div>
+</div>
+
+  
+
+  
+  
+
+<nav class="paginate-container">
+  <div class="pagination">
+    <ul>
+      
+      <a href="/blog/page/2/" class="previous_page">Prev</a>
+      
+
+      
+          
+          
+          
+          
+              
+              
+          
+          
+            
+              
+              <a href="/blog/">1</a>
+            
+          
+      
+          
+          
+          
+          
+              
+              
+          
+          
+            
+              
+              <a href="/blog/page/2/">2</a>
+            
+          
+      
+          
+          
+          
+          
+              
+              
+          
+          
+            
+              <em class="current selected" aria-current="true">3</em>
+            
+          
+      
+          
+          
+          
+          
+              
+              
+          
+          
+            
+              
+              <a href="/blog/page/4/">4</a>
+            
+          
+      
+
+      
+      <a href="/blog/page/4/" class="next_page">Next</a>
+      
+    </ul>
+  </div>
+</nav>
+
+
+
+
+</div>
+
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+
+  <div class="Box Box--blue p-2 mb-3 mt-5">
+    <a href="/tags/" class="link-gray-dark">
+      <h4>Tags</h4>
+    </a>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/tags/css" class="link-gray text-emphasized css-truncate-target"><span class="">Css</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/tags/emoji" class="link-gray text-emphasized css-truncate-target"><span class="">Emoji</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/tags/html" class="link-gray text-emphasized css-truncate-target"><span class="">HTML</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/tags/markdown" class="link-gray text-emphasized css-truncate-target"><span class="">Markdown</span></a>
+      <span class="text-right Counter">2</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/tags/privacy" class="link-gray text-emphasized css-truncate-target"><span class="">Privacy</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/tags/shortcodes" class="link-gray text-emphasized css-truncate-target"><span class="">Shortcodes</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/tags/text" class="link-gray text-emphasized css-truncate-target"><span class="">Text</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/tags/themes" class="link-gray text-emphasized css-truncate-target"><span class="">Themes</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+  </div>
+
+
+
+
+  <div class="Box Box--blue p-2 mb-3">
+    <a href="/categories/" class="link-gray-dark">
+      <h4>Categories</h4>
+    </a>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/android" class="link-gray text-emphasized css-truncate-target"><span class="">Android</span></a>
+      <span class="text-right Counter">4</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/centos" class="link-gray text-emphasized css-truncate-target"><span class="">Centos</span></a>
+      <span class="text-right Counter">2</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/eclipse" class="link-gray text-emphasized css-truncate-target"><span class="">Eclipse</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/error" class="link-gray text-emphasized css-truncate-target"><span class="">Error</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/info.plist" class="link-gray text-emphasized css-truncate-target"><span class="">Info.Plist</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/ios" class="link-gray text-emphasized css-truncate-target"><span class="">Ios</span></a>
+      <span class="text-right Counter">6</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/ios-10" class="link-gray text-emphasized css-truncate-target"><span class="">Ios 10</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/ipv4" class="link-gray text-emphasized css-truncate-target"><span class="">Ipv4</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/ipv6" class="link-gray text-emphasized css-truncate-target"><span class="">Ipv6</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/java" class="link-gray text-emphasized css-truncate-target"><span class="">Java</span></a>
+      <span class="text-right Counter">5</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/jdk" class="link-gray text-emphasized css-truncate-target"><span class="">Jdk</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/namespaces" class="link-gray text-emphasized css-truncate-target"><span class="">Namespaces</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/oracle" class="link-gray text-emphasized css-truncate-target"><span class="">Oracle</span></a>
+      <span class="text-right Counter">2</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/php" class="link-gray text-emphasized css-truncate-target"><span class="">Php</span></a>
+      <span class="text-right Counter">3</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/privacy-settings" class="link-gray text-emphasized css-truncate-target"><span class="">Privacy settings</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/server" class="link-gray text-emphasized css-truncate-target"><span class="">Server</span></a>
+      <span class="text-right Counter">3</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/share" class="link-gray text-emphasized css-truncate-target"><span class="">Share</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/skill" class="link-gray text-emphasized css-truncate-target"><span class="">Skill</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/swift-2.3" class="link-gray text-emphasized css-truncate-target"><span class="">Swift 2.3</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/swift-3.0" class="link-gray text-emphasized css-truncate-target"><span class="">Swift 3.0</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/syntax" class="link-gray text-emphasized css-truncate-target"><span class="">Syntax</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/themes" class="link-gray text-emphasized css-truncate-target"><span class="">Themes</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/tool" class="link-gray text-emphasized css-truncate-target"><span class="">Tool</span></a>
+      <span class="text-right Counter">2</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/translation" class="link-gray text-emphasized css-truncate-target"><span class="">Translation</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/trick" class="link-gray text-emphasized css-truncate-target"><span class="">Trick</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/tutorial" class="link-gray text-emphasized css-truncate-target"><span class="">Tutorial</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/ubuntu" class="link-gray text-emphasized css-truncate-target"><span class="">Ubuntu</span></a>
+      <span class="text-right Counter">8</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/uiscrollview" class="link-gray text-emphasized css-truncate-target"><span class="">Uiscrollview</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/virtualbox" class="link-gray text-emphasized css-truncate-target"><span class="">Virtualbox</span></a>
+      <span class="text-right Counter">2</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/vps" class="link-gray text-emphasized css-truncate-target"><span class="">Vps</span></a>
+      <span class="text-right Counter">2</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/wiki" class="link-gray text-emphasized css-truncate-target"><span class="">Wiki</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/xcode" class="link-gray text-emphasized css-truncate-target"><span class="">Xcode</span></a>
+      <span class="text-right Counter">2</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/xcode-8.0" class="link-gray text-emphasized css-truncate-target"><span class="">Xcode 8.0</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86" class="link-gray text-emphasized css-truncate-target"><span class="">内存管理</span></a>
+      <span class="text-right Counter">2</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/%e5%91%bd%e5%90%8d%e7%a9%ba%e9%97%b4" class="link-gray text-emphasized css-truncate-target"><span class="">命名空间</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/%e5%b7%a5%e5%85%b7" class="link-gray text-emphasized css-truncate-target"><span class="">工具</span></a>
+      <span class="text-right Counter">1</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/categories/%e6%95%b0%e6%8d%ae%e5%ba%93" class="link-gray text-emphasized css-truncate-target"><span class="">数据库</span></a>
+      <span class="text-right Counter">3</span>
+    </span>
+    
+  </div>
+
+
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });</script>
+    
+  </body>
+</html>

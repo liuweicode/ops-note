@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VirtualBox on 运维笔记 - liuwei.co</title>
+    <link>https://liuwei.co/categories/virtualbox/</link>
+    <description>Recent content in VirtualBox on 运维笔记 - liuwei.co</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <lastBuildDate>Sun, 02 Dec 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/virtualbox/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Centos ntfs-3g 挂载ntfs移动盘</title>
+      <link>https://liuwei.co/post/2012/centos-ntfs-3g-%E6%8C%82%E8%BD%BDntfs%E7%A7%BB%E5%8A%A8%E7%9B%98/</link>
+      <pubDate>Sun, 02 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2012/centos-ntfs-3g-%E6%8C%82%E8%BD%BDntfs%E7%A7%BB%E5%8A%A8%E7%9B%98/</guid>
+      <description>首先到官网下载源码包 http://www.tuxera.com/community/ntfs-3g-download/ tar -zxvf ntfs-3g_ntfsprogs-2012.1.15.tgz cd ntfs-3g_ntfsprogs-2012.1.15 ./configure 提示如下： [wei@liuwei ntfs-3g_ntfsprogs-2012.1.15]$ ./configure checking build system type... i686-pc-linux-gnu checking host system type... i686-pc-linux-gnu checking target system type... i686-pc-linux-gnu checking for a BSD-compatible install... /usr/bin/install -c checking whether build environment is sane... yes checking for a thread-safe mkdir -p... /bin/mkdir -p checking for gawk... gawk checking whether make sets</description>
+    </item>
+    
+    <item>
+      <title>Centos6.3 安装VirtualBox</title>
+      <link>https://liuwei.co/post/2012/centos6.3-%E5%AE%89%E8%A3%85virtualbox/</link>
+      <pubDate>Sun, 02 Dec 2012 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2012/centos6.3-%E5%AE%89%E8%A3%85virtualbox/</guid>
+      <description>查看系统信息： [wei@liuwei ~]$ uname -a Linux liuwei.co 2.6.32-279.14.1.el6.i686 #1 SMP Tue Nov 6 21:05:14 UTC 2012 i686 i686 i386 GNU/Linux 从官网（https://www.virtualbox.org/wiki/Linux_Do</description>
+    </item>
+    
+  </channel>
+</rss>

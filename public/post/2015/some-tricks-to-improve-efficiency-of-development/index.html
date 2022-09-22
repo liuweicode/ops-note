@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  提高IOS开发效率的一些小技巧 &ndash; 运维笔记 - liuwei.co
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="一，快捷键 1.添加删除当前行快捷键 sudo vim /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist 找到Deletion节点，添加以下代码: &amp;lt;key&amp;gt;Delete Current Line&amp;lt;/key&amp;gt; &amp;lt;string&amp;gt;deleteToBeginningOfLine:, moveToEndOfLine:, deleteToBeginningOfLine:, deleteBackward:, moveDown:, moveToBeginningOfLine:&amp;lt;/string&amp;gt; 依次点击 xcode -&amp;gt; Preferences -&amp;gt; Key Bindings 在输入框中输入dele|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记 - liuwei.co">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="提高IOS开发效率的一些小技巧 | 运维笔记 - liuwei.co">
+    <meta name="twitter:description" content="一，快捷键 1.添加删除当前行快捷键 sudo vim /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist 找到Deletion节点，添加以下代码: &lt;key&gt;Delete Current Line&lt;/key&gt; &lt;string&gt;deleteToBeginningOfLine:, moveToEndOfLine:, deleteToBeginningOfLine:, deleteBackward:, moveDown:, moveToBeginningOfLine:&lt;/string&gt; 依次点击 xcode -&gt; Preferences -&gt; Key Bindings 在输入框中输入dele|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记 - liuwei.co
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">提高IOS开发效率的一些小技巧</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/trick' class="muted-link">
+  <span class="Label Label--gray-darker">trick</span>
+</a>
+
+<a href='/categories/skill' class="muted-link">
+  <span class="Label Label--gray-darker">skill</span>
+</a>
+
+<a href='/categories/xcode' class="muted-link">
+  <span class="Label Label--gray-darker">xcode</span>
+</a>
+
+<a href='/categories/ios' class="muted-link">
+  <span class="Label Label--gray-darker">iOS</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2015-08-16. Published at: 2015-08-16.">
+        
+          Published: 2015-08-16
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <h2 id="一快捷键">一，快捷键</h2>
+<h3 id="1添加删除当前行快捷键">1.添加删除当前行快捷键</h3>
+<pre tabindex="0"><code>sudo vim /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist
+</code></pre><p>找到Deletion节点，添加以下代码:</p>
+<pre tabindex="0"><code>&lt;key&gt;Delete Current Line&lt;/key&gt; 
+&lt;string&gt;deleteToBeginningOfLine:, moveToEndOfLine:, deleteToBeginningOfLine:, deleteBackward:, moveDown:, moveToBeginningOfLine:&lt;/string&gt;
+</code></pre><p>依次点击 <code>xcode -&gt; Preferences -&gt; Key Bindings</code> 在输入框中输入delete current line , 在右边的Key一栏中绑定快捷键，这里我喜欢Eclipse的风格<code>command + d</code></p>
+<p><img src="https://static.liuwei.co/20150817/xcode-command-d.png" alt="image"></p>
+<h3 id="2修改默认快捷键">2.修改默认快捷键</h3>
+<p>平时在开发过程中，我用到最多的快捷键是布局界面的切换和查找，如下：</p>
+<p><img src="https://static.liuwei.co/20150817/xcode-shortcut-key.png" alt="image"></p>
+<h2 id="二code-snippets">二，Code Snippets</h2>
+<p>把一些常用的代码块作为自定义code snippets，这个因人而异。我这里定义了一些常用的注释，GCD，ifelse，switch等。
+这里推荐一个插件，<a href="https://github.com/acoomans/ACCodeSnippetRepositoryPlugin">ACCodeSnippetRepository</a><br>
+这个是我的snippets repository：https://github.com/liuweicode/snippets</p>
+<h2 id="三xcode插件">三，xcode插件</h2>
+<p><a href="https://github.com/supermarin/Alcatraz">Alcatraz</a>：Package manager for Xcode</p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>提高IOS开发效率的一些小技巧</b><nav id="TableOfContents">
+  <ul>
+    <li><a href="#一快捷键">一，快捷键</a>
+      <ul>
+        <li><a href="#1添加删除当前行快捷键">1.添加删除当前行快捷键</a></li>
+        <li><a href="#2修改默认快捷键">2.修改默认快捷键</a></li>
+      </ul>
+    </li>
+    <li><a href="#二code-snippets">二，Code Snippets</a></li>
+    <li><a href="#三xcode插件">三，xcode插件</a></li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>

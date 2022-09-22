@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tool on 运维笔记 - liuwei.co</title>
+    <link>https://liuwei.co/categories/tool/</link>
+    <description>Recent content in Tool on 运维笔记 - liuwei.co</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <lastBuildDate>Mon, 05 Oct 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/tool/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>一个有意思的终端录制&amp;分享工具</title>
+      <link>https://liuwei.co/post/2015/asciinema/</link>
+      <pubDate>Mon, 05 Oct 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2015/asciinema/</guid>
+      <description>asciinema：终端录制与屏幕分享工具</description>
+    </item>
+    
+    <item>
+      <title>制作Gif动画</title>
+      <link>https://liuwei.co/post/2013/%E5%88%B6%E4%BD%9Cgif%E5%8A%A8%E7%94%BB/</link>
+      <pubDate>Fri, 01 Feb 2013 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2013/%E5%88%B6%E4%BD%9Cgif%E5%8A%A8%E7%94%BB/</guid>
+      <description>1,首先使用ffmpeg将视频转换成帧图片 liuwei@IT:~/make gif$ ls temp 人再囧途之泰囧BD.rmvb liuwei@IT:~/make gif$ ffmpeg -i 人再囧途之泰囧BD.rmvb -r 1 -f image2 temp/%05d.png liuwei@IT:~/make gif$ cd temp/ liuwei@IT:~/make gif/temp$ ls 00001.png</description>
+    </item>
+    
+  </channel>
+</rss>

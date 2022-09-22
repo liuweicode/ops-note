@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  ubuntu10.04安装JDK &ndash; 运维笔记 - liuwei.co
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="从sun官方网站下载JDK，我的是jdk-6u20-linux-i586.bin 点击去下载 jdk-6u20-linux-i586.bin 进入到/usr/lib目录下，创建java目录：|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记 - liuwei.co">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="ubuntu10.04安装JDK | 运维笔记 - liuwei.co">
+    <meta name="twitter:description" content="从sun官方网站下载JDK，我的是jdk-6u20-linux-i586.bin 点击去下载 jdk-6u20-linux-i586.bin 进入到/usr/lib目录下，创建java目录：|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记 - liuwei.co
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">ubuntu10.04安装JDK</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/ubuntu' class="muted-link">
+  <span class="Label Label--gray-darker">Ubuntu</span>
+</a>
+
+<a href='/categories/java' class="muted-link">
+  <span class="Label Label--gray-darker">Java</span>
+</a>
+
+<a href='/categories/jdk' class="muted-link">
+  <span class="Label Label--gray-darker">JDK</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2010-05-15. Published at: 2010-05-15.">
+        
+          Published: 2010-05-15
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <ol>
+<li>从sun官方网站下载JDK，我的是jdk-6u20-linux-i586.bin</li>
+</ol>
+<p><a href="https://cds.sun.com/is-bin/INTERSHOP.enfinity/WFS/CDS-CDS_Developer-Site/en_US/-/USD/ViewFilteredProducts-SingleVariationTypeFilter?DLWidget=true&amp;AutoWidgetDL=">点击去下载 jdk-6u20-linux-i586.bin</a></p>
+<ol start="2">
+<li>
+<p>进入到/usr/lib目录下，创建java目录：mkdir java</p>
+</li>
+<li>
+<p>用mv命令将下载好的文件移动到上一步所创建的java目录中。</p>
+</li>
+<li>
+<p>修改权限 <code>sudo chmod u+x /usr/lib/java/jdk-6u20-linux-i586.bin</code>（chmod命令的参数如下：u 表示该档案的拥有者，g 表示与该档案的拥有者属于同一个群体(group)者，o 表示其他以外的人，a 表示这三者皆是）</p>
+</li>
+<li>
+<p>输入<code>sudo ./jdk-6u20-linux-i586.bin</code> 命令执行安装，相当于windows下的下一步下一步，之类的。</p>
+</li>
+<li>
+<p>修改环境变量：<code>sudo gedit /etc/environment</code> 这是我的设置(红色部分是需要添加的)：</p>
+</li>
+</ol>
+<pre tabindex="0"><code>PATH=&#34;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/lib/java/jdk1.6.0_20/bin&#34;
+CLASSPATH=&#34;/usr/lib/java/jdk1.6.0_20/lib&#34;
+JAVA_HOME=&#34;/usr/lib/java/jdk1.6.0_20&#34;
+</code></pre><ol start="7">
+<li>执行以下命令，将javac和java命令注册到bin目录下：</li>
+</ol>
+<pre tabindex="0"><code>sudo update-alternatives --install /usr/bin/java java /usr/lib/java/jdk1.6.0_20/bin/java 300
+
+sudo update-alternatives --install /usr/bin/javac javac /usr/lib/java/jdk1.6.0_20/bin/javac 300
+
+sudo update-alternatives --config java
+</code></pre><p>–config 这个选项使我们可以选择其中一个命令程序来作为java命令的执行，当然我这里只有sun的jdk，所以不会提示我选择。</p>
+<ol start="8">
+<li>至此，jdk差不多安装好了。输入 java -version显示如下：</li>
+</ol>
+<pre tabindex="0"><code>liuwei@IT-liuwei:/usr/lib/java$ java -version
+java version &#34;1.6.0_20&#34;
+Java(TM) SE Runtime Environment (build 1.6.0_20-b02)
+Java HotSpot(TM) Client VM (build 16.3-b01, mixed mode, sharing)
+</code></pre><ol start="9">
+<li>这里我们可以vi Test.java 编辑一个java文件，输入内容如下：</li>
+</ol>
+<pre tabindex="0"><code>public class Test{
+public static void main(String[] args){
+   System.out.print(&#34;Hello JDK&#34;);
+  }
+}
+</code></pre><p>之后用javac编译，用java执行如下：</p>
+<pre tabindex="0"><code>liuwei@IT-liuwei:~$ javac Test.java
+liuwei@IT-liuwei:~$ java Test
+Hello JDKliuwei@IT-liuwei:~$
+</code></pre>
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>ubuntu10.04安装JDK</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>

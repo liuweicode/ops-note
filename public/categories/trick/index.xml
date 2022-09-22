@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>trick on 运维笔记 - liuwei.co</title>
+    <link>https://liuwei.co/categories/trick/</link>
+    <description>Recent content in trick on 运维笔记 - liuwei.co</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <lastBuildDate>Sun, 16 Aug 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/trick/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>提高IOS开发效率的一些小技巧</title>
+      <link>https://liuwei.co/post/2015/some-tricks-to-improve-efficiency-of-development/</link>
+      <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2015/some-tricks-to-improve-efficiency-of-development/</guid>
+      <description>一，快捷键 1.添加删除当前行快捷键 sudo vim /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist 找到Deletion节点，添加以下代码: &amp;lt;key&amp;gt;Delete Current Line&amp;lt;/key&amp;gt; &amp;lt;string&amp;gt;deleteToBeginningOfLine:, moveToEndOfLine:, deleteToBeginningOfLine:, deleteBackward:, moveDown:, moveToBeginningOfLine:&amp;lt;/string&amp;gt; 依次点击 xcode -&amp;gt; Preferences -&amp;gt; Key Bindings 在输入框中输入dele</description>
+    </item>
+    
+  </channel>
+</rss>
