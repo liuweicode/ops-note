@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>kubernetes on 运维笔记 - liuwei.co</title>
+    <title>kubernetes on 运维笔记</title>
     <link>https://liuwei.co/tags/kubernetes/</link>
-    <description>Recent content in kubernetes on 运维笔记 - liuwei.co</description>
+    <description>Recent content in kubernetes on 运维笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
     <lastBuildDate>Wed, 21 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在 Kubernetes 上部署 Otter</title>
@@ -15,6 +15,15 @@
       
       <guid>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</guid>
       <description>❗️❗️Otter已在阿里云推出商业化版本，开源版本估计不维护了。因此建议采用源码编译的方式，bug太多了，后期需要自己修复。 1、基于源码编</description>
+    </item>
+    
+    <item>
+      <title>构建 docker 基础镜像</title>
+      <link>https://liuwei.co/post/2022/docker-image-base/</link>
+      <pubDate>Tue, 20 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/docker-image-base/</guid>
+      <description>基础镜像主要是修改源及时区，方便后续基于此镜像构建其他应用镜像； 镜像源推荐中科大的源: https://mirrors.ustc.edu.cn/help 1. openjdk 官方镜像地址: https://hub.docker.com/_/openjdk 1.1. openjdk-8-jre-slim-buster 修改时区为中国上海； 修改为中</description>
     </item>
     
     <item>

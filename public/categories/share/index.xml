@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Share on 运维笔记 - liuwei.co</title>
+    <title>Share on 运维笔记</title>
     <link>https://liuwei.co/categories/share/</link>
-    <description>Recent content in Share on 运维笔记 - liuwei.co</description>
+    <description>Recent content in Share on 运维笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
     <lastBuildDate>Sun, 16 Aug 2015 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/share/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>搭建个人知识管理平台</title>

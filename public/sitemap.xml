@@ -35,6 +35,15 @@
     <loc>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</loc>
     <lastmod>2022-09-21T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://liuwei.co/tags/docker/</loc>
+    <lastmod>2022-09-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/post/2022/docker-image-base/</loc>
+    <lastmod>2022-09-20T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/categories/%E4%BA%91%E5%8E%9F%E7%94%9F/</loc>
+    <lastmod>2022-09-20T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://liuwei.co/post/2022/deploy-zookeeper-cluster-on-kubernetes/</loc>
     <lastmod>2022-09-19T00:00:00+00:00</lastmod>
   </url><url>
@@ -92,10 +101,10 @@
     <loc>https://liuwei.co/categories/tool/</loc>
     <lastmod>2015-10-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://liuwei.co/post/2015/asciinema/</loc>
+    <loc>https://liuwei.co/categories/%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2015-10-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://liuwei.co/categories/%E5%B7%A5%E5%85%B7/</loc>
+    <loc>https://liuwei.co/post/2015/asciinema/</loc>
     <lastmod>2015-10-05T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://liuwei.co/post/2015/coretext-memory-manage-in-ios/</loc>
@@ -131,10 +140,10 @@
     <loc>https://liuwei.co/categories/wiki/</loc>
     <lastmod>2015-08-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://liuwei.co/post/2015/some-tricks-to-improve-efficiency-of-development/</loc>
+    <loc>https://liuwei.co/post/2015/create-a-personal-wiki-platform/</loc>
     <lastmod>2015-08-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://liuwei.co/post/2015/create-a-personal-wiki-platform/</loc>
+    <loc>https://liuwei.co/post/2015/some-tricks-to-improve-efficiency-of-development/</loc>
     <lastmod>2015-08-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://liuwei.co/categories/android/</loc>
@@ -253,5 +262,7 @@
   </url><url>
     <loc>https://liuwei.co/post/2009/%E8%BD%AC%E5%8F%91forward%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91redirect%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E6%80%BB%E7%BB%93/</loc>
     <lastmod>2009-10-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/post/2022/vim-tricks/</loc>
   </url>
 </urlset>

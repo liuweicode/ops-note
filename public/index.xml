@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Info on 运维笔记 - liuwei.co</title>
+    <title>Info on 运维笔记</title>
     <link>https://liuwei.co/</link>
-    <description>Recent content in Info on 运维笔记 - liuwei.co</description>
+    <description>Recent content in Info on 运维笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
     <lastBuildDate>Wed, 21 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Projects</title>
@@ -14,9 +14,7 @@
       <pubDate>Thu, 28 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://liuwei.co/projects/</guid>
-      <description>Written in Go, Hugo is an open source static site generator available under the Apache Licence 2.0. Hugo supports TOML, YAML and JSON data file types, Markdown and HTML content files and uses shortcodes to add rich content. Other notable features are taxonomies, multilingual mode, image processing, custom output formats, HTML/CSS/JS minification and support for Sass SCSS workflows.
-Hugo makes use of a variety of open source projects including:
-https://github.com/russross/blackfriday https://github.</description>
+      <description></description>
     </item>
     
     <item>
@@ -26,6 +24,15 @@ https://github.com/russross/blackfriday https://github.</description>
       
       <guid>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</guid>
       <description>❗️❗️Otter已在阿里云推出商业化版本，开源版本估计不维护了。因此建议采用源码编译的方式，bug太多了，后期需要自己修复。 1、基于源码编</description>
+    </item>
+    
+    <item>
+      <title>构建 docker 基础镜像</title>
+      <link>https://liuwei.co/post/2022/docker-image-base/</link>
+      <pubDate>Tue, 20 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/docker-image-base/</guid>
+      <description>基础镜像主要是修改源及时区，方便后续基于此镜像构建其他应用镜像； 镜像源推荐中科大的源: https://mirrors.ustc.edu.cn/help 1. openjdk 官方镜像地址: https://hub.docker.com/_/openjdk 1.1. openjdk-8-jre-slim-buster 修改时区为中国上海； 修改为中</description>
     </item>
     
     <item>
@@ -110,21 +117,21 @@ https://github.com/russross/blackfriday https://github.</description>
     </item>
     
     <item>
-      <title>提高IOS开发效率的一些小技巧</title>
-      <link>https://liuwei.co/post/2015/some-tricks-to-improve-efficiency-of-development/</link>
-      <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
-      
-      <guid>https://liuwei.co/post/2015/some-tricks-to-improve-efficiency-of-development/</guid>
-      <description>一，快捷键 1.添加删除当前行快捷键 sudo vim /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist 找到Deletion节点，添加以下代码: &amp;lt;key&amp;gt;Delete Current Line&amp;lt;/key&amp;gt; &amp;lt;string&amp;gt;deleteToBeginningOfLine:, moveToEndOfLine:, deleteToBeginningOfLine:, deleteBackward:, moveDown:, moveToBeginningOfLine:&amp;lt;/string&amp;gt; 依次点击 xcode -&amp;gt; Preferences -&amp;gt; Key Bindings 在输入框中输入dele</description>
-    </item>
-    
-    <item>
       <title>搭建个人知识管理平台</title>
       <link>https://liuwei.co/post/2015/create-a-personal-wiki-platform/</link>
       <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
       
       <guid>https://liuwei.co/post/2015/create-a-personal-wiki-platform/</guid>
       <description>环境 ECS 1核/1G/CentOS6.5 x64 Nginx 1.0.15 Nodejs v0.12.7 Forever v0.15.1 安装 前期服务器搭建，反向代理设置等已经做好，下面只记录一下Raneto的安装过程。主要是针</description>
+    </item>
+    
+    <item>
+      <title>提高IOS开发效率的一些小技巧</title>
+      <link>https://liuwei.co/post/2015/some-tricks-to-improve-efficiency-of-development/</link>
+      <pubDate>Sun, 16 Aug 2015 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2015/some-tricks-to-improve-efficiency-of-development/</guid>
+      <description>一，快捷键 1.添加删除当前行快捷键 sudo vim /Applications/Xcode.app/Contents/Frameworks/IDEKit.framework/Resources/IDETextKeyBindingSet.plist 找到Deletion节点，添加以下代码: &amp;lt;key&amp;gt;Delete Current Line&amp;lt;/key&amp;gt; &amp;lt;string&amp;gt;deleteToBeginningOfLine:, moveToEndOfLine:, deleteToBeginningOfLine:, deleteBackward:, moveDown:, moveToBeginningOfLine:&amp;lt;/string&amp;gt; 依次点击 xcode -&amp;gt; Preferences -&amp;gt; Key Bindings 在输入框中输入dele</description>
     </item>
     
     <item>
@@ -359,6 +366,15 @@ https://github.com/russross/blackfriday https://github.</description>
       
       <guid>https://liuwei.co/post/2009/%E8%BD%AC%E5%8F%91forward%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91redirect%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E6%80%BB%E7%BB%93/</guid>
       <description>request.getRequestDispatcher(&amp;#34;路径&amp;#34;).forward(request,response); 该</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://liuwei.co/post/2022/vim-tricks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/vim-tricks/</guid>
+      <description></description>
     </item>
     
   </channel>

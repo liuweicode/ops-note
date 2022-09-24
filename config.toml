@@ -1,21 +1,34 @@
+# 站点配置
 baseURL = "https://liuwei.co"
 author = "liuwei"
-paginate = 10
-languageCode = "zh-CN"
-DefaultContentLanguage = "en"
-enableInlineShortcodes = true
-footnoteReturnLinkContents = "^"
-# Above are configs from hugoBasicExample
 
-title = "运维笔记 - liuwei.co"
+languageCode = "zh-CN"
+defaultContentLanguage = "zh-cn"
+
+enableInlineShortcodes = true
+
+# 每一分页的文章数（仅对「文章摘要」首页布局有效）
+paginate = 10
+
+# 脚注的返回链接中的文本
+footnoteReturnLinkContents = "^"
+
+# Above are configs from hugoBasicExample
+enableEmoji = true
+title = "运维笔记"
 theme = "hugo-primer"
 hasCJKLanguage = true
+
+# 摘要的字数限制
 summaryLength = 70
+
 pygmentsCodeFences = true
 pygmentsUseClasses = true
 googleAnalytics = ""
 disqusShortname=""
-copyright = "&copy;liuwei 2009-2022"
+
+# 版权信息（支持 Markdown）
+copyright = "&copy;liuwei.co 2009-2022"
 
 #[frontmatter]
 # update sitemap.xml's lastmod datetime by file change time, instead of git.

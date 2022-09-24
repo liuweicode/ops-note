@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  构建 docker 基础镜像 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="基础镜像主要是修改源及时区，方便后续基于此镜像构建其他应用镜像； 镜像源推荐中科大的源: https://mirrors.ustc.edu.cn/help 1. openjdk 官方镜像地址: https://hub.docker.com/_/openjdk 1.1. openjdk-8-jre-slim-buster 修改时区为中国上海； 修改为中|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="构建 docker 基础镜像 | 运维笔记">
+    <meta name="twitter:description" content="基础镜像主要是修改源及时区，方便后续基于此镜像构建其他应用镜像； 镜像源推荐中科大的源: https://mirrors.ustc.edu.cn/help 1. openjdk 官方镜像地址: https://hub.docker.com/_/openjdk 1.1. openjdk-8-jre-slim-buster 修改时区为中国上海； 修改为中|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/projects/">
+      
+      <span>Projects</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">构建 docker 基础镜像</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/%E4%BA%91%E5%8E%9F%E7%94%9F' class="muted-link">
+  <span class="Label Label--gray-darker">云原生</span>
+</a>
+
+
+
+<a href='/tags/kubernetes' class="muted-link">
+  <span class="Label Label--gray">kubernetes</span>
+</a>
+
+<a href='/tags/docker' class="muted-link">
+  <span class="Label Label--gray">docker</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-09-20. Published at: 2022-09-20.">
+        
+          Published: 2022-09-20
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>基础镜像主要是修改源及时区，方便后续基于此镜像构建其他应用镜像；</p>
+<p>镜像源推荐中科大的源: <a href="https://mirrors.ustc.edu.cn/help">https://mirrors.ustc.edu.cn/help</a></p>
+<h2 id="1-openjdk">1. openjdk</h2>
+<p>官方镜像地址: <a href="https://hub.docker.com/_/openjdk">https://hub.docker.com/_/openjdk</a></p>
+<h3 id="11-openjdk-8-jre-slim-buster">1.1. openjdk-8-jre-slim-buster</h3>
+<ul>
+<li>修改时区为中国上海；</li>
+<li>修改为中科大的源；</li>
+</ul>
+<h3 id="12-openjdk-8-jre-slim-bullseye">1.2 openjdk-8-jre-slim-bullseye</h3>
+<ul>
+<li>修改时区为中国上海；</li>
+<li>修改为中科大的源；</li>
+</ul>
+<h2 id="2-alpine">2. alpine</h2>
+<p>官方镜像地址: <a href="https://hub.docker.com/_/alpine">https://hub.docker.com/_/alpine</a></p>
+<h3 id="21-alpine-316-base">2.1. alpine-3.16-base</h3>
+<ul>
+<li>修改时区为中国上海；</li>
+<li>修改为中科大的源；</li>
+</ul>
+<p>tst</p>
+<h1 id="相关链接">相关链接</h1>
+<ul>
+<li>项目代码: <a href="https://github.com/liuweicode/docker-image-base">https://github.com/liuweicode/docker-image-base</a></li>
+</ul>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>构建 docker 基础镜像</b><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-openjdk">1. openjdk</a>
+      <ul>
+        <li><a href="#11-openjdk-8-jre-slim-buster">1.1. openjdk-8-jre-slim-buster</a></li>
+        <li><a href="#12-openjdk-8-jre-slim-bullseye">1.2 openjdk-8-jre-slim-bullseye</a></li>
+      </ul>
+    </li>
+    <li><a href="#2-alpine">2. alpine</a>
+      <ul>
+        <li><a href="#21-alpine-316-base">2.1. alpine-3.16-base</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei.co 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>

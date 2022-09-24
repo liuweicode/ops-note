@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on 运维笔记 - liuwei.co</title>
+    <title>Java on 运维笔记</title>
     <link>https://liuwei.co/categories/java/</link>
-    <description>Recent content in Java on 运维笔记 - liuwei.co</description>
+    <description>Recent content in Java on 运维笔记</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <copyright>&amp;copy;liuwei 2009-2022</copyright>
+    <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
     <lastBuildDate>Wed, 05 Dec 2012 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/java/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>关于友善之臂 Tiny6410无法加载libfriendlyarm-hardware.so的问题</title>
