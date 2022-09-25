@@ -62,14 +62,6 @@
     
     
     
-    <a class="UnderlineNav-item" href="/projects/">
-      
-      <span>Projects</span>
-    </a>
-    
-    
-    
-    
     <a class="UnderlineNav-item" href="/">
       
       <span>Info</span>
@@ -142,7 +134,7 @@
 </span></span><span class="line"><span class="cl"><span class="nb">cd</span> otter-otter-4.2.18
 </span></span><span class="line"><span class="cl">mvn clean install -Dmaven.test.skip -Denv<span class="o">=</span>release
 </span></span></code></pre></div><p>编译报错如下：</p>
-<pre tabindex="0"><code>[ERROR] Failed to execute goal on project shared.common: Could not resolve dependencies for project com.alibaba.otter:shared.common:jar:4.2.18: Could not find artifact org.jtester:jtester:jar:1.1.8 in rdc-releases (https://packages.aliyun.com/maven/repository/2041383-release-F0cHwt/) -&gt; [Help 1]
+<pre tabindex="0"><code>[ERROR] Failed to execute goal on project shared.common: Could not resolve dependencies for project com.alibaba.otter:shared.common🫙4.2.18: Could not find artifact org.jtester:jtester:jar:1.1.8 in rdc-releases (https://packages.aliyun.com/maven/repository/2041383-release-F0cHwt/) -&gt; [Help 1]
 </code></pre><p><img src="https://static.liuwei.co/202209/build-error1.png" alt="build-error1"></p>
 <p>解决方案参考：https://github.com/alibaba/otter/issues/2901</p>
 <p>执行lib目录下的install.sh 文件；</p>
@@ -157,7 +149,7 @@ sh install.sh
 <p>继续执行编译：</p>
 <pre tabindex="0"><code>mvn clean install -Dmaven.test.skip -Denv=release
 </code></pre><p>继续得到报错信息如下：</p>
-<pre tabindex="0"><code>[ERROR] Failed to execute goal on project shared.common: Could not resolve dependencies for project com.alibaba.otter:shared.common:jar:4.2.18: Failed to collect dependencies at org.jtester:jtester:jar:1.1.8 -&gt; mockit:jmockit:jar:0.999.10: Failed to read artifact descriptor for mockit:jmockit:jar:0.999.10: Could not find artifact mockit:mockit:pom:0.999.10 in rdc-releases (https://packages.aliyun.com/maven/repository/2041383-release-F0cHwt/) -&gt; [Help 1]
+<pre tabindex="0"><code>[ERROR] Failed to execute goal on project shared.common: Could not resolve dependencies for project com.alibaba.otter:shared.common🫙4.2.18: Failed to collect dependencies at org.jtester:jtester:jar:1.1.8 -&gt; mockit:jmockit:jar:0.999.10: Failed to read artifact descriptor for mockit:jmockit:jar:0.999.10: Could not find artifact mockit:mockit:pom:0.999.10 in rdc-releases (https://packages.aliyun.com/maven/repository/2041383-release-F0cHwt/) -&gt; [Help 1]
 </code></pre><p><img src="https://static.liuwei.co/202209/error3.png" alt="error3"></p>
 <p>解决方案参考：https://github.com/alibaba/otter/issues/290</p>
 <p><img src="https://static.liuwei.co/202209/error4.png" alt="error4"></p>
