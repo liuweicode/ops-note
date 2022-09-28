@@ -120,16 +120,51 @@
 <h2 id="1-openjdk">1. openjdk</h2>
 <p>官方镜像地址: <a href="https://hub.docker.com/_/openjdk">https://hub.docker.com/_/openjdk</a></p>
 <p>1.1. openjdk-8-jre-slim-buster</p>
-<p>修改时区为中国上海；
-修改为中科大的源；</p>
+<ul>
+<li>修改时区为中国上海；</li>
+<li>修改为中科大的源；</li>
+</ul>
 <p>1.2 openjdk-8-jre-slim-bullseye</p>
-<p>修改时区为中国上海；
-修改为中科大的源；</p>
+<ul>
+<li>修改时区为中国上海；</li>
+<li>修改为中科大的源；</li>
+</ul>
 <h2 id="2-alpine">2. alpine</h2>
 <p>官方镜像地址: <a href="https://hub.docker.com/_/alpine">https://hub.docker.com/_/alpine</a></p>
 <p>2.1. alpine-3.16-base</p>
-<p>修改时区为中国上海；
-修改为中科大的源；</p>
+<ul>
+<li>修改时区为中国上海；</li>
+<li>修改为中科大的源；</li>
+</ul>
+<p>2.2 alpine-3.16-glibc-2.35-r0</p>
+<ul>
+<li>修改时区为中国上海；</li>
+<li>修改为中科大的源；</li>
+<li>安装 glibc</li>
+</ul>
+<h2 id="3-openresty">3. openresty</h2>
+<p>3.1 openresty-1.19.9.1rc1-alpine-3.16-glibc-2.35-r0</p>
+<ul>
+<li>镜像基于 suxz/alpine:alpine-3.16-glibc-2.35-r0-cn-base 构建；</li>
+<li>编译构建openresty-1.19.9.1rc1</li>
+</ul>
+<h2 id="4-php">4. php</h2>
+<p>官方镜像地址: <a href="https://hub.docker.com/_/php">https://hub.docker.com/_/php</a></p>
+<p>安装扩展：</p>
+<ul>
+<li>可参考官方文档安装其他扩展；<img src="https://hub.docker.com/_/php" alt="How to install more PHP extensions"></li>
+<li><img src="https://github.com/mlocati/docker-php-extension-installer" alt="Easy installation of PHP extensions in official PHP Docker images"></li>
+</ul>
+<p>4.1 7.3.33-fpm-alpine3.14-base</p>
+<ul>
+<li>修改时区为中国上海；</li>
+<li>修改为中科大的源；</li>
+</ul>
+<p>4.2 7.3.33-fpm-base</p>
+<ul>
+<li>修改时区为中国上海；</li>
+<li>修改为中科大的源；</li>
+</ul>
 <h2 id="相关链接">相关链接</h2>
 <p>项目代码: <a href="https://github.com/liuweicode/docker-image-base">https://github.com/liuweicode/docker-image-base</a></p>
 
@@ -153,6 +188,8 @@
   <ul>
     <li><a href="#1-openjdk">1. openjdk</a></li>
     <li><a href="#2-alpine">2. alpine</a></li>
+    <li><a href="#3-openresty">3. openresty</a></li>
+    <li><a href="#4-php">4. php</a></li>
     <li><a href="#相关链接">相关链接</a></li>
   </ul>
 </nav></div>
