@@ -2,8 +2,12 @@
 
 set -eux
 
+COMMIT_MESSAGE=$1
+
 BUILD_NAME='ops-note'
 BUILD_VERSION='liuwei.co'
+
+rm -rf public/*
 
 hugo -D
 
@@ -20,6 +24,12 @@ docker tag $IMAGETAG toplist-registry.cn-shanghai.cr.aliyuncs.com/88/$BUILD_NAME
 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/$BUILD_NAME:$BUILD_VERSION
 
 kubectl rollout restart deploy ops-note -n pwk
+
+git add --all
+
+git commit -m $COMMIT_MESSAGE
+
+git push origin main
 
 sleep 2
 
