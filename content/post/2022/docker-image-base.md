@@ -56,8 +56,8 @@ categories = [
 
 安装扩展：
 
-- 可参考官方文档安装其他扩展；![How to install more PHP extensions](https://hub.docker.com/_/php)
-- ![Easy installation of PHP extensions in official PHP Docker images](https://github.com/mlocati/docker-php-extension-installer)
+- 可参考官方文档安装其他扩展；[How to install more PHP extensions](https://hub.docker.com/_/php)
+- [Easy installation of PHP extensions in official PHP Docker images](https://github.com/mlocati/docker-php-extension-installer)
 
 
 4.1 7.3.33-fpm-alpine3.14-base
