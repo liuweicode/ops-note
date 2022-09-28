@@ -19,9 +19,9 @@ IMAGETAG=$(docker images | grep $BUILD_VERSION | head -n 1 | awk '{print $3}')
 
 echo $IMAGETAG
 
-docker tag $IMAGETAG toplist-registry.cn-shanghai.cr.aliyuncs.com/88/$BUILD_NAME:$BUILD_VERSION
+docker tag $IMAGETAG suxz/$BUILD_NAME:$BUILD_VERSION
 
-docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/$BUILD_NAME:$BUILD_VERSION
+docker push suxz/$BUILD_NAME:$BUILD_VERSION
 
 kubectl rollout restart deploy ops-note -n pwk
 
