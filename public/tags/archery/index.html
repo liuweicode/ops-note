@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
       
-  iOS 10 &ndash; 运维笔记
+  archery &ndash; 运维笔记
 
     </title>
     
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@">
     <meta name="twitter:creator" content="@">
-    <meta name="twitter:title" content="iOS 10 | 运维笔记">
+    <meta name="twitter:title" content="archery | 运维笔记">
     <meta name="twitter:description" content="|liuwei code">
     <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
     
@@ -79,7 +79,7 @@
 
 <div>
 
-  <h1>iOS 10</h1>
+  <h1>archery</h1>
   
 
   
@@ -88,58 +88,42 @@
 <div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
   <div class="Subhead mb-2">
     <div class="Subhead-heading">
-      <a href="/post/2016/infoplist-privacy-settings-in-ios-10/">
-        <div class="h2 mt-1 mb-1">iOS10请求隐私权限的设置 - Info.plist</div>
+      <a href="/post/2022/deploy-archery-dms-on-kubernetes/">
+        <div class="h2 mt-1 mb-1">在 Kubernetes 上部署 archery dms</div>
       </a>
     </div>
     <div class="Subhead-description">
       
 
 
-<a href='/categories/error' class="muted-link">
-  <span class="Label Label--gray-darker">Error</span>
-</a>
-
-<a href='/categories/info.plist' class="muted-link">
-  <span class="Label Label--gray-darker">Info.plist</span>
-</a>
-
-<a href='/categories/ios' class="muted-link">
-  <span class="Label Label--gray-darker">iOS</span>
-</a>
-
-<a href='/categories/ios-10' class="muted-link">
-  <span class="Label Label--gray-darker">iOS 10</span>
-</a>
-
-<a href='/categories/privacy-settings' class="muted-link">
-  <span class="Label Label--gray-darker">Privacy Settings</span>
-</a>
-
-<a href='/categories/swift-2.3' class="muted-link">
-  <span class="Label Label--gray-darker">Swift 2.3</span>
-</a>
-
-<a href='/categories/swift-3.0' class="muted-link">
-  <span class="Label Label--gray-darker">Swift 3.0</span>
-</a>
-
-<a href='/categories/xcode-8.0' class="muted-link">
-  <span class="Label Label--gray-darker">Xcode 8.0</span>
+<a href='/categories/k8s' class="muted-link">
+  <span class="Label Label--gray-darker">k8s</span>
 </a>
 
 
+
+<a href='/tags/kubernetes' class="muted-link">
+  <span class="Label Label--gray">kubernetes</span>
+</a>
+
+<a href='/tags/archery' class="muted-link">
+  <span class="Label Label--gray">archery</span>
+</a>
+
+<a href='/tags/sql%E5%AE%A1%E6%A0%B8%E5%B9%B3%E5%8F%B0' class="muted-link">
+  <span class="Label Label--gray">SQL审核平台</span>
+</a>
 
 
       <div class="float-md-right">
-        <span>2016-12-24</span>
+        <span>2022-10-13</span>
       </div>
     </div>
   </div>
   <div class="text-gray">
     
-    在访问用户手机通讯录,相册,地址,日历等隐私数据前需要向用户请求使用权限，在iOS10中，苹果公司加强了对隐私控制的审查，你必须在Info.
-    <a class="muted-link" href="/post/2016/infoplist-privacy-settings-in-ios-10/">…</a>
+    1. 将官方镜像备份至私有仓库 docker pull hanchuanchuan/goinception:v1.3.0 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker pull docker pull hhyo/archery:v1.9.1 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 2. 创建configmap kubectl create configmap uat-archery --from-file=configmap/archery/docs.md --from-file=configmap/archery/settings.py --from-file=configmap/archery/soar.yaml -n uat-archery kubectl create configmap uat-archery-goinception --from-file=configmap/goinception/config.toml -n uat-archery 3. 创建pv&a
+    <a class="muted-link" href="/post/2022/deploy-archery-dms-on-kubernetes/">…</a>
   </div>
 </div>
 

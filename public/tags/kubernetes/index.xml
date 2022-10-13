@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
-    <lastBuildDate>Wed, 21 Sep 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 Kubernetes 上部署 archery dms</title>
+      <link>https://liuwei.co/post/2022/deploy-archery-dms-on-kubernetes/</link>
+      <pubDate>Thu, 13 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/deploy-archery-dms-on-kubernetes/</guid>
+      <description>1. 将官方镜像备份至私有仓库 docker pull hanchuanchuan/goinception:v1.3.0 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker pull docker pull hhyo/archery:v1.9.1 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 2. 创建configmap kubectl create configmap uat-archery --from-file=configmap/archery/docs.md --from-file=configmap/archery/settings.py --from-file=configmap/archery/soar.yaml -n uat-archery kubectl create configmap uat-archery-goinception --from-file=configmap/goinception/config.toml -n uat-archery 3. 创建pv&amp;a</description>
+    </item>
+    
     <item>
       <title>在 Kubernetes 上部署 Otter</title>
       <link>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</link>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  在 Kubernetes 上部署 archery dms &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="1. 将官方镜像备份至私有仓库 docker pull hanchuanchuan/goinception:v1.3.0 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker pull docker pull hhyo/archery:v1.9.1 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 2. 创建configmap kubectl create configmap uat-archery --from-file=configmap/archery/docs.md --from-file=configmap/archery/settings.py --from-file=configmap/archery/soar.yaml -n uat-archery kubectl create configmap uat-archery-goinception --from-file=configmap/goinception/config.toml -n uat-archery 3. 创建pv&amp;a|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="在 Kubernetes 上部署 archery dms | 运维笔记">
+    <meta name="twitter:description" content="1. 将官方镜像备份至私有仓库 docker pull hanchuanchuan/goinception:v1.3.0 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker pull docker pull hhyo/archery:v1.9.1 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 2. 创建configmap kubectl create configmap uat-archery --from-file=configmap/archery/docs.md --from-file=configmap/archery/settings.py --from-file=configmap/archery/soar.yaml -n uat-archery kubectl create configmap uat-archery-goinception --from-file=configmap/goinception/config.toml -n uat-archery 3. 创建pv&a|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">在 Kubernetes 上部署 archery dms</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/k8s' class="muted-link">
+  <span class="Label Label--gray-darker">k8s</span>
+</a>
+
+
+
+<a href='/tags/kubernetes' class="muted-link">
+  <span class="Label Label--gray">kubernetes</span>
+</a>
+
+<a href='/tags/archery' class="muted-link">
+  <span class="Label Label--gray">archery</span>
+</a>
+
+<a href='/tags/sql%E5%AE%A1%E6%A0%B8%E5%B9%B3%E5%8F%B0' class="muted-link">
+  <span class="Label Label--gray">SQL审核平台</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-10-13. Published at: 2022-10-13.">
+        
+          Published: 2022-10-13
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p><img src="https://static.liuwei.co/202210/1665638990.png" alt="archery dms dashboard"></p>
+<h2 id="1-将官方镜像备份至私有仓库">1. 将官方镜像备份至私有仓库</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull hanchuanchuan/goinception:v1.3.0
+</span></span><span class="line"><span class="cl">docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0
+</span></span><span class="line"><span class="cl">docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull docker pull hhyo/archery:v1.9.1
+</span></span><span class="line"><span class="cl">docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1
+</span></span><span class="line"><span class="cl">docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1
+</span></span></code></pre></div><h2 id="2-创建configmap">2. 创建configmap</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl create configmap uat-archery --from-file<span class="o">=</span>configmap/archery/docs.md --from-file<span class="o">=</span>configmap/archery/settings.py --from-file<span class="o">=</span>configmap/archery/soar.yaml -n uat-archery
+</span></span><span class="line"><span class="cl">kubectl create configmap uat-archery-goinception --from-file<span class="o">=</span>configmap/goinception/config.toml -n uat-archery
+</span></span></code></pre></div><p><img src="https://static.liuwei.co/202210/1665642517.png" alt="create configmap"></p>
+<h2 id="3-创建pvpvc">3. 创建pv&amp;pvc</h2>
+<p>这里使用的是阿里云的nas绑定pv和pvc，先在nas上创建好对应的目录：</p>
+<p><img src="https://static.liuwei.co/202210/1665643171.png" alt="目录结构"></p>
+<p>创建pv&amp;pvc</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f pv
+</span></span><span class="line"><span class="cl">kubectl apply -f pvc
+</span></span></code></pre></div><p><img src="https://static.liuwei.co/202210/1665643411.png" alt="创建pv&amp;pvc"></p>
+<h2 id="4-部署">4. 部署</h2>
+<h3 id="41-创建deployment">4.1 创建deployment</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f deployment
+</span></span></code></pre></div><h3 id="42-按照官网说明初始化数据库">4.2 按照官网说明初始化数据库</h3>
+<p><a href="https://archerydms.com/installation/docker/">https://archerydms.com/installation/docker/</a></p>
+<pre tabindex="0"><code># 表结构初始化
+docker exec -ti archery /bin/bash
+cd /opt/archery
+source /opt/venv4archery/bin/activate
+python3 manage.py makemigrations sql
+python3 manage.py migrate
+
+# 数据初始化
+python3 manage.py dbshell&lt;sql/fixtures/auth_group.sql
+python3 manage.py dbshell&lt;src/init_sql/mysql_slow_query_review.sql
+
+# 创建管理用户
+python3 manage.py createsuperuser
+
+# 重启
+docker restart archery
+
+# 日志查看和问题排查
+docker logs archery -f --tail=50
+</code></pre><h2 id="5-相关链接">5. 相关链接</h2>
+<ul>
+<li>官网地址: <a href="https://archerydms.com">https://archerydms.com</a></li>
+<li>项目代码: <a href="https://github.com/liuweicode/deploy-archery-dms-on-kubernetes">https://github.com/liuweicode/deploy-archery-dms-on-kubernetes</a></li>
+</ul>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>在 Kubernetes 上部署 archery dms</b><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-将官方镜像备份至私有仓库">1. 将官方镜像备份至私有仓库</a></li>
+    <li><a href="#2-创建configmap">2. 创建configmap</a></li>
+    <li><a href="#3-创建pvpvc">3. 创建pv&amp;pvc</a></li>
+    <li><a href="#4-部署">4. 部署</a>
+      <ul>
+        <li><a href="#41-创建deployment">4.1 创建deployment</a></li>
+        <li><a href="#42-按照官网说明初始化数据库">4.2 按照官网说明初始化数据库</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-相关链接">5. 相关链接</a></li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei.co 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>
