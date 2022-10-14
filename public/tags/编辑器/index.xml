@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>编辑器 on 运维笔记</title>
+    <link>https://liuwei.co/tags/%E7%BC%96%E8%BE%91%E5%99%A8/</link>
+    <description>Recent content in 编辑器 on 运维笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
+    <lastBuildDate>Fri, 14 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/tags/%E7%BC%96%E8%BE%91%E5%99%A8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>.vimrc 配置</title>
+      <link>https://liuwei.co/post/2022/vimrc/</link>
+      <pubDate>Fri, 14 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/vimrc/</guid>
+      <description>Vim (/vɪm/;[5] a contraction of Vi IMproved) is a free and open-source, screen-based text editor program. Vim 是最好的编辑器，没有之一！ 这里用于记录我的.vimrc文件的变更过程； 通用配置 公共配置 &amp;#34;</description>
+    </item>
+    
+  </channel>
+</rss>
