@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>服务网格 on 运维笔记</title>
+    <link>https://liuwei.co/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
+    <description>Recent content in 服务网格 on 运维笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
+    <lastBuildDate>Thu, 26 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>nginx 代理转发至 IstioGateway 报错 426 Upgrade Required</title>
+      <link>https://liuwei.co/post/2022/nginx-proxy_pass-to-istiogateway-with-426-upgrade-required-error/</link>
+      <pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/nginx-proxy_pass-to-istiogateway-with-426-upgrade-required-error/</guid>
+      <description>1. 问题产生背景 由于需要沿用之前的域名，但是之前的域名是解析到ECS绑定的弹性IP上的，所以只好在ECS的nginx上做一层转发: location ^~ /abc/v4/ { proxy_pass http://internal.domain/v4/;</description>
+    </item>
+    
+  </channel>
+</rss>

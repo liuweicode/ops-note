@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  nginx 代理转发至 IstioGateway 报错 426 Upgrade Required &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="1. 问题产生背景 由于需要沿用之前的域名，但是之前的域名是解析到ECS绑定的弹性IP上的，所以只好在ECS的nginx上做一层转发: location ^~ /abc/v4/ { proxy_pass http://internal.domain/v4/;|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="nginx 代理转发至 IstioGateway 报错 426 Upgrade Required | 运维笔记">
+    <meta name="twitter:description" content="1. 问题产生背景 由于需要沿用之前的域名，但是之前的域名是解析到ECS绑定的弹性IP上的，所以只好在ECS的nginx上做一层转发: location ^~ /abc/v4/ { proxy_pass http://internal.domain/v4/;|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">nginx 代理转发至 IstioGateway 报错 426 Upgrade Required</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/asm' class="muted-link">
+  <span class="Label Label--gray-darker">ASM</span>
+</a>
+
+<a href='/categories/istio' class="muted-link">
+  <span class="Label Label--gray-darker">istio</span>
+</a>
+
+<a href='/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC' class="muted-link">
+  <span class="Label Label--gray-darker">服务网格</span>
+</a>
+
+
+
+<a href='/tags/nginx' class="muted-link">
+  <span class="Label Label--gray">nginx</span>
+</a>
+
+<a href='/tags/envoy' class="muted-link">
+  <span class="Label Label--gray">envoy</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-05-26. Published at: 2022-05-26.">
+        
+          Published: 2022-05-26
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <h2 id="1-问题产生背景">1. 问题产生背景</h2>
+<p>由于需要沿用之前的域名，但是之前的域名是解析到ECS绑定的弹性IP上的，所以只好在ECS的nginx上做一层转发:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="s">^~</span> <span class="s">/abc/v4/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_pass</span>             <span class="s">http://internal.domain/v4/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_redirect</span>          <span class="no">off</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_set_header</span>        <span class="s">X-Real-IP</span>       <span class="nv">$remote_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_set_header</span>        <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_set_header</span>        <span class="s">X-TP-Proxy-Domain</span> <span class="nv">$host</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_set_header</span> <span class="s">Connection</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>但是访问发现报错：427 Upgrade Required;</p>
+<p>原因是 <strong>Envoy 默认要求使用 HTTP/1.1 或 HTTP/2，当客户端使用 HTTP/1.0 时就会返回 426 Upgrade Required</strong></p>
+<h2 id="2-解决办法">2. 解决办法</h2>
+<h3 id="21-方法1">2.1 方法1</h3>
+<p>nginx 指定 1.1 的 http 版本请求：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nginx" data-lang="nginx"><span class="line"><span class="cl"><span class="k">location</span> <span class="s">^~</span> <span class="s">/abc/v4/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_pass</span>             <span class="s">http://internal.domain/v4/</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_redirect</span>          <span class="no">off</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_set_header</span>        <span class="s">X-Real-IP</span>       <span class="nv">$remote_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_set_header</span>        <span class="s">X-Forwarded-For</span> <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_set_header</span>        <span class="s">X-TP-Proxy-Domain</span> <span class="nv">$host</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_set_header</span> <span class="s">Connection</span> <span class="s">&#34;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">   <span class="kn">proxy_http_version</span> <span class="mi">1</span><span class="s">.1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="22-方法2">2.2 方法2</h3>
+<p>在 <code>服务网格ASM</code> - <code>功能设置</code> 中，将 <code>是否启用支持 HTTP 1.0</code> 打开即可；</p>
+<p><img src="https://static.liuwei.co/202210/1665741682.png" alt="启用支持 HTTP 1.0 - 1"></p>
+<p><img src="https://static.liuwei.co/202210/1665741763.png" alt="启用支持 HTTP 1.0 - 2"></p>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>nginx 代理转发至 IstioGateway 报错 426 Upgrade Required</b><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-问题产生背景">1. 问题产生背景</a></li>
+    <li><a href="#2-解决办法">2. 解决办法</a>
+      <ul>
+        <li><a href="#21-方法1">2.1 方法1</a></li>
+        <li><a href="#22-方法2">2.2 方法2</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei.co 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>
