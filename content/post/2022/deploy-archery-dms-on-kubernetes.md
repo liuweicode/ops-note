@@ -14,8 +14,23 @@ categories = [
 
 ![archery dms dashboard](https://static.liuwei.co/202210/1665638990.png)
 
-## 1. 将官方镜像备份至私有仓库
+Archery 是一个 SQL 审核查询平台；
 
+功能模块包括：
+
+- 权限管理
+- 工作流
+- 实例管理
+- SQL审核
+- SQL查询
+- SQL优化
+- 消息通知
+- 工具插件
+- 云数据库
+
+部署方式也比较简单，按照官方的 [docker部署文档](https://www.archerydms.com/installation/docker/) ，稍微修改一下，部署到k8s上即可；
+
+## 1. 将官方镜像备份至私有仓库
 
 ```shell
 docker pull hanchuanchuan/goinception:v1.3.0

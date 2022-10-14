@@ -122,7 +122,7 @@
   </div>
   <div class="text-gray">
     
-    1. 将官方镜像备份至私有仓库 docker pull hanchuanchuan/goinception:v1.3.0 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker pull docker pull hhyo/archery:v1.9.1 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 2. 创建configmap kubectl create configmap uat-archery --from-file=configmap/archery/docs.md --from-file=configmap/archery/settings.py --from-file=configmap/archery/soar.yaml -n uat-archery kubectl create configmap uat-archery-goinception --from-file=configmap/goinception/config.toml -n uat-archery 3. 创建pv&a
+    Archery 是一个 SQL 审核查询平台； 功能模块包括： 权限管理 工作流 实例管理 SQL审核 SQL查询 SQL优化 消息通知 工具插件 云数据库 部署方式也比较简单，按照官
     <a class="muted-link" href="/post/2022/deploy-archery-dms-on-kubernetes/">…</a>
   </div>
 </div>

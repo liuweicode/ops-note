@@ -11,7 +11,7 @@
     </title>
     
     
-    <meta name="description" property="og:description" content="1. 将官方镜像备份至私有仓库 docker pull hanchuanchuan/goinception:v1.3.0 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker pull docker pull hhyo/archery:v1.9.1 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 2. 创建configmap kubectl create configmap uat-archery --from-file=configmap/archery/docs.md --from-file=configmap/archery/settings.py --from-file=configmap/archery/soar.yaml -n uat-archery kubectl create configmap uat-archery-goinception --from-file=configmap/goinception/config.toml -n uat-archery 3. 创建pv&amp;a|liuwei code">
+    <meta name="description" property="og:description" content="Archery 是一个 SQL 审核查询平台； 功能模块包括： 权限管理 工作流 实例管理 SQL审核 SQL查询 SQL优化 消息通知 工具插件 云数据库 部署方式也比较简单，按照官|liuwei code">
     
 
     <meta name="apple-mobile-web-app-title" content="运维笔记">
@@ -27,7 +27,7 @@
     <meta name="twitter:site" content="@">
     <meta name="twitter:creator" content="@">
     <meta name="twitter:title" content="在 Kubernetes 上部署 archery dms | 运维笔记">
-    <meta name="twitter:description" content="1. 将官方镜像备份至私有仓库 docker pull hanchuanchuan/goinception:v1.3.0 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0 docker pull docker pull hhyo/archery:v1.9.1 docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 docker push toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:archery-v1.9.1 2. 创建configmap kubectl create configmap uat-archery --from-file=configmap/archery/docs.md --from-file=configmap/archery/settings.py --from-file=configmap/archery/soar.yaml -n uat-archery kubectl create configmap uat-archery-goinception --from-file=configmap/goinception/config.toml -n uat-archery 3. 创建pv&a|liuwei code">
+    <meta name="twitter:description" content="Archery 是一个 SQL 审核查询平台； 功能模块包括： 权限管理 工作流 实例管理 SQL审核 SQL查询 SQL优化 消息通知 工具插件 云数据库 部署方式也比较简单，按照官|liuwei code">
     <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
     
 
@@ -120,6 +120,20 @@
   
   <section class="pb-6 mb-3 border-bottom">
     <p><img src="https://static.liuwei.co/202210/1665638990.png" alt="archery dms dashboard"></p>
+<p>Archery 是一个 SQL 审核查询平台；</p>
+<p>功能模块包括：</p>
+<ul>
+<li>权限管理</li>
+<li>工作流</li>
+<li>实例管理</li>
+<li>SQL审核</li>
+<li>SQL查询</li>
+<li>SQL优化</li>
+<li>消息通知</li>
+<li>工具插件</li>
+<li>云数据库</li>
+</ul>
+<p>部署方式也比较简单，按照官方的 <a href="https://www.archerydms.com/installation/docker/">docker部署文档</a> ，稍微修改一下，部署到k8s上即可；</p>
 <h2 id="1-将官方镜像备份至私有仓库">1. 将官方镜像备份至私有仓库</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull hanchuanchuan/goinception:v1.3.0
 </span></span><span class="line"><span class="cl">docker tag xx toplist-registry.cn-shanghai.cr.aliyuncs.com/88/tl-archery-dms:goinception-v1.3.0
