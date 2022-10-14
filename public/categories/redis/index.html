@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
       
-  Centos &ndash; 运维笔记
+  redis &ndash; 运维笔记
 
     </title>
     
@@ -26,7 +26,7 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@">
     <meta name="twitter:creator" content="@">
-    <meta name="twitter:title" content="Centos | 运维笔记">
+    <meta name="twitter:title" content="redis | 运维笔记">
     <meta name="twitter:description" content="|liuwei code">
     <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
     
@@ -79,7 +79,7 @@
 
 <div>
 
-  <h1>Centos</h1>
+  <h1>redis</h1>
   
 
   
@@ -88,71 +88,30 @@
 <div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
   <div class="Subhead mb-2">
     <div class="Subhead-heading">
-      <a href="/post/2012/centos-ntfs-3g-%E6%8C%82%E8%BD%BDntfs%E7%A7%BB%E5%8A%A8%E7%9B%98/">
-        <div class="h2 mt-1 mb-1">Centos ntfs-3g 挂载ntfs移动盘</div>
+      <a href="/post/2022/delete-keys-in-redis/">
+        <div class="h2 mt-1 mb-1">redis 删除大量 key</div>
       </a>
     </div>
     <div class="Subhead-description">
       
 
 
-<a href='/categories/centos' class="muted-link">
-  <span class="Label Label--gray-darker">Centos</span>
-</a>
-
-<a href='/categories/virtualbox' class="muted-link">
-  <span class="Label Label--gray-darker">VirtualBox</span>
+<a href='/categories/redis' class="muted-link">
+  <span class="Label Label--gray-darker">redis</span>
 </a>
 
 
 
 
       <div class="float-md-right">
-        <span>2012-12-02</span>
+        <span>2022-08-15</span>
       </div>
     </div>
   </div>
   <div class="text-gray">
     
-    首先到官网下载源码包 http://www.tuxera.com/community/ntfs-3g-download/ tar -zxvf ntfs-3g_ntfsprogs-2012.1.15.tgz cd ntfs-3g_ntfsprogs-2012.1.15 ./configure 提示如下： [wei@liuwei ntfs-3g_ntfsprogs-2012.1.15]$ ./configure checking build system type... i686-pc-linux-gnu checking host system type... i686-pc-linux-gnu checking target system type... i686-pc-linux-gnu checking for a BSD-compatible install... /usr/bin/install -c checking whether build environment is sane... yes checking for a thread-safe mkdir -p... /bin/mkdir -p checking for gawk... gawk checking whether make sets
-    <a class="muted-link" href="/post/2012/centos-ntfs-3g-%E6%8C%82%E8%BD%BDntfs%E7%A7%BB%E5%8A%A8%E7%9B%98/">…</a>
-  </div>
-</div>
-
-  
-    
-    
-<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
-  <div class="Subhead mb-2">
-    <div class="Subhead-heading">
-      <a href="/post/2012/centos6.3-%E5%AE%89%E8%A3%85virtualbox/">
-        <div class="h2 mt-1 mb-1">Centos6.3 安装VirtualBox</div>
-      </a>
-    </div>
-    <div class="Subhead-description">
-      
-
-
-<a href='/categories/centos' class="muted-link">
-  <span class="Label Label--gray-darker">Centos</span>
-</a>
-
-<a href='/categories/virtualbox' class="muted-link">
-  <span class="Label Label--gray-darker">VirtualBox</span>
-</a>
-
-
-
-
-      <div class="float-md-right">
-        <span>2012-12-02</span>
-      </div>
-    </div>
-  </div>
-  <div class="text-gray">
-    
-    查看系统信息： [wei@liuwei ~]$ uname -a Linux liuwei.co 2.6.32-279.14.1.el6.i686 #1 SMP Tue Nov 6 21:05:14 UTC 2012 i686 i686 i386 GNU/Linux 从官网（https://www.virtualbox.org/wiki/Linux_Do
-    <a class="muted-link" href="/post/2012/centos6.3-%E5%AE%89%E8%A3%85virtualbox/">…</a>
+    禁止使用 FLUSHDB !!! 禁止使用 FLUSHDB !!! 禁止使用 FLUSHDB !!! 重要的事情说3遍，我们有同事在生产环境直接FLUSHDB，直接导致redis挂了。 1. 删除命令 redis-cli -h localhost -p 6379 -a
+    <a class="muted-link" href="/post/2022/delete-keys-in-redis/">…</a>
   </div>
 </div>
 

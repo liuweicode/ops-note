@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  redis 删除大量 key &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="禁止使用 FLUSHDB !!! 禁止使用 FLUSHDB !!! 禁止使用 FLUSHDB !!! 重要的事情说3遍，我们有同事在生产环境直接FLUSHDB，直接导致redis挂了。 1. 删除命令 redis-cli -h localhost -p 6379 -a|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="redis 删除大量 key | 运维笔记">
+    <meta name="twitter:description" content="禁止使用 FLUSHDB !!! 禁止使用 FLUSHDB !!! 禁止使用 FLUSHDB !!! 重要的事情说3遍，我们有同事在生产环境直接FLUSHDB，直接导致redis挂了。 1. 删除命令 redis-cli -h localhost -p 6379 -a|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">redis 删除大量 key</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/redis' class="muted-link">
+  <span class="Label Label--gray-darker">redis</span>
+</a>
+
+
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-08-15. Published at: 2022-08-15.">
+        
+          Published: 2022-08-15
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p><strong>禁止使用 FLUSHDB !!!</strong></p>
+<p><strong>禁止使用 FLUSHDB !!!</strong></p>
+<p><strong>禁止使用 FLUSHDB !!!</strong></p>
+<p>重要的事情说3遍，我们有同事在生产环境直接FLUSHDB，直接导致redis挂了。</p>
+<h2 id="1-删除命令">1. 删除命令</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">redis-cli -h localhost -p <span class="m">6379</span> -a <span class="s1">&#39;password&#39;</span> --scan --pattern <span class="s1">&#39;*&#39;</span> -n <span class="m">1</span> &gt;&gt; db1-keys.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">time</span> cat db1-keys.txt <span class="p">|</span> xargs -n <span class="m">10000</span> redis-cli  -h localhost -p <span class="m">6379</span> -a <span class="s1">&#39;password&#39;</span> -n <span class="m">1</span> DEL <span class="p">|</span> tee count.txt
+</span></span></code></pre></div><h2 id="2-删除脚本">2. 删除脚本</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">EXEC_TIME</span><span class="o">=</span><span class="sb">`</span>date <span class="s1">&#39;+%Y%m%d%H%M%y&#39;</span><span class="sb">`</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">REDIS_HOST</span><span class="o">=</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">REDIS_PASSWORD</span><span class="o">=</span><span class="nv">$2</span>
+</span></span><span class="line"><span class="cl"><span class="nv">REDIS_DB</span><span class="o">=</span><span class="nv">$3</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PATTEN</span><span class="o">=</span><span class="nv">$4</span>
+</span></span><span class="line"><span class="cl"><span class="nv">NUMBERS</span><span class="o">=</span><span class="nv">$5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">TMP_FILE_NAME</span><span class="o">=</span>redis-db-<span class="nv">$REDIS_DB</span>-<span class="nv">$EXEC_TIME</span>.txt
+</span></span><span class="line"><span class="cl"><span class="nv">RESULT_FILE_NAME</span><span class="o">=</span>redis-db-<span class="nv">$REDIS_DB</span>-<span class="nv">$EXEC_TIME</span>-result.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;数据库地址: </span><span class="nv">$REDIS_HOST</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;数据库密码: </span><span class="nv">$REDIS_PASSWORD</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;数据库DB: </span><span class="nv">$REDIS_DB</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;匹配字符串: </span><span class="nv">$PATTEN</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;批量删除行数: </span><span class="nv">$NUMBERS</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;执行时间: </span><span class="nv">$EXEC_TIME</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;Keys文件名: </span><span class="nv">$TMP_FILE_NAME</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;执行结果: </span><span class="nv">$RESULT_FILE_NAME</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">redis-cli -h <span class="nv">$REDIS_HOST</span> -p <span class="m">6379</span> -a <span class="s2">&#34;</span><span class="nv">$REDIS_PASSWORD</span><span class="s2">&#34;</span> --scan --pattern <span class="s2">&#34;</span><span class="nv">$PATTEN</span><span class="s2">&#34;</span> -n <span class="nv">$REDIS_DB</span> &gt;&gt; <span class="nv">$TMP_FILE_NAME</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">time</span> cat <span class="nv">$TMP_FILE_NAME</span> <span class="p">|</span> xargs -n <span class="nv">$NUMBERS</span> redis-cli -h <span class="nv">$REDIS_HOST</span> -p <span class="m">6379</span> -a <span class="s2">&#34;</span><span class="nv">$REDIS_PASSWORD</span><span class="s2">&#34;</span> -n <span class="nv">$REDIS_DB</span> DEL <span class="p">|</span> tee <span class="nv">$RESULT_FILE_NAME</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s1">&#39;Done&#39;</span>
+</span></span></code></pre></div><p>将以上脚本保存为<code>del-redis.sh</code>使用方法：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">chmod +x del-redis.sh
+</span></span><span class="line"><span class="cl">./del-redis.sh <span class="s1">&#39;localhost&#39;</span> <span class="s1">&#39;password&#39;</span> <span class="m">1</span> <span class="s1">&#39;*&#39;</span> <span class="m">1000</span>
+</span></span></code></pre></div><h2 id="3-相关链接">3. 相关链接</h2>
+<ul>
+<li>参考: <a href="https://elliotchance.medium.com/deleting-a-huge-number-of-keys-in-redis-3873c1479202">https://elliotchance.medium.com/deleting-a-huge-number-of-keys-in-redis-3873c1479202</a></li>
+</ul>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>redis 删除大量 key</b><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-删除命令">1. 删除命令</a></li>
+    <li><a href="#2-删除脚本">2. 删除脚本</a></li>
+    <li><a href="#3-相关链接">3. 相关链接</a></li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei.co 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>
