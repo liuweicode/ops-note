@@ -9,7 +9,7 @@
     <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
     <lastBuildDate>Thu, 13 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/tags/sql%E5%AE%A1%E6%A0%B8%E5%B9%B3%E5%8F%B0/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>在 Kubernetes 上部署 archery dms</title>
+      <title>在 Kubernetes 上部署 Archery DMS</title>
       <link>https://liuwei.co/post/2022/deploy-archery-dms-on-kubernetes/</link>
       <pubDate>Thu, 13 Oct 2022 00:00:00 +0000</pubDate>
       

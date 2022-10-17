@@ -8,7 +8,7 @@ weight: 2
 
 ### 关于我
 
-刘伟 / 上海 / notifywei#gmail.com
+伟哥 / 上海 / notifywei#gmail.com
 
 ### 职业
 

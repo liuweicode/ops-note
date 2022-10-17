@@ -41,6 +41,12 @@
     <loc>https://liuwei.co/post/2022/deploy-archery-dms-on-kubernetes/</loc>
     <lastmod>2022-10-13T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://liuwei.co/categories/chrome/</loc>
+    <lastmod>2022-10-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/post/2022/chrome-download/</loc>
+    <lastmod>2022-10-11T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://liuwei.co/tags/canal/</loc>
     <lastmod>2022-09-21T00:00:00+00:00</lastmod>
   </url><url>
@@ -92,8 +98,23 @@
     <loc>https://liuwei.co/post/2022/nginx-proxy_pass-to-istiogateway-with-426-upgrade-required-error/</loc>
     <lastmod>2022-05-26T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://liuwei.co/categories/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+    <lastmod>2022-05-26T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://liuwei.co/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</loc>
     <lastmod>2022-05-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/categories/envoy/</loc>
+    <lastmod>2022-04-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/tags/envoyfilter/</loc>
+    <lastmod>2022-04-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/post/2022/print-req-resp-body-in-envoyfilter/</loc>
+    <lastmod>2022-04-11T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/tags/lua/</loc>
+    <lastmod>2022-04-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://liuwei.co/categories/namespaces/</loc>
     <lastmod>2016-12-28T00:00:00+00:00</lastmod>

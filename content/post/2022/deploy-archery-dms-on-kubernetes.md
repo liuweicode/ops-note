@@ -1,5 +1,5 @@
 +++
-title = "在 Kubernetes 上部署 archery dms"
+title = "在 Kubernetes 上部署 Archery DMS"
 author = "liuwei"
 date = "2022-10-13"
 tags = [

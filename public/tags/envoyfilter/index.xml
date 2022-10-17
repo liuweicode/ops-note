@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>envoyfilter on 运维笔记</title>
+    <link>https://liuwei.co/tags/envoyfilter/</link>
+    <description>Recent content in envoyfilter on 运维笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
+    <lastBuildDate>Mon, 11 Apr 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/tags/envoyfilter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>EnvoyFilter 在访问日志中打印 HTTP body</title>
+      <link>https://liuwei.co/post/2022/print-req-resp-body-in-envoyfilter/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/print-req-resp-body-in-envoyfilter/</guid>
+      <description>1. 问题背景 最近有一个全局打印请求参数和响应内容的需求，于是添加了一个Envoy过滤器，在调试EnvoyFilter的时候，打印出来的 response body 始终</description>
+    </item>
+    
+  </channel>
+</rss>

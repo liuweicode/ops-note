@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chrome on 运维笔记</title>
+    <link>https://liuwei.co/categories/chrome/</link>
+    <description>Recent content in Chrome on 运维笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
+    <lastBuildDate>Tue, 11 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/categories/chrome/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chrome 离线安装包下载地址</title>
+      <link>https://liuwei.co/post/2022/chrome-download/</link>
+      <pubDate>Tue, 11 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/chrome-download/</guid>
+      <description>打开 Chrome 官网会根据当前系统识别提示下载，因为我用的是MacBook，所以会提示我下载适用于macOS的Chrome，但我很多时候会有下载Win</description>
+    </item>
+    
+  </channel>
+</rss>

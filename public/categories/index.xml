@@ -27,6 +27,15 @@
     </item>
     
     <item>
+      <title>Chrome</title>
+      <link>https://liuwei.co/categories/chrome/</link>
+      <pubDate>Tue, 11 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/chrome/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>syntax</title>
       <link>https://liuwei.co/categories/syntax/</link>
       <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>
@@ -72,11 +81,29 @@
     </item>
     
     <item>
+      <title>阿里云</title>
+      <link>https://liuwei.co/categories/%E9%98%BF%E9%87%8C%E4%BA%91/</link>
+      <pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/%E9%98%BF%E9%87%8C%E4%BA%91/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>服务网格</title>
       <link>https://liuwei.co/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</link>
       <pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate>
       
       <guid>https://liuwei.co/categories/%E6%9C%8D%E5%8A%A1%E7%BD%91%E6%A0%BC/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>envoy</title>
+      <link>https://liuwei.co/categories/envoy/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/categories/envoy/</guid>
       <description></description>
     </item>
     
