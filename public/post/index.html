@@ -470,8 +470,8 @@
 <div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
   <div class="Subhead mb-2">
     <div class="Subhead-heading">
-      <a href="/post/2022/make-httpcall-in-envoyfilter/">
-        <div class="h2 mt-1 mb-1">EnvoyFilter 中发送 http 请求</div>
+      <a href="/post/2022/rewrite-response-429/">
+        <div class="h2 mt-1 mb-1">Istio 网关统一响应格式</div>
       </a>
     </div>
     <div class="Subhead-description">
@@ -494,14 +494,14 @@
 
 
       <div class="float-md-right">
-        <span>2022-05-17</span>
+        <span>2022-05-18</span>
       </div>
     </div>
   </div>
   <div class="text-gray">
     
-    目前有一个需求是在网关中对请求的参数进行解密，将解密后的原始数据放在请求头中，再转发给后端业务服务。 这样做的好处在于： 方便业务服务直接获取解
-    <a class="muted-link" href="/post/2022/make-httpcall-in-envoyfilter/">…</a>
+    1. 问题背景 目前我们的接口返回的统一格式为： http response status 响应码永远是 200 http response body 响应体格式为：{&quot;code&quot;:响应码,&quot;m
+    <a class="muted-link" href="/post/2022/rewrite-response-429/">…</a>
   </div>
 </div>
 
@@ -632,7 +632,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/envoyfilter" class="link-gray text-emphasized css-truncate-target"><span class="">Envoyfilter</span></a>
-      <span class="text-right Counter">2</span>
+      <span class="text-right Counter">3</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -647,7 +647,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/lua" class="link-gray text-emphasized css-truncate-target"><span class="">Lua</span></a>
-      <span class="text-right Counter">2</span>
+      <span class="text-right Counter">3</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -712,7 +712,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/envoy" class="link-gray text-emphasized css-truncate-target"><span class="">Envoy</span></a>
-      <span class="text-right Counter">2</span>
+      <span class="text-right Counter">3</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">

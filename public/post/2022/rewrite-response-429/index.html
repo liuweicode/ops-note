@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  Istio 网关统一响应格式 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="1. 问题背景 目前我们的接口返回的统一格式为： http response status 响应码永远是 200 http response body 响应体格式为：{&amp;quot;code&amp;quot;:响应码,&amp;quot;m|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="Istio 网关统一响应格式 | 运维笔记">
+    <meta name="twitter:description" content="1. 问题背景 目前我们的接口返回的统一格式为： http response status 响应码永远是 200 http response body 响应体格式为：{&quot;code&quot;:响应码,&quot;m|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">Istio 网关统一响应格式</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/envoy' class="muted-link">
+  <span class="Label Label--gray-darker">envoy</span>
+</a>
+
+
+
+<a href='/tags/envoyfilter' class="muted-link">
+  <span class="Label Label--gray">envoyfilter</span>
+</a>
+
+<a href='/tags/lua' class="muted-link">
+  <span class="Label Label--gray">lua</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-05-18. Published at: 2022-05-18.">
+        
+          Published: 2022-05-18
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <h2 id="1-问题背景">1. 问题背景</h2>
+<p>目前我们的接口返回的统一格式为：</p>
+<ol>
+<li>
+<p>http response status 响应码永远是 <code>200</code></p>
+</li>
+<li>
+<p>http response body 响应体格式为：<code>{&quot;code&quot;:响应码,&quot;message&quot;:&quot;消息&quot;}</code></p>
+</li>
+</ol>
+<p>但当启用了限流模块后，响应码会改为 429 并且无响应体；</p>
+<p>前端工程师要求，当启用限流模块后需要返回响应码为200，响应体统一格式为：<code>{&quot;code&quot;:429,&quot;message&quot;:&quot;Too Many Requests&quot;}</code>；</p>
+<h2 id="2-问题解决">2. 问题解决</h2>
+<p>在网关层添加了EnvoyFilter如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.istio.io/v1alpha3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">EnvoyFilter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">configPatches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">applyTo</span><span class="p">:</span><span class="w"> </span><span class="l">HTTP_FILTER</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l">GATEWAY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">listener</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">filterChain</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">filter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;envoy.filters.network.http_connection_manager&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">subFilter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;envoy.filters.http.router&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">patch</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">operation</span><span class="p">:</span><span class="w"> </span><span class="l">INSERT_BEFORE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="c"># lua filter specification</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">envoy.lua</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">typed_config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">&#34;@type&#34;: </span><span class="s2">&#34;type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">inlineCode</span><span class="p">:</span><span class="w"> </span><span class="p">|-</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">            function envoy_on_response(response_handle)
+</span></span></span><span class="line"><span class="cl"><span class="sd">                if response_handle:headers():get(&#34;:status&#34;) == &#34;429&#34; then
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    response_handle:logInfo(&#34;into...429&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    response_handle:headers():replace(&#34;:status&#34;, &#34;200&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    response_handle:headers():replace(&#34;content-type&#34;, &#34;application/json;charset=UTF-8&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    response_handle:headers():replace(&#34;content-length&#34;, 42)
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    local responseBody = &#39;{&#34;code&#34;:429,&#34;message&#34;:&#34;Too Many Requests&#34;}&#39;;
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    local last
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    for chunk in response_handle:bodyChunks() do
+</span></span></span><span class="line"><span class="cl"><span class="sd">                     chunk:setBytes(&#34;&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd">                     last = chunk
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    end
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    local content_length = last:setBytes(responseBody)
+</span></span></span><span class="line"><span class="cl"><span class="sd">                    response_handle:logInfo(&#34;new content_length=&#34;..content_length)
+</span></span></span><span class="line"><span class="cl"><span class="sd">                end
+</span></span></span><span class="line"><span class="cl"><span class="sd">            end</span><span class="w">            
+</span></span></span></code></pre></div>
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>Istio 网关统一响应格式</b><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-问题背景">1. 问题背景</a></li>
+    <li><a href="#2-问题解决">2. 问题解决</a></li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei.co 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>

@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
-    <lastBuildDate>Tue, 17 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/tags/envoyfilter/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 May 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/tags/envoyfilter/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Istio 网关统一响应格式</title>
+      <link>https://liuwei.co/post/2022/rewrite-response-429/</link>
+      <pubDate>Wed, 18 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/rewrite-response-429/</guid>
+      <description>1. 问题背景 目前我们的接口返回的统一格式为： http response status 响应码永远是 200 http response body 响应体格式为：{&amp;quot;code&amp;quot;:响应码,&amp;quot;m</description>
+    </item>
+    
     <item>
       <title>EnvoyFilter 中发送 http 请求</title>
       <link>https://liuwei.co/post/2022/make-httpcall-in-envoyfilter/</link>
