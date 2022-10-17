@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  EnvoyFilter 中发送 http 请求 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="目前有一个需求是在网关中对请求的参数进行解密，将解密后的原始数据放在请求头中，再转发给后端业务服务。 这样做的好处在于： 方便业务服务直接获取解|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="EnvoyFilter 中发送 http 请求 | 运维笔记">
+    <meta name="twitter:description" content="目前有一个需求是在网关中对请求的参数进行解密，将解密后的原始数据放在请求头中，再转发给后端业务服务。 这样做的好处在于： 方便业务服务直接获取解|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">EnvoyFilter 中发送 http 请求</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/envoy' class="muted-link">
+  <span class="Label Label--gray-darker">envoy</span>
+</a>
+
+
+
+<a href='/tags/envoyfilter' class="muted-link">
+  <span class="Label Label--gray">envoyfilter</span>
+</a>
+
+<a href='/tags/lua' class="muted-link">
+  <span class="Label Label--gray">lua</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-05-17. Published at: 2022-05-17.">
+        
+          Published: 2022-05-17
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <p>目前有一个需求是在网关中对请求的参数进行解密，将解密后的原始数据放在请求头中，再转发给后端业务服务。</p>
+<p>这样做的好处在于：</p>
+<ol>
+<li>方便业务服务直接获取解密后的数据；</li>
+<li>网关可以根据用户信息进行限流，全局定制化更高；</li>
+</ol>
+<p>于是研究在 EnvoyFilter 中向内部加解密服务发送解密请求如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.istio.io/v1alpha3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">EnvoyFilter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">encryption-test</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">configPatches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">applyTo</span><span class="p">:</span><span class="w"> </span><span class="l">HTTP_FILTER</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">context</span><span class="p">:</span><span class="w"> </span><span class="l">SIDECAR_INBOUND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">listener</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">portNumber</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">filterChain</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">filter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;envoy.http_connection_manager&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">subFilter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;envoy.router&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">patch</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">operation</span><span class="p">:</span><span class="w"> </span><span class="l">INSERT_BEFORE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">envoy.lua</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">       </span><span class="nt">typed_config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="nt">&#39;@type&#39;</span><span class="p">:</span><span class="w"> </span><span class="l">type.googleapis.com/envoy.extensions.filters.http.lua.v3.Lua</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">         </span><span class="nt">inlineCode</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">           function envoy_on_request(request_handle)
+</span></span></span><span class="line"><span class="cl"><span class="sd">              local request_body_buffer = request_handle:body()
+</span></span></span><span class="line"><span class="cl"><span class="sd">              local request_body_data = request_body_buffer:getBytes(0, request_body_buffer:length())
+</span></span></span><span class="line"><span class="cl"><span class="sd">              request_handle:logInfo(&#34;request_body_data=&#34;..request_body_data)
+</span></span></span><span class="line"><span class="cl"><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">              local headers, body = request_handle:httpCall(
+</span></span></span><span class="line"><span class="cl"><span class="sd">              &#34;outbound|8080||my-svc.my-namespace.svc.cluster.local&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">              {
+</span></span></span><span class="line"><span class="cl"><span class="sd">               [&#34;Secret&#34;] = &#34;1234567890&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">               [&#34;Content-Type&#34;] = &#34;application/json&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">               [&#34;:method&#34;] = &#34;POST&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">               [&#34;:path&#34;] = &#34;/v1/decrypt&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">               [&#34;:authority&#34;] = &#34;my-svc.my-namespace.svc.cluster.local&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">              },
+</span></span></span><span class="line"><span class="cl"><span class="sd">             &#34;{\&#34;cipherType\&#34;:\&#34;SM4\&#34;,\&#34;encryptStr\&#34;:\&#34;加密串\&#34;}&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="sd">             5000)
+</span></span></span><span class="line"><span class="cl"><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">             request_handle:logInfo(&#34;status=&#34;..headers[&#34;:status&#34;])
+</span></span></span><span class="line"><span class="cl"><span class="sd">             request_handle:logInfo(&#34;body=&#34;..body)
+</span></span></span><span class="line"><span class="cl"><span class="sd">             request_handle:headers():add(&#34;info&#34;, body)
+</span></span></span><span class="line"><span class="cl"><span class="sd">           end</span><span class="w">           
+</span></span></span></code></pre></div>
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>EnvoyFilter 中发送 http 请求</b><nav id="TableOfContents"></nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei.co 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>

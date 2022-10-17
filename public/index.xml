@@ -90,6 +90,15 @@
     </item>
     
     <item>
+      <title>EnvoyFilter 中发送 http 请求</title>
+      <link>https://liuwei.co/post/2022/make-httpcall-in-envoyfilter/</link>
+      <pubDate>Tue, 17 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/make-httpcall-in-envoyfilter/</guid>
+      <description>目前有一个需求是在网关中对请求的参数进行解密，将解密后的原始数据放在请求头中，再转发给后端业务服务。 这样做的好处在于： 方便业务服务直接获取解</description>
+    </item>
+    
+    <item>
       <title>EnvoyFilter 在访问日志中打印 HTTP body</title>
       <link>https://liuwei.co/post/2022/print-req-resp-body-in-envoyfilter/</link>
       <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
