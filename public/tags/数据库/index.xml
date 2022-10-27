@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据库 on 运维笔记</title>
+    <link>https://liuwei.co/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</link>
+    <description>Recent content in 数据库 on 运维笔记</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
+    <lastBuildDate>Wed, 26 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>MySQL 备份与还原</title>
+      <link>https://liuwei.co/post/2022/mysql-%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/</link>
+      <pubDate>Wed, 26 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/mysql-%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/</guid>
+      <description>一、备份数据 导出db1、db2两个数据库的所有数据。(启用gzip压缩) mysqldump --host=127.0.0.1 --port=3306 --user=root --password --hex-blob --set-gtid-purged=OFF --single-transaction --flush-logs --quick --databases db1 db2 | gzip &amp;gt; db12.sql.gz 导出db1库的t1和t2表。(启用</description>
+    </item>
+    
+  </channel>
+</rss>

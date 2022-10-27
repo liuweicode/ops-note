@@ -29,7 +29,7 @@ tags = [
 
 ## 3. Envoy 过滤器
 
-过滤器代码如下：
+### 3.1. 添加过滤器代码
 
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
@@ -93,6 +93,25 @@ spec:
                 response_handle:streamInfo():dynamicMetadata():set("envoy.lua","response_body",responseBody)                    
               end
 ```
+
+### 3.2. 自定义访问日志格式
+
+在下图位置添加自定义日志格式：
+
+```
+request_body %DYNAMIC_METADATA(envoy.lua:request_body)%
+response_body %DYNAMIC_METADATA(envoy.lua:response_body)%
+request_headers %DYNAMIC_METADATA(envoy.lua:request_headers)%
+response_headers %DYNAMIC_METADATA(envoy.lua:response_headers)%
+```
+
+![自定义日志格式](https://static.liuwei.co/202210/1665996430.png)
+
+
+### 3.3. 效果
+
+![效果](https://static.liuwei.co/202210/1665996823.png)
+
 
 
 

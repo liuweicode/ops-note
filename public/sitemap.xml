@@ -3,21 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://liuwei.co/post/</loc>
-    <lastmod>2022-10-14T00:00:00+00:00</lastmod>
+    <lastmod>2022-10-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://liuwei.co/</loc>
-    <lastmod>2022-10-14T00:00:00+00:00</lastmod>
+    <lastmod>2022-10-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/categories/</loc>
+    <lastmod>2022-10-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/categories/mysql/</loc>
+    <lastmod>2022-10-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/post/2022/mysql-%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/</loc>
+    <lastmod>2022-10-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/tags/</loc>
+    <lastmod>2022-10-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/tags/%E5%A4%87%E4%BB%BD/</loc>
+    <lastmod>2022-10-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://liuwei.co/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2022-10-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://liuwei.co/post/2022/vimrc/</loc>
     <lastmod>2022-10-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://liuwei.co/categories/</loc>
-    <lastmod>2022-10-14T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://liuwei.co/tags/ide/</loc>
-    <lastmod>2022-10-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://liuwei.co/tags/</loc>
     <lastmod>2022-10-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://liuwei.co/categories/vim/</loc>

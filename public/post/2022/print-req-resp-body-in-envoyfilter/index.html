@@ -123,7 +123,7 @@
 <p>经排查后端业务系统的<code> openresty</code> 启用了 <code>gzip</code> 压缩，所以当返回到达 <code>istio</code> 网关的时候，无法解析 <code>response</code> 的响应体；</p>
 <p><img src="https://static.liuwei.co/202210/1665987445.png" alt="nginx-gzip"></p>
 <h2 id="3-envoy-过滤器">3. Envoy 过滤器</h2>
-<p>过滤器代码如下：</p>
+<h3 id="31-添加过滤器代码">3.1. 添加过滤器代码</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">networking.istio.io/v1alpha3</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">EnvoyFilter</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
@@ -184,7 +184,16 @@
 </span></span></span><span class="line"><span class="cl"><span class="sd">                end
 </span></span></span><span class="line"><span class="cl"><span class="sd">                response_handle:streamInfo():dynamicMetadata():set(&#34;envoy.lua&#34;,&#34;response_body&#34;,responseBody)                    
 </span></span></span><span class="line"><span class="cl"><span class="sd">              end</span><span class="w">              
-</span></span></span></code></pre></div>
+</span></span></span></code></pre></div><h3 id="32-自定义访问日志格式">3.2. 自定义访问日志格式</h3>
+<p>在下图位置添加自定义日志格式：</p>
+<pre tabindex="0"><code>request_body %DYNAMIC_METADATA(envoy.lua:request_body)%
+response_body %DYNAMIC_METADATA(envoy.lua:response_body)%
+request_headers %DYNAMIC_METADATA(envoy.lua:request_headers)%
+response_headers %DYNAMIC_METADATA(envoy.lua:response_headers)%
+</code></pre><p><img src="https://static.liuwei.co/202210/1665996430.png" alt="自定义日志格式"></p>
+<h3 id="33-效果">3.3. 效果</h3>
+<p><img src="https://static.liuwei.co/202210/1665996823.png" alt="效果"></p>
+
   </section>
 
   <section>
@@ -205,7 +214,13 @@
   <ul>
     <li><a href="#1-问题背景">1. 问题背景</a></li>
     <li><a href="#2-问题原因">2. 问题原因</a></li>
-    <li><a href="#3-envoy-过滤器">3. Envoy 过滤器</a></li>
+    <li><a href="#3-envoy-过滤器">3. Envoy 过滤器</a>
+      <ul>
+        <li><a href="#31-添加过滤器代码">3.1. 添加过滤器代码</a></li>
+        <li><a href="#32-自定义访问日志格式">3.2. 自定义访问日志格式</a></li>
+        <li><a href="#33-效果">3.3. 效果</a></li>
+      </ul>
+    </li>
   </ul>
 </nav></div>
   
