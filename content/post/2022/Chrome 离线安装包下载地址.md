@@ -1,5 +1,6 @@
 +++
 title = "Chrome 离线安装包下载地址"
+slug = "chrome-download"
 author = "liuwei"
 date = "2022-10-11"
 categories = [

@@ -44,3 +44,6 @@ useTwitterCard = true
 shareTo = []
 showFooterCredits = true
 math = false
+
+#[permalinks]
+#post = "/posts/:slug.html"

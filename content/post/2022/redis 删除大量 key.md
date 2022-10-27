@@ -1,5 +1,6 @@
 +++
 title = "redis 删除大量 key"
+slug = "delete-keys-in-redis"
 author = "liuwei"
 date = "2022-08-15"
 categories = [

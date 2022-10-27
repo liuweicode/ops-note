@@ -1,5 +1,6 @@
 +++
 title = "构建 docker 基础镜像"
+slug = "docker-image-base"
 author = "liuwei"
 date = "2022-09-20"
 tags = [

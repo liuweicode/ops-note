@@ -1,5 +1,6 @@
 +++
 title = "在 Kubernetes 上部署 ZooKeeper 集群"
+slug = "deploy-zookeeper-cluster-on-kubernetes"
 author = "liuwei"
 date = "2022-09-19"
 tags = [

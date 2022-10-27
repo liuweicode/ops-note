@@ -10,19 +10,19 @@
     <lastBuildDate>Wed, 26 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MySQL 备份与还原</title>
-      <link>https://liuwei.co/post/2022/mysql-%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/</link>
+      <link>https://liuwei.co/post/2022/mysql-backup/</link>
       <pubDate>Wed, 26 Oct 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://liuwei.co/post/2022/mysql-%E5%A4%87%E4%BB%BD%E8%BF%98%E5%8E%9F/</guid>
+      <guid>https://liuwei.co/post/2022/mysql-backup/</guid>
       <description>一、备份数据 导出db1、db2两个数据库的所有数据。(启用gzip压缩) mysqldump --host=127.0.0.1 --port=3306 --user=root --password --hex-blob --set-gtid-purged=OFF --single-transaction --flush-logs --quick --databases db1 db2 | gzip &amp;gt; db12.sql.gz 导出db1库的t1和t2表。(启用</description>
     </item>
     
     <item>
       <title>.vimrc 配置</title>
-      <link>https://liuwei.co/post/2022/vimrc/</link>
+      <link>https://liuwei.co/post/2022/vimrc-config/</link>
       <pubDate>Fri, 14 Oct 2022 00:00:00 +0000</pubDate>
       
-      <guid>https://liuwei.co/post/2022/vimrc/</guid>
+      <guid>https://liuwei.co/post/2022/vimrc-config/</guid>
       <description>Vim (/vɪm/;[5] a contraction of Vi IMproved) is a free and open-source, screen-based text editor program. Vim 是最好的编辑器，没有之一！ 这里用于记录我的.vimrc文件的变更过程； 通用配置 公共配置 &amp;#34;</description>
     </item>
     

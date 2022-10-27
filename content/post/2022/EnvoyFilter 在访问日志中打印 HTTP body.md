@@ -1,5 +1,6 @@
 +++
 title = "EnvoyFilter 在访问日志中打印 HTTP body"
+slug = "print-req-resp-body-in-envoyfilter"
 author = "liuwei"
 date = "2022-04-11"
 categories = [

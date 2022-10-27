@@ -1,5 +1,6 @@
 +++
 title = "在 Kubernetes 上部署 Nacos 集群"
+slug = "deploy-nacos-cluster-on-kubernetes"
 author = "liuwei"
 date = "2022-09-15"
 tags = [

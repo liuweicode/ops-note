@@ -1,5 +1,6 @@
 +++
 title = "MySQL 备份与还原"
+slug = "mysql backup"
 author = "liuwei"
 date = "2022-10-26"
 tags = [

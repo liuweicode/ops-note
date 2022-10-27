@@ -1,5 +1,6 @@
 +++
 title = "在 Kubernetes 上部署 Archery DMS"
+slug = "deploy-archery-dms-on-kubernetes"
 author = "liuwei"
 date = "2022-10-13"
 tags = [

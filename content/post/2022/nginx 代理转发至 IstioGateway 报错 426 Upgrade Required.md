@@ -1,5 +1,6 @@
 +++
 title = "nginx 代理转发至 IstioGateway 报错 426 Upgrade Required"
+slug = "nginx-proxy_pass-to-istiogateway-with-426-upgrade-required-error"
 author = "liuwei"
 date = "2022-05-26"
 tags = [

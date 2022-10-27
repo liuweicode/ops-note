@@ -1,5 +1,6 @@
 +++
 title = "Istio 网关统一响应格式"
+slug = "rewrite-response-429"
 author = "liuwei"
 date = "2022-05-18"
 categories = [

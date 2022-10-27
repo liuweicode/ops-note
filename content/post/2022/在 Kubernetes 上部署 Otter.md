@@ -1,5 +1,6 @@
 +++
 title = "在 Kubernetes 上部署 Otter"
+slug = "deploy-otter-on-kubernetes"
 author = "liuwei"
 date = "2022-09-21"
 tags = [

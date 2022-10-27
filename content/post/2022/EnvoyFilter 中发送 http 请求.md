@@ -1,5 +1,6 @@
 +++
 title = "EnvoyFilter 中发送 http 请求"
+slug = "make-httpcall-in-envoyfilter"
 author = "liuwei"
 date = "2022-05-17"
 categories = [

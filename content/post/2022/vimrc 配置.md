@@ -1,5 +1,6 @@
 +++
 title = ".vimrc 配置"
+slug = "vimrc-config"
 author = "liuwei"
 date = "2022-10-14"
 tags = [
