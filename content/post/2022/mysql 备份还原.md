@@ -58,6 +58,7 @@ gunzip <  db12.sql.gz | mysql --host=127.0.0.1 --port=3306 --user=root --passwor
 source /path/to/db1_table.sql
 ```
 
+> PS: 用 `--database=数据库名` 来指定数据库 
 
 ## 三、重点选项解析
 

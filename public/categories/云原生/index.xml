@@ -17,5 +17,14 @@
       <description>基础镜像主要是修改源及时区，方便后续基于此镜像构建其他应用镜像； 镜像源推荐中科大的源: https://mirrors.ustc.edu.cn 1. openjdk 官方镜像地址: https://hub.docker.com/_/openjdk 1.1. openjdk-8-jre-slim-buster 修改时区为中国上海； 修改为中</description>
     </item>
     
+    <item>
+      <title>构建 docker 基础镜像</title>
+      <link>https://liuwei.co/post/2022/docker-image-base/</link>
+      <pubDate>Tue, 20 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/docker-image-base/</guid>
+      <description>基础镜像主要是修改源及时区，方便后续基于此镜像构建其他应用镜像； 镜像源推荐中科大的源: https://mirrors.ustc.edu.cn 1. openjdk 官方镜像地址: https://hub.docker.com/_/openjdk 1.1. openjdk-8-jre-slim-buster 修改时区为中国上海； 修改为中</description>
+    </item>
+    
   </channel>
 </rss>

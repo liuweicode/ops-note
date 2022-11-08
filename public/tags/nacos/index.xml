@@ -17,5 +17,14 @@
       <description>1. 下载源码 2.1.1 版本 wget https://github.com/alibaba/nacos/archive/refs/tags/2.1.1.zip 2. 创建数据库 CREATE DATABASE IF NOT EXISTS nacos-dev DEFAULT CHARSET utf8 COLLATE utf8_general_ci; 3. 初始化数据库 source nacos-2.1.1/distribution/conf/nacos-mysql.sql 4. 部署 4.1 修改nacos.yaml 4.2 修改 replicas 这里设置为3，需要与下面的N</description>
     </item>
     
+    <item>
+      <title>在 Kubernetes 上部署 Nacos 集群</title>
+      <link>https://liuwei.co/post/2022/deploy-nacos-cluster-on-kubernetes/</link>
+      <pubDate>Thu, 15 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/deploy-nacos-cluster-on-kubernetes/</guid>
+      <description>1. 下载源码 2.1.1 版本 wget https://github.com/alibaba/nacos/archive/refs/tags/2.1.1.zip 2. 创建数据库 CREATE DATABASE IF NOT EXISTS nacos-dev DEFAULT CHARSET utf8 COLLATE utf8_general_ci; 3. 初始化数据库 source nacos-2.1.1/distribution/conf/nacos-mysql.sql 4. 部署 4.1 修改nacos.yaml 4.2 修改 replicas 这里设置为3，需要与下面的N</description>
+    </item>
+    
   </channel>
 </rss>

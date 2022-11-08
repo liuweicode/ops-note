@@ -7,7 +7,16 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <copyright>&amp;copy;liuwei.co 2009-2022</copyright>
-    <lastBuildDate>Wed, 26 Oct 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 08 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://liuwei.co/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker 中打开php-fpm慢日志报错</title>
+      <link>https://liuwei.co/post/2022/failed-to-ptraceattach-child-10-operation-not-permitted/</link>
+      <pubDate>Tue, 08 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/failed-to-ptraceattach-child-10-operation-not-permitted/</guid>
+      <description>1. 问题 在部署php-fpm的时候打开了慢日志如下： ; PHP文件执行过慢的日志，会准确的记录具体哪一行代码太慢，这个非常有用，在设置了时间时生</description>
+    </item>
+    
     <item>
       <title>MySQL 备份与还原</title>
       <link>https://liuwei.co/post/2022/mysql-backup/</link>
@@ -24,6 +33,24 @@
       
       <guid>https://liuwei.co/post/2022/vimrc-config/</guid>
       <description>Vim (/vɪm/;[5] a contraction of Vi IMproved) is a free and open-source, screen-based text editor program. Vim 是最好的编辑器，没有之一！ 这里用于记录我的.vimrc文件的变更过程； 通用配置 公共配置 &amp;#34;</description>
+    </item>
+    
+    <item>
+      <title>.vimrc 配置</title>
+      <link>https://liuwei.co/post/2022/vimrc/</link>
+      <pubDate>Fri, 14 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/vimrc/</guid>
+      <description>Vim (/vɪm/;[5] a contraction of Vi IMproved) is a free and open-source, screen-based text editor program. Vim 是最好的编辑器，没有之一！ 这里用于记录我的.vimrc文件的变更过程； 通用配置 公共配置 &amp;#34;</description>
+    </item>
+    
+    <item>
+      <title>在 Kubernetes 上部署 Archery DMS</title>
+      <link>https://liuwei.co/post/2022/deploy-archery-dms-on-kubernetes/</link>
+      <pubDate>Thu, 13 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/deploy-archery-dms-on-kubernetes/</guid>
+      <description>Archery 是一个 SQL 审核查询平台； 功能模块包括： 权限管理 工作流 实例管理 SQL审核 SQL查询 SQL优化 消息通知 工具插件 云数据库 部署方式也比较简单，按照官</description>
     </item>
     
     <item>
@@ -45,12 +72,39 @@
     </item>
     
     <item>
+      <title>Chrome 离线安装包下载地址</title>
+      <link>https://liuwei.co/post/2022/chrome-download/</link>
+      <pubDate>Tue, 11 Oct 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/chrome-download/</guid>
+      <description>打开 Chrome 官网会根据当前系统识别提示下载，因为我用的是MacBook，所以会提示我下载适用于macOS的Chrome，但我很多时候会有下载Win</description>
+    </item>
+    
+    <item>
       <title>在 Kubernetes 上部署 Otter</title>
       <link>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</link>
       <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>
       
       <guid>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</guid>
       <description>❗️❗️Otter已在阿里云推出商业化版本，开源版本估计不维护了。因此建议采用源码编译的方式，bug太多了，后期需要自己修复。 1、基于源码编</description>
+    </item>
+    
+    <item>
+      <title>在 Kubernetes 上部署 Otter</title>
+      <link>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</link>
+      <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</guid>
+      <description>❗️❗️Otter已在阿里云推出商业化版本，开源版本估计不维护了。因此建议采用源码编译的方式，bug太多了，后期需要自己修复。 1、基于源码编</description>
+    </item>
+    
+    <item>
+      <title>构建 docker 基础镜像</title>
+      <link>https://liuwei.co/post/2022/docker-image-base/</link>
+      <pubDate>Tue, 20 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/docker-image-base/</guid>
+      <description>基础镜像主要是修改源及时区，方便后续基于此镜像构建其他应用镜像； 镜像源推荐中科大的源: https://mirrors.ustc.edu.cn 1. openjdk 官方镜像地址: https://hub.docker.com/_/openjdk 1.1. openjdk-8-jre-slim-buster 修改时区为中国上海； 修改为中</description>
     </item>
     
     <item>
@@ -72,12 +126,39 @@
     </item>
     
     <item>
+      <title>在 Kubernetes 上部署 ZooKeeper 集群</title>
+      <link>https://liuwei.co/post/2022/deploy-zookeeper-cluster-on-kubernetes/</link>
+      <pubDate>Mon, 19 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/deploy-zookeeper-cluster-on-kubernetes/</guid>
+      <description>Apache ZooKeeper 是一个分布式的开源协调服务，用于分布式系统。 ZooKeeper 允许你读取、写入数据和发现数据更新。 数据按层次结构组织在文件系统中，并复制到 ensembl</description>
+    </item>
+    
+    <item>
       <title>在 Kubernetes 上部署 Nacos 集群</title>
       <link>https://liuwei.co/post/2022/deploy-nacos-cluster-on-kubernetes/</link>
       <pubDate>Thu, 15 Sep 2022 00:00:00 +0000</pubDate>
       
       <guid>https://liuwei.co/post/2022/deploy-nacos-cluster-on-kubernetes/</guid>
       <description>1. 下载源码 2.1.1 版本 wget https://github.com/alibaba/nacos/archive/refs/tags/2.1.1.zip 2. 创建数据库 CREATE DATABASE IF NOT EXISTS nacos-dev DEFAULT CHARSET utf8 COLLATE utf8_general_ci; 3. 初始化数据库 source nacos-2.1.1/distribution/conf/nacos-mysql.sql 4. 部署 4.1 修改nacos.yaml 4.2 修改 replicas 这里设置为3，需要与下面的N</description>
+    </item>
+    
+    <item>
+      <title>在 Kubernetes 上部署 Nacos 集群</title>
+      <link>https://liuwei.co/post/2022/deploy-nacos-cluster-on-kubernetes/</link>
+      <pubDate>Thu, 15 Sep 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/deploy-nacos-cluster-on-kubernetes/</guid>
+      <description>1. 下载源码 2.1.1 版本 wget https://github.com/alibaba/nacos/archive/refs/tags/2.1.1.zip 2. 创建数据库 CREATE DATABASE IF NOT EXISTS nacos-dev DEFAULT CHARSET utf8 COLLATE utf8_general_ci; 3. 初始化数据库 source nacos-2.1.1/distribution/conf/nacos-mysql.sql 4. 部署 4.1 修改nacos.yaml 4.2 修改 replicas 这里设置为3，需要与下面的N</description>
+    </item>
+    
+    <item>
+      <title>redis 删除大量 key</title>
+      <link>https://liuwei.co/post/2022/delete-keys-in-redis/</link>
+      <pubDate>Mon, 15 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/delete-keys-in-redis/</guid>
+      <description>禁止使用 FLUSHDB !!! 禁止使用 FLUSHDB !!! 禁止使用 FLUSHDB !!! 重要的事情说3遍，我们有同事在生产环境直接FLUSHDB，直接导致redis挂了。 1. 删除命令 redis-cli -h localhost -p 6379 -a</description>
     </item>
     
     <item>
@@ -99,6 +180,24 @@
     </item>
     
     <item>
+      <title>nginx 代理转发至 IstioGateway 报错 426 Upgrade Required</title>
+      <link>https://liuwei.co/post/2022/nginx-proxy_pass-to-istiogateway-with-426-upgrade-required-error/</link>
+      <pubDate>Thu, 26 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/nginx-proxy_pass-to-istiogateway-with-426-upgrade-required-error/</guid>
+      <description>1. 问题产生背景 由于需要沿用之前的域名，但是之前的域名是解析到ECS绑定的弹性IP上的，所以只好在ECS的nginx上做一层转发: location ^~ /abc/v4/ { proxy_pass http://internal.domain/v4/;</description>
+    </item>
+    
+    <item>
+      <title>Istio 网关统一响应格式</title>
+      <link>https://liuwei.co/post/2022/rewrite-response-429/</link>
+      <pubDate>Wed, 18 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/rewrite-response-429/</guid>
+      <description>1. 问题背景 目前我们的接口返回的统一格式为： http response status 响应码永远是 200 http response body 响应体格式为：{&amp;quot;code&amp;quot;:响应码,&amp;quot;m</description>
+    </item>
+    
+    <item>
       <title>Istio 网关统一响应格式</title>
       <link>https://liuwei.co/post/2022/rewrite-response-429/</link>
       <pubDate>Wed, 18 May 2022 00:00:00 +0000</pubDate>
@@ -114,6 +213,24 @@
       
       <guid>https://liuwei.co/post/2022/make-httpcall-in-envoyfilter/</guid>
       <description>目前有一个需求是在网关中对请求的参数进行解密，将解密后的原始数据放在请求头中，再转发给后端业务服务。 这样做的好处在于： 方便业务服务直接获取解</description>
+    </item>
+    
+    <item>
+      <title>EnvoyFilter 中发送 http 请求</title>
+      <link>https://liuwei.co/post/2022/make-httpcall-in-envoyfilter/</link>
+      <pubDate>Tue, 17 May 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/make-httpcall-in-envoyfilter/</guid>
+      <description>目前有一个需求是在网关中对请求的参数进行解密，将解密后的原始数据放在请求头中，再转发给后端业务服务。 这样做的好处在于： 方便业务服务直接获取解</description>
+    </item>
+    
+    <item>
+      <title>EnvoyFilter 在访问日志中打印 HTTP body</title>
+      <link>https://liuwei.co/post/2022/print-req-resp-body-in-envoyfilter/</link>
+      <pubDate>Mon, 11 Apr 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://liuwei.co/post/2022/print-req-resp-body-in-envoyfilter/</guid>
+      <description>1. 问题背景 最近有一个全局打印请求参数和响应内容的需求，于是添加了一个Envoy过滤器，在调试EnvoyFilter的时候，打印出来的 response body 始终</description>
     </item>
     
     <item>

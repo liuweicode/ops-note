@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      
+  docker 中打开php-fpm慢日志报错 &ndash; 运维笔记
+
+    </title>
+    
+    
+    <meta name="description" property="og:description" content="1. 问题 在部署php-fpm的时候打开了慢日志如下： ; PHP文件执行过慢的日志，会准确的记录具体哪一行代码太慢，这个非常有用，在设置了时间时生|liuwei code">
+    
+
+    <meta name="apple-mobile-web-app-title" content="运维笔记">
+    
+    
+    <link rel="icon" href="https://liuwei.cofavicon-64.png">
+    <link rel="apple-touch-icon" href="https://liuwei.coapple-touch-icon.png">
+    <link rel="mask-icon" size="any" href="https://liuwei.copinned-icon.svg">
+    
+    
+    
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@">
+    <meta name="twitter:creator" content="@">
+    <meta name="twitter:title" content="docker 中打开php-fpm慢日志报错 | 运维笔记">
+    <meta name="twitter:description" content="1. 问题 在部署php-fpm的时候打开了慢日志如下： ; PHP文件执行过慢的日志，会准确的记录具体哪一行代码太慢，这个非常有用，在设置了时间时生|liuwei code">
+    <meta name="twitter:image" content="https://liuwei.cotwitter-card.png">
+    
+
+
+    <link rel="stylesheet" href="/assets/syntax.css">
+    <link rel="stylesheet" href="/assets/primer-build.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/custom_style.css">
+  </head>
+
+
+  <body class="bg-gray">
+    <div id="holy" class="container-lg bg-white h-100">
+
+      <div id="header" class="px-1 bg-white">
+        <nav class="UnderlineNav UnderlineNav--right px-2">
+  <a class="UnderlineNav-actions muted-link h2" href="https://liuwei.co/post">
+    运维笔记
+  </a>
+
+  
+  
+  <div class="UnderlineNav-body">
+    
+    
+    
+    <a class="UnderlineNav-item" href="/post/">
+      
+      <span>Blog</span>
+    </a>
+    
+    
+    
+    
+    <a class="UnderlineNav-item" href="/">
+      
+      <span>Info</span>
+    </a>
+    
+    
+  </div>
+  
+</nav>
+
+      </div>
+
+      <div role="main" id="main" class="holy-main markdown-body px-4 bg-white">
+        
+
+<div class="Subhead">
+  <div class="Subhead-heading">
+    <div class="h1 mt-3 mb-1">docker 中打开php-fpm慢日志报错</div>
+  </div>
+  <div class="Subhead-description">
+    
+
+
+<a href='/categories/php' class="muted-link">
+  <span class="Label Label--gray-darker">php</span>
+</a>
+
+
+
+<a href='/tags/php-fpm' class="muted-link">
+  <span class="Label Label--gray">php-fpm</span>
+</a>
+
+<a href='/tags/docker' class="muted-link">
+  <span class="Label Label--gray">docker</span>
+</a>
+
+
+
+    
+    <div class="float-md-right">
+      <span title="Lastmod: 2022-11-08. Published at: 2022-11-08.">
+        
+          Published: 2022-11-08
+        
+      </span>
+    </div>
+    
+  </div>
+</div>
+<article>
+  
+  <section class="pb-6 mb-3 border-bottom">
+    <h2 id="1-问题">1. 问题</h2>
+<p>在部署php-fpm的时候打开了慢日志如下：</p>
+<pre tabindex="0"><code>; PHP文件执行过慢的日志，会准确的记录具体哪一行代码太慢，这个非常有用，在设置了时间时生效。
+slowlog = /var/log/php-fpm/fpm-php.$pool.slow.log
+
+; 超过这个运行时间就会写慢日志
+request_slowlog_timeout = 2s
+</code></pre><p>运行时报错如下：</p>
+<p>ERROR: failed to ptrace(ATTACH) child 10: Operation not permitted (1)</p>
+<p><img src="https://static.liuwei.co/202211/1667885030.png" alt="error"></p>
+<h2 id="2-解决方案">2. 解决方案</h2>
+<pre tabindex="0"><code>securityContext:
+  capabilities:
+	add:
+	- SYS_PTRACE
+</code></pre><p><img src="https://static.liuwei.co/202211/1667887694.png" alt="sloved"></p>
+<p><img src="https://static.liuwei.co/202211/1667887729.png" alt="sloved2"></p>
+<p><img src="https://static.liuwei.co/202211/1667887760.png" alt="sloved3"></p>
+<h2 id="3-相关链接">3. 相关链接</h2>
+<ul>
+<li><a href="https://unofficial-kubernetes.readthedocs.io/en/latest/concepts/policy/container-capabilities/">https://unofficial-kubernetes.readthedocs.io/en/latest/concepts/policy/container-capabilities/</a></li>
+</ul>
+
+  </section>
+
+  <section>
+    
+      
+    
+  </section>
+</article>
+
+      </div>
+
+      <div id="side" class="pr-1 bg-white">
+        <aside class="pr-3">
+          
+  
+    <div id="toc" class="Box Box--blue mb-3">
+      <b>docker 中打开php-fpm慢日志报错</b><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-问题">1. 问题</a></li>
+    <li><a href="#2-解决方案">2. 解决方案</a></li>
+    <li><a href="#3-相关链接">3. 相关链接</a></li>
+  </ul>
+</nav></div>
+  
+
+  
+    <div>
+      
+    </div>
+  
+
+        </aside>
+      </div>
+
+      <div id="footer" class="pt-2 pb-3 bg-white text-center">
+        
+
+  <span class="text-small text-gray">
+    ©liuwei.co 2009-2022 &middot; 
+
+    Powered by the
+    <a href="https://github.com/qqhann/hugo-primer" class="link-gray-dark">Hugo-Primer</a> theme for
+    <a href="https://gohugo.io" class="link-gray-dark">Hugo</a>.
+  </span>
+
+
+      </div>
+    </div>
+
+    
+  </body>
+</html>

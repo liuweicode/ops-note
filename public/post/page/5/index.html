@@ -89,34 +89,30 @@
 <div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
   <div class="Subhead mb-2">
     <div class="Subhead-heading">
-      <a href="/post/2010/ubuntu-apache2%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/">
-        <div class="h2 mt-1 mb-1">ubuntu apache2编译安装</div>
+      <a href="/post/2013/%E5%88%B6%E4%BD%9Cgif%E5%8A%A8%E7%94%BB/">
+        <div class="h2 mt-1 mb-1">制作Gif动画</div>
       </a>
     </div>
     <div class="Subhead-description">
       
 
 
-<a href='/categories/ubuntu' class="muted-link">
-  <span class="Label Label--gray-darker">Ubuntu</span>
-</a>
-
-<a href='/categories/server' class="muted-link">
-  <span class="Label Label--gray-darker">Server</span>
+<a href='/categories/tool' class="muted-link">
+  <span class="Label Label--gray-darker">Tool</span>
 </a>
 
 
 
 
       <div class="float-md-right">
-        <span>2010-05-10</span>
+        <span>2013-02-01</span>
       </div>
     </div>
   </div>
   <div class="text-gray">
     
-    下载源码包: http://httpd.apache.org/download.cgi#apache22 （我下载的是httpd-2.2.15.tar.gz） 解压: tar -zxvf httpd-2.2.15.tar.gz （ -z, –gzip, –gunzip, –ungzip 通过 gzip 过滤归档 -x,
-    <a class="muted-link" href="/post/2010/ubuntu-apache2%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/">…</a>
+    1,首先使用ffmpeg将视频转换成帧图片 liuwei@IT:~/make gif$ ls temp 人再囧途之泰囧BD.rmvb liuwei@IT:~/make gif$ ffmpeg -i 人再囧途之泰囧BD.rmvb -r 1 -f image2 temp/%05d.png liuwei@IT:~/make gif$ cd temp/ liuwei@IT:~/make gif/temp$ ls 00001.png
+    <a class="muted-link" href="/post/2013/%E5%88%B6%E4%BD%9Cgif%E5%8A%A8%E7%94%BB/">…</a>
   </div>
 </div>
 
@@ -126,8 +122,259 @@
 <div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
   <div class="Subhead mb-2">
     <div class="Subhead-heading">
-      <a href="/post/2010/ubuntu-%E5%AE%89%E8%A3%85dict-xdict%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
-        <div class="h2 mt-1 mb-1">ubuntu 安装dict-xdict出现错误的解决办法</div>
+      <a href="/post/2012/android-%E9%9F%B3%E9%87%8F%E9%94%AE%E5%94%A4%E9%86%92%E5%B1%8F%E5%B9%95/">
+        <div class="h2 mt-1 mb-1">Android 音量键唤醒屏幕</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/android' class="muted-link">
+  <span class="Label Label--gray-darker">Android</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-12-14</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    liuwei@IT:~$ adb shell / # cd /system/usr/keylayout /system/usr/keylayout # ls AVRCP.kl Generic.kl Vendor_045e_Product_028e.kl Vendor_046d_Product_c216.kl Vendor_046d_Product_c294.kl Vendor_046d_Product_c299.kl Vendor_046d_Product_c532.kl Vendor_054c_Product_0268.kl Vendor_05ac_Product_0239.kl Vendor_22b8_Product_093d.kl gpio-keys.kl qwerty.kl s3c-keypad.kl /system/usr/keylayout # vi s3c-keypad.kl 修改相应的映射的值就好了。 key 42 VOLUME_UP WAKE key 58 VOLUME_DOWN WAKE 参考： http://xiaoxia.de/2011/06/change-key-layout-on-android/ http://source.android.com/tech/input/key-layout-files.html
+    <a class="muted-link" href="/post/2012/android-%E9%9F%B3%E9%87%8F%E9%94%AE%E5%94%A4%E9%86%92%E5%B1%8F%E5%B9%95/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/post/2012/%E5%85%B3%E4%BA%8E%E5%8F%8B%E5%96%84%E4%B9%8B%E8%87%82-tiny6410%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BDlibfriendlyarm-hardware.so%E7%9A%84%E9%97%AE%E9%A2%98/">
+        <div class="h2 mt-1 mb-1">关于友善之臂 Tiny6410无法加载libfriendlyarm-hardware.so的问题</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/java' class="muted-link">
+  <span class="Label Label--gray-darker">Java</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-12-05</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    adb logcat 信息日志如下： D/dalvikvm( 4534): No JNI_OnLoad found in /system/lib/libfriendlyarm-hardware.so 0x40712ca8, skipping init 日志信息提示在/system/lib下找不到libfriendlyarm-hardware.so文件，
+    <a class="muted-link" href="/post/2012/%E5%85%B3%E4%BA%8E%E5%8F%8B%E5%96%84%E4%B9%8B%E8%87%82-tiny6410%E6%97%A0%E6%B3%95%E5%8A%A0%E8%BD%BDlibfriendlyarm-hardware.so%E7%9A%84%E9%97%AE%E9%A2%98/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/post/2012/ubuntu-%E9%80%9A%E8%BF%87ipv4%E8%BD%ACipv6%E4%B8%8A%E7%BD%91/">
+        <div class="h2 mt-1 mb-1">Ubuntu 通过ipv4转ipv6上网</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/ubuntu' class="muted-link">
+  <span class="Label Label--gray-darker">Ubuntu</span>
+</a>
+
+<a href='/categories/ipv4' class="muted-link">
+  <span class="Label Label--gray-darker">ipv4</span>
+</a>
+
+<a href='/categories/ipv6' class="muted-link">
+  <span class="Label Label--gray-darker">ipv6</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-12-04</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    sudo apt-get install miredo sudo gedit /etc/hosts 将如下网址的内容粘贴进去： https://ipv6-hosts.googlecode.com/hg/hosts sudo gedit /etc/default/ufw 修改：IPV6=yes 重启防火墙 sudo ufw disable sudo ufw enable 参考：https://wiki.ubuntu.c
+    <a class="muted-link" href="/post/2012/ubuntu-%E9%80%9A%E8%BF%87ipv4%E8%BD%ACipv6%E4%B8%8A%E7%BD%91/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/post/2012/centos-ntfs-3g-%E6%8C%82%E8%BD%BDntfs%E7%A7%BB%E5%8A%A8%E7%9B%98/">
+        <div class="h2 mt-1 mb-1">Centos ntfs-3g 挂载ntfs移动盘</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/centos' class="muted-link">
+  <span class="Label Label--gray-darker">Centos</span>
+</a>
+
+<a href='/categories/virtualbox' class="muted-link">
+  <span class="Label Label--gray-darker">VirtualBox</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-12-02</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    首先到官网下载源码包 http://www.tuxera.com/community/ntfs-3g-download/ tar -zxvf ntfs-3g_ntfsprogs-2012.1.15.tgz cd ntfs-3g_ntfsprogs-2012.1.15 ./configure 提示如下： [wei@liuwei ntfs-3g_ntfsprogs-2012.1.15]$ ./configure checking build system type... i686-pc-linux-gnu checking host system type... i686-pc-linux-gnu checking target system type... i686-pc-linux-gnu checking for a BSD-compatible install... /usr/bin/install -c checking whether build environment is sane... yes checking for a thread-safe mkdir -p... /bin/mkdir -p checking for gawk... gawk checking whether make sets
+    <a class="muted-link" href="/post/2012/centos-ntfs-3g-%E6%8C%82%E8%BD%BDntfs%E7%A7%BB%E5%8A%A8%E7%9B%98/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/post/2012/centos6.3-%E5%AE%89%E8%A3%85virtualbox/">
+        <div class="h2 mt-1 mb-1">Centos6.3 安装VirtualBox</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/centos' class="muted-link">
+  <span class="Label Label--gray-darker">Centos</span>
+</a>
+
+<a href='/categories/virtualbox' class="muted-link">
+  <span class="Label Label--gray-darker">VirtualBox</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-12-02</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    查看系统信息： [wei@liuwei ~]$ uname -a Linux liuwei.co 2.6.32-279.14.1.el6.i686 #1 SMP Tue Nov 6 21:05:14 UTC 2012 i686 i686 i386 GNU/Linux 从官网（https://www.virtualbox.org/wiki/Linux_Do
+    <a class="muted-link" href="/post/2012/centos6.3-%E5%AE%89%E8%A3%85virtualbox/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/post/2012/android-device-chooser-unknown/">
+        <div class="h2 mt-1 mb-1">Android device chooser unknown</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/android' class="muted-link">
+  <span class="Label Label--gray-darker">Android</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-11-15</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    当我用真机USB连接电脑时，出现如下图错误，Eclipse无法识别。 解决办法参照：http://developer.android.com/
+    <a class="muted-link" href="/post/2012/android-device-chooser-unknown/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/post/2012/cannot-create-a-server-using-the-selected-type-%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
+        <div class="h2 mt-1 mb-1">Cannot create a server using the selected type 解决办法</div>
+      </a>
+    </div>
+    <div class="Subhead-description">
+      
+
+
+<a href='/categories/eclipse' class="muted-link">
+  <span class="Label Label--gray-darker">Eclipse</span>
+</a>
+
+<a href='/categories/java' class="muted-link">
+  <span class="Label Label--gray-darker">Java</span>
+</a>
+
+
+
+
+      <div class="float-md-right">
+        <span>2012-06-04</span>
+      </div>
+    </div>
+  </div>
+  <div class="text-gray">
+    
+    Eclipse 新建Tomcat Server出现“Cannot create a server using the selected type”。 1,查看Eclipse绑定的Tomcat installation directory写的是不
+    <a class="muted-link" href="/post/2012/cannot-create-a-server-using-the-selected-type-%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">…</a>
+  </div>
+</div>
+
+  
+    
+    
+<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
+  <div class="Subhead mb-2">
+    <div class="Subhead-heading">
+      <a href="/post/2012/ubuntu12.04-gedit-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">
+        <div class="h2 mt-1 mb-1">ubuntu12.04 gedit 中文乱码</div>
       </a>
     </div>
     <div class="Subhead-description">
@@ -142,14 +389,14 @@
 
 
       <div class="float-md-right">
-        <span>2010-05-06</span>
+        <span>2012-06-04</span>
       </div>
     </div>
   </div>
   <div class="text-gray">
     
-    我在安装dict-xdict出现了以下错误： liuwei@IT-liuwei:~$ sudo aptitude install dict-xdict [sudo] password for liuwei: 正在读取软件包列表… 完成 正在分析软件包的依赖关系树 正在读取状态信息… 完成 正在读
-    <a class="muted-link" href="/post/2010/ubuntu-%E5%AE%89%E8%A3%85dict-xdict%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">…</a>
+    终端输入： gsettings set org.gnome.gedit.preferences.encodings auto-detected “[&#39;UTF-8&#39;,&#39;GB18030&#39;,&#39;GB2312&#39;,&#39;GBK
+    <a class="muted-link" href="/post/2012/ubuntu12.04-gedit-%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/">…</a>
   </div>
 </div>
 
@@ -159,16 +406,16 @@
 <div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
   <div class="Subhead mb-2">
     <div class="Subhead-heading">
-      <a href="/post/2010/ubuntu10.04%E4%B8%8Bmysql%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/">
-        <div class="h2 mt-1 mb-1">ubuntu10.04下mysql编译安装</div>
+      <a href="/post/2012/oracle-ora-01653-%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">
+        <div class="h2 mt-1 mb-1">Oracle ORA-01653 错误解决办法</div>
       </a>
     </div>
     <div class="Subhead-description">
       
 
 
-<a href='/categories/ubuntu' class="muted-link">
-  <span class="Label Label--gray-darker">Ubuntu</span>
+<a href='/categories/oracle' class="muted-link">
+  <span class="Label Label--gray-darker">Oracle</span>
 </a>
 
 <a href='/categories/%E6%95%B0%E6%8D%AE%E5%BA%93' class="muted-link">
@@ -179,179 +426,14 @@
 
 
       <div class="float-md-right">
-        <span>2010-05-06</span>
+        <span>2012-06-01</span>
       </div>
     </div>
   </div>
   <div class="text-gray">
     
-    首先下 载mysql源码，我下载得是mysql5.0.90版本。 解压： tar -xzvf mysql-5.0.90.tar.gz 进入目录： cd mysql-5.0.90 收集相关信息，生成makefile： ./configure –prefix
-    <a class="muted-link" href="/post/2010/ubuntu10.04%E4%B8%8Bmysql%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/">…</a>
-  </div>
-</div>
-
-  
-    
-    
-<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
-  <div class="Subhead mb-2">
-    <div class="Subhead-heading">
-      <a href="/post/2010/zend-framework-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/">
-        <div class="h2 mt-1 mb-1">Zend Framework 数据库连接</div>
-      </a>
-    </div>
-    <div class="Subhead-description">
-      
-
-
-<a href='/categories/ubuntu' class="muted-link">
-  <span class="Label Label--gray-darker">Ubuntu</span>
-</a>
-
-
-
-
-      <div class="float-md-right">
-        <span>2010-05-02</span>
-      </div>
-    </div>
-  </div>
-  <div class="text-gray">
-    
-    Zend_Db_Adapter是zendfrmaeword的数据库抽象层api. 基于pdo, 你可以使用 Zend_Db_Adapter 连接和处理多种 数据库,包括:micr
-    <a class="muted-link" href="/post/2010/zend-framework-%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5/">…</a>
-  </div>
-</div>
-
-  
-    
-    
-<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
-  <div class="Subhead mb-2">
-    <div class="Subhead-heading">
-      <a href="/post/2010/zend-framework-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/">
-        <div class="h2 mt-1 mb-1">Zend Framework 环境搭建与配置</div>
-      </a>
-    </div>
-    <div class="Subhead-description">
-      
-
-
-<a href='/categories/php' class="muted-link">
-  <span class="Label Label--gray-darker">PHP</span>
-</a>
-
-
-
-
-      <div class="float-md-right">
-        <span>2010-04-30</span>
-      </div>
-    </div>
-  </div>
-  <div class="text-gray">
-    
-    1：首先下载Zend Framework:下载地址：http://www.zendframework.com/download/latest 2
-    <a class="muted-link" href="/post/2010/zend-framework-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%B8%8E%E9%85%8D%E7%BD%AE/">…</a>
-  </div>
-</div>
-
-  
-    
-    
-<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
-  <div class="Subhead mb-2">
-    <div class="Subhead-heading">
-      <a href="/post/2010/%E5%88%B6%E4%BD%9Cinstall.php/">
-        <div class="h2 mt-1 mb-1">制作install.php</div>
-      </a>
-    </div>
-    <div class="Subhead-description">
-      
-
-
-<a href='/categories/php' class="muted-link">
-  <span class="Label Label--gray-darker">PHP</span>
-</a>
-
-
-
-
-      <div class="float-md-right">
-        <span>2010-04-24</span>
-      </div>
-    </div>
-  </div>
-  <div class="text-gray">
-    
-    很多开源程序如Uchome，Dz，phpwind，thinkSNS等，他们在进行安装的时候都要求执行install.php进行安装，其实执行
-    <a class="muted-link" href="/post/2010/%E5%88%B6%E4%BD%9Cinstall.php/">…</a>
-  </div>
-</div>
-
-  
-    
-    
-<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
-  <div class="Subhead mb-2">
-    <div class="Subhead-heading">
-      <a href="/post/2009/%E7%94%A8poi%E5%B0%86excel%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93java-tools.jar%E5%8A%A8%E6%80%81%E7%B1%BB%E7%9A%84%E7%94%9F%E6%88%90/">
-        <div class="h2 mt-1 mb-1">用poi将Excel数据导入数据库/java tools.jar动态类的生成</div>
-      </a>
-    </div>
-    <div class="Subhead-description">
-      
-
-
-<a href='/categories/java' class="muted-link">
-  <span class="Label Label--gray-darker">Java</span>
-</a>
-
-
-
-
-      <div class="float-md-right">
-        <span>2009-12-28</span>
-      </div>
-    </div>
-  </div>
-  <div class="text-gray">
-    
-    由于公司对于Excel的导入导出用的比较多，因此这两天想写一个导入导出的小程序，方便以后使用，对于Excel的操作，本人使用的是poi，po
-    <a class="muted-link" href="/post/2009/%E7%94%A8poi%E5%B0%86excel%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%85%A5%E6%95%B0%E6%8D%AE%E5%BA%93java-tools.jar%E5%8A%A8%E6%80%81%E7%B1%BB%E7%9A%84%E7%94%9F%E6%88%90/">…</a>
-  </div>
-</div>
-
-  
-    
-    
-<div class="rounded-2 box-shadow-medium px-3 pb-2 pt-2 mb-3">
-  <div class="Subhead mb-2">
-    <div class="Subhead-heading">
-      <a href="/post/2009/%E8%BD%AC%E5%8F%91forward%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91redirect%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E6%80%BB%E7%BB%93/">
-        <div class="h2 mt-1 mb-1">转发(Forward)和重定向(Redirect)的区别与总结</div>
-      </a>
-    </div>
-    <div class="Subhead-description">
-      
-
-
-<a href='/categories/java' class="muted-link">
-  <span class="Label Label--gray-darker">Java</span>
-</a>
-
-
-
-
-      <div class="float-md-right">
-        <span>2009-10-04</span>
-      </div>
-    </div>
-  </div>
-  <div class="text-gray">
-    
-    request.getRequestDispatcher(&#34;路径&#34;).forward(request,response); 该
-    <a class="muted-link" href="/post/2009/%E8%BD%AC%E5%8F%91forward%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91redirect%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%8E%E6%80%BB%E7%BB%93/">…</a>
+    今天执行update语句报ORA-01653错误。信息提示需要拓展表空间。 SELECT UPPER(F.TABLESPACE_NAME) &#34;表空间名&#34;, D.TOT_GROOTTE_MB &#34;表空间大小(M)&#
+    <a class="muted-link" href="/post/2012/oracle-ora-01653-%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/">…</a>
   </div>
 </div>
 
@@ -437,9 +519,37 @@
             
           
       
+          
+          
+          
+          
+              
+              
+          
+          
+            
+              
+              <a href="/post/page/6/">6</a>
+            
+          
+      
+          
+          
+          
+          
+              
+              
+          
+          
+            
+              
+              <a href="/post/page/7/">7</a>
+            
+          
+      
 
       
-      <span class="next_page disabled">Next</span>
+      <a href="/post/page/6/" class="next_page">Next</a>
       
     </ul>
   </div>
@@ -465,62 +575,67 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/archery" class="link-gray text-emphasized css-truncate-target"><span class="">Archery</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/canal" class="link-gray text-emphasized css-truncate-target"><span class="">Canal</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/docker" class="link-gray text-emphasized css-truncate-target"><span class="">Docker</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">3</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/envoy" class="link-gray text-emphasized css-truncate-target"><span class="">Envoy</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/envoyfilter" class="link-gray text-emphasized css-truncate-target"><span class="">Envoyfilter</span></a>
-      <span class="text-right Counter">3</span>
+      <span class="text-right Counter">6</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/ide" class="link-gray text-emphasized css-truncate-target"><span class="">Ide</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/kubernetes" class="link-gray text-emphasized css-truncate-target"><span class="">Kubernetes</span></a>
-      <span class="text-right Counter">5</span>
+      <span class="text-right Counter">10</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/lua" class="link-gray text-emphasized css-truncate-target"><span class="">Lua</span></a>
-      <span class="text-right Counter">3</span>
+      <span class="text-right Counter">6</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/nacos" class="link-gray text-emphasized css-truncate-target"><span class="">Nacos</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/nginx" class="link-gray text-emphasized css-truncate-target"><span class="">Nginx</span></a>
+      <span class="text-right Counter">2</span>
+    </span>
+    
+    <span class="css-truncate no-wrap m-1 pl-1">
+      <a href="/tags/php-fpm" class="link-gray text-emphasized css-truncate-target"><span class="">Php fpm</span></a>
       <span class="text-right Counter">1</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/sql%e5%ae%a1%e6%a0%b8%e5%b9%b3%e5%8f%b0" class="link-gray text-emphasized css-truncate-target"><span class="">Sql审核平台</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/zookeeper" class="link-gray text-emphasized css-truncate-target"><span class="">Zookeeper</span></a>
-      <span class="text-right Counter">2</span>
+      <span class="text-right Counter">4</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -535,7 +650,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/tags/%e7%bc%96%e8%be%91%e5%99%a8" class="link-gray text-emphasized css-truncate-target"><span class="">编辑器</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
   </div>
@@ -555,7 +670,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/asm" class="link-gray text-emphasized css-truncate-target"><span class="">Asm</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -565,7 +680,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/chrome" class="link-gray text-emphasized css-truncate-target"><span class="">Chrome</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -575,7 +690,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/envoy" class="link-gray text-emphasized css-truncate-target"><span class="">Envoy</span></a>
-      <span class="text-right Counter">3</span>
+      <span class="text-right Counter">6</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -610,7 +725,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/istio" class="link-gray text-emphasized css-truncate-target"><span class="">Istio</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -625,7 +740,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/k8s" class="link-gray text-emphasized css-truncate-target"><span class="">K8s</span></a>
-      <span class="text-right Counter">4</span>
+      <span class="text-right Counter">8</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -645,7 +760,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/php" class="link-gray text-emphasized css-truncate-target"><span class="">Php</span></a>
-      <span class="text-right Counter">3</span>
+      <span class="text-right Counter">4</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -655,7 +770,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/redis" class="link-gray text-emphasized css-truncate-target"><span class="">Redis</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -685,7 +800,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/syntax" class="link-gray text-emphasized css-truncate-target"><span class="">Syntax</span></a>
-      <span class="text-right Counter">2</span>
+      <span class="text-right Counter">4</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -720,7 +835,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/vim" class="link-gray text-emphasized css-truncate-target"><span class="">Vim</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -750,7 +865,7 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/%e4%ba%91%e5%8e%9f%e7%94%9f" class="link-gray text-emphasized css-truncate-target"><span class="">云原生</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
@@ -775,12 +890,12 @@
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/%e6%9c%8d%e5%8a%a1%e7%bd%91%e6%a0%bc" class="link-gray text-emphasized css-truncate-target"><span class="">服务网格</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
     <span class="css-truncate no-wrap m-1 pl-1">
       <a href="/categories/%e9%98%bf%e9%87%8c%e4%ba%91" class="link-gray text-emphasized css-truncate-target"><span class="">阿里云</span></a>
-      <span class="text-right Counter">1</span>
+      <span class="text-right Counter">2</span>
     </span>
     
   </div>
