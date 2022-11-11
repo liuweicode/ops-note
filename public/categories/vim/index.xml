@@ -17,14 +17,5 @@
       <description>Vim (/vɪm/;[5] a contraction of Vi IMproved) is a free and open-source, screen-based text editor program. Vim 是最好的编辑器，没有之一！ 这里用于记录我的.vimrc文件的变更过程； 通用配置 公共配置 &amp;#34;</description>
     </item>
     
-    <item>
-      <title>.vimrc 配置</title>
-      <link>https://liuwei.co/post/2022/vimrc/</link>
-      <pubDate>Fri, 14 Oct 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://liuwei.co/post/2022/vimrc/</guid>
-      <description>Vim (/vɪm/;[5] a contraction of Vi IMproved) is a free and open-source, screen-based text editor program. Vim 是最好的编辑器，没有之一！ 这里用于记录我的.vimrc文件的变更过程； 通用配置 公共配置 &amp;#34;</description>
-    </item>
-    
   </channel>
 </rss>

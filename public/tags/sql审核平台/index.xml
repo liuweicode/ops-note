@@ -17,14 +17,5 @@
       <description>Archery 是一个 SQL 审核查询平台； 功能模块包括： 权限管理 工作流 实例管理 SQL审核 SQL查询 SQL优化 消息通知 工具插件 云数据库 部署方式也比较简单，按照官</description>
     </item>
     
-    <item>
-      <title>在 Kubernetes 上部署 Archery DMS</title>
-      <link>https://liuwei.co/post/2022/deploy-archery-dms-on-kubernetes/</link>
-      <pubDate>Thu, 13 Oct 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://liuwei.co/post/2022/deploy-archery-dms-on-kubernetes/</guid>
-      <description>Archery 是一个 SQL 审核查询平台； 功能模块包括： 权限管理 工作流 实例管理 SQL审核 SQL查询 SQL优化 消息通知 工具插件 云数据库 部署方式也比较简单，按照官</description>
-    </item>
-    
   </channel>
 </rss>

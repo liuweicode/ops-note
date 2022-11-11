@@ -17,14 +17,5 @@
       <description>❗️❗️Otter已在阿里云推出商业化版本，开源版本估计不维护了。因此建议采用源码编译的方式，bug太多了，后期需要自己修复。 1、基于源码编</description>
     </item>
     
-    <item>
-      <title>在 Kubernetes 上部署 Otter</title>
-      <link>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</link>
-      <pubDate>Wed, 21 Sep 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</guid>
-      <description>❗️❗️Otter已在阿里云推出商业化版本，开源版本估计不维护了。因此建议采用源码编译的方式，bug太多了，后期需要自己修复。 1、基于源码编</description>
-    </item>
-    
   </channel>
 </rss>

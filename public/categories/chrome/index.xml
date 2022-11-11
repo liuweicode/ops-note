@@ -17,14 +17,5 @@
       <description>打开 Chrome 官网会根据当前系统识别提示下载，因为我用的是MacBook，所以会提示我下载适用于macOS的Chrome，但我很多时候会有下载Win</description>
     </item>
     
-    <item>
-      <title>Chrome 离线安装包下载地址</title>
-      <link>https://liuwei.co/post/2022/chrome-download/</link>
-      <pubDate>Tue, 11 Oct 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://liuwei.co/post/2022/chrome-download/</guid>
-      <description>打开 Chrome 官网会根据当前系统识别提示下载，因为我用的是MacBook，所以会提示我下载适用于macOS的Chrome，但我很多时候会有下载Win</description>
-    </item>
-    
   </channel>
 </rss>

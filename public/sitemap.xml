@@ -41,9 +41,6 @@
     <loc>https://liuwei.co/post/2022/vimrc-config/</loc>
     <lastmod>2022-10-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://liuwei.co/post/2022/vimrc/</loc>
-    <lastmod>2022-10-14T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://liuwei.co/tags/ide/</loc>
     <lastmod>2022-10-14T00:00:00+00:00</lastmod>
   </url><url>
@@ -68,13 +65,7 @@
     <loc>https://liuwei.co/post/2022/deploy-archery-dms-on-kubernetes/</loc>
     <lastmod>2022-10-13T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://liuwei.co/post/2022/deploy-archery-dms-on-kubernetes/</loc>
-    <lastmod>2022-10-13T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://liuwei.co/categories/chrome/</loc>
-    <lastmod>2022-10-11T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://liuwei.co/post/2022/chrome-download/</loc>
     <lastmod>2022-10-11T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://liuwei.co/post/2022/chrome-download/</loc>
@@ -92,20 +83,11 @@
     <loc>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</loc>
     <lastmod>2022-09-21T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://liuwei.co/post/2022/deploy-otter-on-kubernetes/</loc>
-    <lastmod>2022-09-21T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://liuwei.co/post/2022/docker-image-base/</loc>
-    <lastmod>2022-09-20T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://liuwei.co/post/2022/docker-image-base/</loc>
     <lastmod>2022-09-20T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://liuwei.co/categories/%E4%BA%91%E5%8E%9F%E7%94%9F/</loc>
     <lastmod>2022-09-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://liuwei.co/post/2022/deploy-zookeeper-cluster-on-kubernetes/</loc>
-    <lastmod>2022-09-19T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://liuwei.co/post/2022/deploy-zookeeper-cluster-on-kubernetes/</loc>
     <lastmod>2022-09-19T00:00:00+00:00</lastmod>
@@ -116,13 +98,7 @@
     <loc>https://liuwei.co/post/2022/deploy-nacos-cluster-on-kubernetes/</loc>
     <lastmod>2022-09-15T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://liuwei.co/post/2022/deploy-nacos-cluster-on-kubernetes/</loc>
-    <lastmod>2022-09-15T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://liuwei.co/categories/redis/</loc>
-    <lastmod>2022-08-15T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://liuwei.co/post/2022/delete-keys-in-redis/</loc>
     <lastmod>2022-08-15T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://liuwei.co/post/2022/delete-keys-in-redis/</loc>
@@ -143,9 +119,6 @@
     <loc>https://liuwei.co/post/2022/nginx-proxy_pass-to-istiogateway-with-426-upgrade-required-error/</loc>
     <lastmod>2022-05-26T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://liuwei.co/post/2022/nginx-proxy_pass-to-istiogateway-with-426-upgrade-required-error/</loc>
-    <lastmod>2022-05-26T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://liuwei.co/categories/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
     <lastmod>2022-05-26T00:00:00+00:00</lastmod>
   </url><url>
@@ -161,14 +134,8 @@
     <loc>https://liuwei.co/post/2022/rewrite-response-429/</loc>
     <lastmod>2022-05-18T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://liuwei.co/post/2022/rewrite-response-429/</loc>
-    <lastmod>2022-05-18T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://liuwei.co/tags/lua/</loc>
     <lastmod>2022-05-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://liuwei.co/post/2022/make-httpcall-in-envoyfilter/</loc>
-    <lastmod>2022-05-17T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://liuwei.co/post/2022/make-httpcall-in-envoyfilter/</loc>
     <lastmod>2022-05-17T00:00:00+00:00</lastmod>
